@@ -1,0 +1,24 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: $font-primaria;
+    margin-bottom: -11px;
+}
+
+#conteudo {
+    position: relative;
+    min-height: 100%;
+}
+
+textarea {
+    resize: none;
+}
+
+.alerta-oculto,
+.aviso-block {
+    display: none;
+}

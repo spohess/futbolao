@@ -1,0 +1,56 @@
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    background-color: $cor-secundaria;
+
+    small {
+        color: $cor-clara;
+    }
+
+    .social {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            float: left;
+            color: $cor-clara;
+            margin-right: 10px;
+        }
+    }
+}
+
+.rodape {
+    border-top: 3rem solid $cor-secundaria;
+    background-color: darken($cor-clara, 5%);
+    padding-top: 20px;
+
+    legend {
+        font-size: 3rem;
+        font-weight: 100;
+        text-align: center;
+        color: $cor-secundaria;
+        border-bottom: 1px solid $cor-secundaria;
+    }
+
+    p {
+        font-size: 1.6rem;
+        color: $cor-secundaria;
+        text-align: center;
+    }
+
+    .copyright {
+        margin-top: 30px;
+        padding: 10px 20px;
+        background-color: $cor-secundaria;
+        font-size: 1.2 * $font-size;
+        text-align: right;
+        color: $cor-clara;
+    }
+
+    hr {
+        border-top: 1px solid $cor-primaria;
+    }
+}

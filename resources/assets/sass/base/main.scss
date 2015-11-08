@@ -1,0 +1,226 @@
+#main {
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 100px;
+
+    legend {
+        color: $cor-secundaria;
+    }
+
+    #erro-404 {
+        font-size: 7 * $font-size;
+        color: $cor-primaria;
+        font-weight: 700;
+
+        @media #{$mq-xs-max} {
+            font-size: 4 * $font-size;
+        }
+    }
+}
+
+.site {
+    font-family: $font-secundaria;
+
+    .tecnico {
+        font-size: 3rem;
+
+        p {
+            color: $cor-primaria;
+
+            &.destaque {
+                color: darken($cor-sucesso, 10%);
+            }
+        }
+
+        a {
+            padding: 1rem;
+            color: $cor-secundaria;
+            text-decoration: none;
+            display: inline-block;
+            background-color: lighten($cor-primaria, 30%);
+            border-radius: 4px;
+            font-size: 2rem;
+
+            &:hover {
+                background-color: $cor-primaria;
+                color: $cor-clara;
+            }
+        }
+    }
+
+    .img-tecnico {
+        top: 3rem;
+
+        @media #{$mq-sm-max} {
+            text-align: center;
+        }
+
+        @media #{$mq-md-min} {
+            top: -10rem;
+            margin-bottom: -7rem;
+        }
+
+        img {
+            position: relative;
+            padding: 3px;
+            border: 1px solid darken($cor-sucesso, 10%);
+            border-radius: 144.5px;
+            background-color: $cor-clara;
+
+            @media #{$mq-sm-max} {
+                display: inline;
+            }
+
+            &:hover {
+                padding: 3px;
+                box-shadow: 0 0 6px 1px darken($cor-sucesso, 15%);
+            }
+        }
+    }
+
+    .titulo-funcionalidade {
+        margin-top: 5rem;
+        padding-bottom: 2rem;
+        font-size: 4rem;
+        text-align: center;
+        color: darken($cor-sucesso, 15%);
+        border-bottom: 1px solid darken($cor-sucesso, 10%);
+
+        @media #{$mq-sm-min} {
+            margin-top: 3rem;
+            font-size: 7rem;
+        }
+
+        &.simples {
+            padding: 0;
+            border: none;
+
+            &.vermelho {
+                color: #A61D00;
+            }
+        }
+    }
+
+    .fundo-gramado {
+        margin-top: 3rem;
+        border-top: 4rem solid $cor-secundaria;
+        background-image: url('../../img/gramado.jpg');
+        background-position: center bottom;
+        background-size: cover;
+
+        .tipo {
+            padding: 3rem 0;
+            background-color: rgba($cor-clara,.9);
+
+            img {
+                width: 100%;
+                max-width: 15rem;
+                margin: 0 auto;
+                padding-top: 3rem;
+                display: block;
+            }
+        }
+    }
+
+    .box-tipo {
+        padding: 2rem;
+
+        h2 {
+            font-weight: bold;
+            color: $cor-primaria;
+            border-bottom: 1px solid $cor-primaria;
+
+            small {
+                font-weight: bold;
+                color: $cor-primaria;
+            }
+
+            i {
+                top: 5px;
+            }
+        }
+
+        p {
+            color: $cor-secundaria;
+            font-size: 3rem;
+        }
+
+        &.esq {
+            border-left: 1rem solid $cor-primaria;
+
+            @media #{$mq-md-min} {
+                margin-left: 2rem;
+            }
+        }
+        &.dir {
+            border-right: 1rem solid $cor-primaria;
+
+            @media #{$mq-md-min} {
+                margin-right: 2rem;
+            }
+
+            h2, p {
+                text-align: right;
+            }
+        }
+    }
+
+    .box-permissao {
+        min-height: 655px;
+        margin: 2rem;
+        padding: 3rem;
+        border-top: 18rem solid $cor-escura;
+        font-size: 3rem;
+        background-color: $cor-clara;
+        box-sizing: border-box;
+
+        img {
+            width: 70%;
+            margin: 0 auto;
+            margin-top: -13rem;
+            padding: 3rem;
+            border-radius: 5rem;
+            background-color: $cor-clara;
+            display: block;
+        }
+
+        h2 {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid darken($cor-clara, 10%);
+        }
+
+        p {
+            color: $cor-primaria;
+        }
+
+        &.publico {
+            $verde: #004B00;
+            border-top-color: $verde;
+
+             h2 {
+                color: $verde;
+            }
+        }
+
+        &.moderado {
+            $amarelo: #FFD205;
+            border-top-color: $amarelo;
+
+             h2 {
+                color: $amarelo;
+            }
+        }
+
+        &.privado {
+            $vermelho: #AA0000;
+            border-top-color: $vermelho;
+
+             h2 {
+                color: $vermelho;
+            }
+        }
+    }
+}
