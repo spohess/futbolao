@@ -46,6 +46,11 @@ class Usuario
     private $serialUsuario;
 
     /**
+     * @ORM\Column(name="ativoUsuario", type="integer", length=11, nullable=false, options={"comment":"Indicador de usuário ativo"})
+     */
+    private $ativoUsuario;
+
+    /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="creatAt", type="datetime", options={"comment":"Data de criação do registro"})
      */
@@ -91,7 +96,7 @@ class Usuario
      *
      * @return self
      */
-    private function setNomeUsuario($nomeUsuario)
+    public function setNomeUsuario($nomeUsuario)
     {
         $this->nomeUsuario = $nomeUsuario;
 
@@ -115,7 +120,7 @@ class Usuario
      *
      * @return self
      */
-    private function setEmailUsuario($emailUsuario)
+    public function setEmailUsuario($emailUsuario)
     {
         $this->emailUsuario = $emailUsuario;
 
@@ -139,7 +144,7 @@ class Usuario
      *
      * @return self
      */
-    private function setLoginUsuario($loginUsuario)
+    public function setLoginUsuario($loginUsuario)
     {
         $this->loginUsuario = $loginUsuario;
 
@@ -190,6 +195,30 @@ class Usuario
     private function setSerialUsuario()
     {
         $this->serialUsuario = strtolower(str_random(128));
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of ativoUsuario.
+     *
+     * @return mixed
+     */
+    public function getAtivoUsuario()
+    {
+        return $this->ativoUsuario;
+    }
+
+    /**
+     * Sets the value of ativoUsuario.
+     *
+     * @param mixed $ativoUsuario the serial usuario
+     *
+     * @return self
+     */
+    public function setAtivoUsuario($ativoUsuario)
+    {
+        $this->ativoUsuario = $ativoUsuario;
 
         return $this;
     }

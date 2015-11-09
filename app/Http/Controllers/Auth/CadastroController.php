@@ -47,6 +47,7 @@ class CadastroController extends AuthController
     {
         $usuario = new Usuario;
         $usuario->exchangeArray($request->all());
+        $usuario->setAtivoUsuario(0);
         if( $this->repository->save($usuario) ){
 
             $novoUsuario = [
