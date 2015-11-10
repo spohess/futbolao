@@ -125,6 +125,11 @@ header {
             margin: 0;
             padding: 22px 0;
             color: $cor-primaria;
+
+            @media #{$mq-xs-max} {
+                font-size: 1.4 * $font-size;
+                text-align: center;
+            }
         }
 
         .logo {

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="{{url('favicon.ico')}}">
     <title>{{getTituloSite()}} | @yield('titulo-pagina')</title>
 
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans+Condensed:300,300italic,700'>
@@ -52,7 +52,7 @@
                             <h2>@yield('titulo-pagina')</h2>
                         </div>
                         <div class="col-xs-24 col-sm-12">
-                            <div class="logo text-center">
+                            <div class="logo text-center hidden-xs">
                                 {!! file_get_contents(public_path() . "/img/logo.svg") !!}
                             </div>
                         </div>
@@ -66,19 +66,24 @@
         <footer id="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xs-24 col-sm-12">
+                    <div class="col-xs-8">
                         <ul class="social">
                             <li><a href="{{getLinkTwitter()}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="{{getLinkFacebook()}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="mailto:contato@palpiteirosanonimos.com.br?subject=Contato pelo Site" title="E-mail" target="_blank"><i class="fa fa-envelope"></i></a></li>
                         </ul>
                     </div>
-                    <div class="col-xs-24 col-sm-12 text-right">
-                        <small>{{getCopyrightSite()}}</small>
+                    <div class="col-xs-16 text-right">
+                        <small class="hidden-xs">{{getCopyrightSite()}}</small>
+                        <small class="hidden-sm hidden-md hidden-lg">{{getCopyrightSmallSite()}}</small>
                     </div>
                 </div>
             </div>
         </footer>
+    </div>
+
+    <div id="modais-sistema">
+        @yield('modais-sistema')
     </div>
 
     <script src="{{ elixir('js/all.js') }}"></script>

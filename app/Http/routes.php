@@ -17,6 +17,8 @@ Route::group(['prefix' => '/cadastro'], function(){
     Route::post('/validaemail', 'Auth\CadastroController@validaEmail');
     Route::post('/validalogin', 'Auth\CadastroController@validaLogin');
     Route::post('/', 'Auth\CadastroController@cadastro');
+    Route::post('/reenvia','Auth\CadastroController@reenvia');
+    Route::get('/confirma/{serialUsuario}', 'Auth\CadastroController@confirma')->where('serialUsuario','[a-zA-Z0-9]+');
 });
 
 Route::post('/contato', 'SiteController@enviaContato');

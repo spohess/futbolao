@@ -7,6 +7,10 @@
 
     small {
         color: $cor-clara;
+
+        @media #{$mq-xs-max} {
+            font-size: 0.6 * $font-size;
+        }
     }
 
     .social {
@@ -48,6 +52,10 @@
         font-size: 1.2 * $font-size;
         text-align: right;
         color: $cor-clara;
+
+        @media #{$mq-xs-max} {
+            font-size: 0.6 * $font-size;
+        }
     }
 
     hr {

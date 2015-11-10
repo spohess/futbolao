@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('titulo-pagina')
-Cadastro
+Página não encontrada
 @endsection
 
 @section('conteudo')

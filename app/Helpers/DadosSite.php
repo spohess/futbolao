@@ -130,3 +130,31 @@ if (! function_exists( 'getCopyrightSite' )) {
 		return '&copy; ' . date('Y') . ' | Palpiteiros Anônimos Todos os Direitos Reservados';
 	}
 }
+
+/**
+ * getCopyrightSmallSite
+ *
+ * Imprime a descrição do site do site
+ *
+ * @access public
+ */
+if (! function_exists( 'getCopyrightSmallSite' )) {
+	function getCopyrightSmallSite() {
+		return '&copy; ' . date('Y') . ' | Todos os Direitos Reservados';
+	}
+}
+
+
+/**
+ * getTimeZone
+ *
+ * Imprime a descrição do site do site
+ *
+ * @access public
+ */
+if (! function_exists( 'getTimeZone' )) {
+	function getTimeZone() {
+		// return 'Brazil/East';	// Horário normal
+		return 'America/Noronha';	// Horário de verão
+	}
+}

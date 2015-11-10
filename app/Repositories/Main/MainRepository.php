@@ -16,6 +16,11 @@ abstract class MainRepository implements MainRepositoryInterface
         return $this->serializer->serialize($entidy, 'json');
     }
 
+    public function findArrayByColumn($coluna, $valor)
+    {
+        return EntityManager::getRepository($this->model)->findBy(array($coluna => $valor));
+    }
+
     public function findByColumn($coluna, $valor)
     {
         $entidy = EntityManager::getRepository($this->model)->findBy(array($coluna => $valor));

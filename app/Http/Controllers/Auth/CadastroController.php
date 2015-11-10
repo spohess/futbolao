@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsuarioRequest;
 use App\Repositories\UsuarioRepositoryInterface;
 use App\Entities\Usuario;
+use DateTime;
 use Mail;
 
 class CadastroController extends AuthController
@@ -47,7 +48,7 @@ class CadastroController extends AuthController
     {
         $usuario = new Usuario;
         $usuario->exchangeArray($request->all());
-        $usuario->setAtivoUsuario(0);
+        $usuario->setDeletedAt(new DateTime(date('Y-m-d H:i:s')));
         if( $this->repository->save($usuario) ){
 
             $novoUsuario = [
@@ -66,6 +67,62 @@ class CadastroController extends AuthController
             }
             return ["estado" => "erro"];
         }
+    }
+
+    public function reenvia(Request $request)
+    {
+        if( is_null($request->emailReenvia) ){
+            return abort(400, 'Bad Request');
+        }
+
+        $this->repository->disableSoftDelet();
+        $usuario = $this->repository->findArrayByColumn('emailUsuario',$request->emailReenvia)[0];
+
+        if( is_null($usuario->getDeletedAt()) ){
+            return ["estado" => "confirmado"];
+        }
+
+        $usuario->setSerialUsuario();
+        if( $this->repository->save($usuario) ){
+            $dadosUsuario = [
+                'nome' => $usuario->getNomeUsuario(),
+                'email' => $usuario->getEmailUsuario(),
+                'serial' => $usuario->getSerialUsuario()
+            ];
+            $enviado = Mail::send('emails.novoCadastro', $dadosUsuario, function ($message) use ($dadosUsuario) {
+                $message->from(env('MAIL_USERNAME', getEmailContato()), $name = 'Palpiteiros Anônimos');
+                $message->to($dadosUsuario['email'], $name = $dadosUsuario['nome']);
+                $message->subject("Confirmação de Cadastro");
+            });
+
+            if( $enviado ){
+                return ["estado" => "sucesso"];
+            }
+        }
+
+        return ["estado" => "erro"];
+    }
+
+    public function confirma($serialUsuario)
+    {
+        $this->repository->disableSoftDelet();
+        $usuario = $this->repository->findArrayByColumn('serialUsuario',$serialUsuario)[0];
+        if( is_null($usuario->getDeletedAt()) ){
+            $dados = [
+                'titulo'    => 'Cadastro inválido',
+                'texto'     => 'Não há cadastro válido para essa solicitação, por favor verifique o link de confirmação e tente novamente ou utilize a opção para reenviar e-mail de confirmação',
+            ];
+            return view('site.paginainfo', $dados);
+        }
+
+        $usuario->setDeletedAt(null);
+        $usuario->setSerialUsuario();
+        $this->repository->save($usuario);
+        $dados = [
+                'titulo'    => 'Cadastro confirmado',
+                'texto'     => 'Seu cadastro foi confirmado e agora você está pronto para palpitar as partidas dos melhores campeonatos do país!',
+            ];
+            return view('site.paginainfo', $dados);
     }
 
 }

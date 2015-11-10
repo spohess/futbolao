@@ -16,7 +16,7 @@ class Usuario
     /**
     * @ORM\Id
     * @ORM\GeneratedValue
-    * @ORM\Column(type="integer")
+    * @ORM\Column(name="idUsuario", type="integer")
     */
     private $idUsuario;
 
@@ -44,11 +44,6 @@ class Usuario
      * @ORM\Column(name="serialUsuario", type="string", length=128, nullable=false, unique=true, options={"comment":"Serial do usuário"})
      */
     private $serialUsuario;
-
-    /**
-     * @ORM\Column(name="ativoUsuario", type="integer", length=11, nullable=false, options={"comment":"Indicador de usuário ativo"})
-     */
-    private $ativoUsuario;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -168,7 +163,7 @@ class Usuario
      *
      * @return self
      */
-    private function setSenhaUsuario($senhaUsuario)
+    public function setSenhaUsuario($senhaUsuario)
     {
         $this->senhaUsuario = bcrypt($senhaUsuario);
 
@@ -192,33 +187,9 @@ class Usuario
      *
      * @return self
      */
-    private function setSerialUsuario()
+    public function setSerialUsuario()
     {
-        $this->serialUsuario = strtolower(str_random(128));
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of ativoUsuario.
-     *
-     * @return mixed
-     */
-    public function getAtivoUsuario()
-    {
-        return $this->ativoUsuario;
-    }
-
-    /**
-     * Sets the value of ativoUsuario.
-     *
-     * @param mixed $ativoUsuario the serial usuario
-     *
-     * @return self
-     */
-    public function setAtivoUsuario($ativoUsuario)
-    {
-        $this->ativoUsuario = $ativoUsuario;
+        $this->serialUsuario = str_random(128);
 
         return $this;
     }
@@ -240,7 +211,7 @@ class Usuario
      *
      * @return self
      */
-    private function setCreatAt($creatAt)
+    public function setCreatAt($creatAt)
     {
         $this->creatAt = $creatAt;
 
@@ -264,7 +235,7 @@ class Usuario
      *
      * @return self
      */
-    private function setUpdatAt($updatAt)
+    public function setUpdatAt($updatAt)
     {
         $this->updatAt = $updatAt;
 
@@ -288,7 +259,7 @@ class Usuario
      *
      * @return self
      */
-    private function setDeletedAt($deletedAt)
+    public function setDeletedAt($deletedAt)
     {
         $this->deletedAt = $deletedAt;
 

@@ -13,6 +13,12 @@ class UsuarioRepository extends MainRepository implements UsuarioRepositoryInter
     {
         $this->serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $this->model = 'App\Entities\Usuario';
+        date_default_timezone_set(getTimeZone());
+    }
+
+    public function disableSoftDelet()
+    {
+        EntityManager::getFilters()->disable('soft-deleteable');
     }
 
     public function validaEmail($emailUsuario)
