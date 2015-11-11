@@ -14,7 +14,7 @@ Home
             <li><a href="" title="API">API</a></li>
             <li><a href="#contato" title="Contato">Contato</a></li>
             <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
-            <li class="active"><a href="" title="Entrar">Entrar</a></li>
+            <li class="active"><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
         </ul>
     </nav>
     <nav class="navbar navbar-inverse visible-xs">
@@ -33,9 +33,9 @@ Home
             <div class="collapse navbar-collapse" id="mobile-menu">
                 <ul class="nav navbar-nav">
                     <li><a href="" title="API">API</a></li>
-                    <li><a href="" title="Contato">Contato</a></li>
-                    <li><a href="" title="Cadastrar">Cadastrar</a></li>
-                    <li><a href="" title="Entrar">Entrar</a></li>
+                    <li><a href="#contato" title="Contato">Contato</a></li>
+                    <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
+                    <li><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
                 </ul>
             </div>
         </div>
@@ -136,7 +136,7 @@ Home
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="" title="API">API</a></li>
                     <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
-                    <li class="active"><a href="" title="Entrar">Entrar</a></li>
+                    <li class="active"><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
                     <li><hr></li>
                     <li><a href="{{getLinkTwitter()}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i> palpiteiros</a></li>
                     <li><a href="{{getLinkFacebook()}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i> palpiteiros.anonimos</a></li>

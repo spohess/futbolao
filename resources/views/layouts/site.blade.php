@@ -40,7 +40,7 @@
                             <li><a href="#">API</a></li>
                             <li><a href="{{url('/#contato')}}">Contato</a></li>
                             <li><a href="{{url('/cadastro')}}">Cadastro</a></li>
-                            <li class="active"><a href="#">Entrar</a></li>
+                            <li class="active"><a href="{{url('/entrar')}}">Entrar</a></li>
                         </ul>
                     </div>
                 </div>

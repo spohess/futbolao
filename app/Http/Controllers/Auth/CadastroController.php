@@ -16,6 +16,7 @@ class CadastroController extends AuthController
 
     public function __construct(UsuarioRepositoryInterface $repository)
     {
+        parent::__construct();
         $this->repository = $repository;
     }
 
@@ -76,7 +77,13 @@ class CadastroController extends AuthController
         }
 
         $this->repository->disableSoftDelet();
-        $usuario = $this->repository->findArrayByColumn('emailUsuario',$request->emailReenvia)[0];
+        $usuario = $this->repository->findArrayByColumn('emailUsuario',$request->emailReenvia);
+
+        if( empty($usuario) ){
+            return abort(400, 'Bad Request');
+        }
+
+        $usuario = $usuario[0];
 
         if( is_null($usuario->getDeletedAt()) ){
             return ["estado" => "confirmado"];
@@ -105,13 +112,22 @@ class CadastroController extends AuthController
 
     public function confirma($serialUsuario)
     {
+
+        $dados = [
+            'titulo'    => 'Cadastro inválido',
+            'texto'     => 'Não há cadastro válido para essa solicitação, por favor verifique o link de confirmação e tente novamente ou utilize a opção para reenviar e-mail de confirmação',
+        ];
+
         $this->repository->disableSoftDelet();
-        $usuario = $this->repository->findArrayByColumn('serialUsuario',$serialUsuario)[0];
+        $usuario = $this->repository->findArrayByColumn('serialUsuario',$serialUsuario);
+
+        if( empty($usuario) ){
+            return view('site.paginainfo', $dados);
+        }
+
+        $usuario = $usuario[0];
+
         if( is_null($usuario->getDeletedAt()) ){
-            $dados = [
-                'titulo'    => 'Cadastro inválido',
-                'texto'     => 'Não há cadastro válido para essa solicitação, por favor verifique o link de confirmação e tente novamente ou utilize a opção para reenviar e-mail de confirmação',
-            ];
             return view('site.paginainfo', $dados);
         }
 

@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'SiteController@index');
+Route::post('/contato', 'SiteController@enviaContato');
+
 Route::group(['prefix' => '/cadastro'], function(){
     Route::get('/', 'Auth\CadastroController@index');
     Route::post('/validaemail', 'Auth\CadastroController@validaEmail');
@@ -21,7 +23,14 @@ Route::group(['prefix' => '/cadastro'], function(){
     Route::get('/confirma/{serialUsuario}', 'Auth\CadastroController@confirma')->where('serialUsuario','[a-zA-Z0-9]+');
 });
 
-Route::post('/contato', 'SiteController@enviaContato');
+Route::group(['prefix' => '/entrar'], function(){
+    Route::get('/', 'Auth\EntrarController@index');
+    Route::post('/', 'Auth\EntrarController@entrar');
+});
+
+Route::group(['prefix' => '/arena', 'middleware' => 'auth'], function(){
+    Route::get('/', 'ArenaController@index');
+});
 
 
 /*

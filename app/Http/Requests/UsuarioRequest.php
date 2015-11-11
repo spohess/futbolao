@@ -25,8 +25,8 @@ class UsuarioRequest extends Request
     {
         return [
             'nomeUsuario'       => 'required|max:255',
-            'emailUsuario'      => 'required|email|max:128',
-            'loginUsuario'      => 'required|max:32',
+            'emailUsuario'      => 'required|email|max:128|unique:App\Entities\Usuario,emailUsuario',
+            'loginUsuario'      => 'required|max:32|unique:App\Entities\Usuario,loginUsuario',
             'senhaUsuario'      => 'required|min:6|max:16',
             'resenhaUsuario'    => 'required|min:6|max:16|same:senhaUsuario',
             'aceiteUsuario'     => 'required',

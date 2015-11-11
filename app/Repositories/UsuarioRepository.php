@@ -39,6 +39,19 @@ class UsuarioRepository extends MainRepository implements UsuarioRepositoryInter
         return false;
     }
 
+    /**
+    * Pesquisa uma entidade por nome
+    *
+    * @return Array
+    */
+    public function findByLogin($loginUsuario){
+        $usuario = EntityManager::getRepository($this->model)->findBy(array('loginUsuario' => $loginUsuario));
+        if( !empty($usuario) ){
+            return $usuario[0];
+        }
+        return null;
+    }
+
     public function save(Usuario $usuario){
         EntityManager::persist($usuario);
         EntityManager::flush();

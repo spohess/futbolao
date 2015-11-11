@@ -4,13 +4,14 @@ namespace App\Entities;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use LaravelDoctrine\ORM\Contracts\Auth\Authenticatable;
 
 /**
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ORM\Table(name="usuarios", options={"comment":"Tabela de usuarios"})
  */
-class Usuario
+class Usuario implements Authenticatable
 {
 
     /**
@@ -46,6 +47,11 @@ class Usuario
     private $serialUsuario;
 
     /**
+     * @ORM\Column(name="remembertoken", type="string", nullable=true, options={"comment":"Campo para lembrar a autênticação do usuário"})
+     */
+    protected $rememberToken;
+
+    /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="creatAt", type="datetime", options={"comment":"Data de criação do registro"})
      */
@@ -63,6 +69,62 @@ class Usuario
     * @ORM\Column(name="deletedAt", type="datetime", nullable=true, options={"comment":"Data em que o usuáŕio foi deletado"})
     */
     private $deletedAt;
+
+    public function getAuthIdentifierName()
+    {
+        return 'idUsuario';
+    }
+
+
+    public function getAuthIdentifier()
+    {
+        return $this->idUsuario;
+    }
+
+
+    public function getPassword()
+    {
+        return $this->senhaUsuario;
+    }
+
+    /**
+     * Get the password for the user.
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->getSenhaUsuario();
+    }
+
+    /**
+     * Get the token value for the "remember me" session.
+     * @return string
+     */
+    public function getRememberToken()
+    {
+        return $this->rememberToken;
+    }
+
+    /**
+     * Set the token valor for the "remember me" session.
+     *
+     * @param string $valor
+     *
+     * @return void
+     */
+    public function setRememberToken($valor)
+    {
+        $this->rememberToken = $valor;
+    }
+
+    /**
+     * Get the column name for the "remember me" token.
+     * @return string
+     */
+    public function getRememberTokenName()
+    {
+        return 'rememberToken';
+    }
 
     /**
      * Gets the value of idUsuario.
