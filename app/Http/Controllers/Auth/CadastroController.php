@@ -2,23 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\UsuarioRequest;
-use App\Repositories\UsuarioRepositoryInterface;
-use App\Entities\Usuario;
+use App\Models\Usuario;
 use DateTime;
+use Illuminate\Http\Request;
 use Mail;
 
 class CadastroController extends AuthController
 {
-
-    protected $repository;
-
-    public function __construct(UsuarioRepositoryInterface $repository)
-    {
-        parent::__construct();
-        $this->repository = $repository;
-    }
 
     public function index()
     {
@@ -27,8 +18,9 @@ class CadastroController extends AuthController
 
     public function validaEmail(Request $request)
     {
-        if( !is_null($request->emailUsuario) ){
-            if( $this->repository->validaEmail($request->emailUsuario) ){
+        if (!is_null($request->email)) {
+            $existe = Usuario::where('email', $request->email)->count();
+            if ($existe === 0) {
                 return ["estado" => "valido"];
             }
             return ["estado" => "invalido"];
@@ -37,8 +29,9 @@ class CadastroController extends AuthController
 
     public function validaLogin(Request $request)
     {
-        if( !is_null($request->loginUsuario) ){
-            if( $this->repository->validaLogin($request->loginUsuario) ){
+        if (!is_null($request->login)) {
+            $existe = Usuario::where('email', $request->login)->count();
+            if ($existe === 0) {
                 return ["estado" => "valido"];
             }
             return ["estado" => "invalido"];
@@ -48,14 +41,15 @@ class CadastroController extends AuthController
     public function cadastro(UsuarioRequest $request)
     {
         $usuario = new Usuario;
-        $usuario->exchangeArray($request->all());
-        $usuario->setDeletedAt(new DateTime(date('Y-m-d H:i:s')));
-        if( $this->repository->save($usuario) ){
+        $usuario->toObject($request->all());
+        $usuario->deleted_at = new DateTime(date('Y-m-d H:i:s'));
+        $usuario->setSerial();
+        if ($usuario->save()) {
 
             $novoUsuario = [
-                'nome' => $usuario->getNomeUsuario(),
-                'email' => $usuario->getEmailUsuario(),
-                'serial' => $usuario->getSerialUsuario()
+                'nome' => $usuario->nome,
+                'email' => $usuario->email,
+                'serial' => $usuario->serial,
             ];
             $enviado = Mail::send('emails.novoCadastro', $novoUsuario, function ($message) use ($novoUsuario) {
                 $message->from(env('MAIL_USERNAME', getEmailContato()), $name = 'Palpiteiros Anônimos');
@@ -63,7 +57,7 @@ class CadastroController extends AuthController
                 $message->subject("Confirmação de Cadastro");
             });
 
-            if( $enviado ){
+            if ($enviado) {
                 return ["estado" => "sucesso"];
             }
             return ["estado" => "erro"];
@@ -72,29 +66,26 @@ class CadastroController extends AuthController
 
     public function reenvia(Request $request)
     {
-        if( is_null($request->emailReenvia) ){
+        if (is_null($request->emailReenvia)) {
             return abort(400, 'Bad Request');
         }
 
-        $this->repository->disableSoftDelet();
-        $usuario = $this->repository->findArrayByColumn('emailUsuario',$request->emailReenvia);
+        $usuario = Usuario::withTrashed()->where('email', $request->emailReenvia)->first();
 
-        if( empty($usuario) ){
+        if (empty($usuario)) {
             return abort(400, 'Bad Request');
         }
 
-        $usuario = $usuario[0];
-
-        if( is_null($usuario->getDeletedAt()) ){
+        if (is_null($usuario->deleted_at)) {
             return ["estado" => "confirmado"];
         }
 
-        $usuario->setSerialUsuario();
-        if( $this->repository->save($usuario) ){
+        $usuario->setSerial();
+        if ($usuario->save()) {
             $dadosUsuario = [
-                'nome' => $usuario->getNomeUsuario(),
-                'email' => $usuario->getEmailUsuario(),
-                'serial' => $usuario->getSerialUsuario()
+                'nome' => $usuario->nome,
+                'email' => $usuario->email,
+                'serial' => $usuario->serial,
             ];
             $enviado = Mail::send('emails.novoCadastro', $dadosUsuario, function ($message) use ($dadosUsuario) {
                 $message->from(env('MAIL_USERNAME', getEmailContato()), $name = 'Palpiteiros Anônimos');
@@ -102,7 +93,7 @@ class CadastroController extends AuthController
                 $message->subject("Confirmação de Cadastro");
             });
 
-            if( $enviado ){
+            if ($enviado) {
                 return ["estado" => "sucesso"];
             }
         }
@@ -110,35 +101,32 @@ class CadastroController extends AuthController
         return ["estado" => "erro"];
     }
 
-    public function confirma($serialUsuario)
+    public function confirma($serial)
     {
 
         $dados = [
-            'titulo'    => 'Cadastro inválido',
-            'texto'     => 'Não há cadastro válido para essa solicitação, por favor verifique o link de confirmação e tente novamente ou utilize a opção para reenviar e-mail de confirmação',
+            'titulo' => 'Cadastro inválido',
+            'texto' => 'Não há cadastro válido para essa solicitação, por favor verifique o link de confirmação e tente novamente ou utilize a opção para reenviar e-mail de confirmação',
         ];
 
-        $this->repository->disableSoftDelet();
-        $usuario = $this->repository->findArrayByColumn('serialUsuario',$serialUsuario);
+        $usuario = Usuario::withTrashed()->where('serial', $serial)->first();
 
-        if( empty($usuario) ){
+        if (empty($usuario)) {
             return view('site.paginainfo', $dados);
         }
 
-        $usuario = $usuario[0];
-
-        if( is_null($usuario->getDeletedAt()) ){
+        if (is_null($usuario->deleted_at)) {
             return view('site.paginainfo', $dados);
         }
 
-        $usuario->setDeletedAt(null);
-        $usuario->setSerialUsuario();
-        $this->repository->save($usuario);
+        $usuario->deleted_at = null;
+        $usuario->setSerial();
+        $usuario->save();
         $dados = [
-                'titulo'    => 'Cadastro confirmado',
-                'texto'     => 'Seu cadastro foi confirmado e agora você está pronto para palpitar as partidas dos melhores campeonatos do país!',
-            ];
-            return view('site.paginainfo', $dados);
+            'titulo' => 'Cadastro confirmado',
+            'texto' => 'Seu cadastro foi confirmado e agora você está pronto para palpitar as partidas dos melhores campeonatos do país!',
+        ];
+        return view('site.paginainfo', $dados);
     }
 
 }

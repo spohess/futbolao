@@ -1,0 +1,50 @@
+.area-usuario {
+    position: relative;
+    height: 150px;
+    padding: 20px;
+    background-color: $cor-cinza;
+    border-top-left-radius: 90px;
+    border-bottom-left-radius: 90px;
+
+    .avatar {
+        float: left;
+
+        svg {
+            width: 110px;
+            height: 110px;
+            background-color: #FFF;
+            border-radius: 90px;
+        }
+    }
+
+    .dados {
+        float: left;
+        width: 100%;
+
+        @media #{$mq-xs-max} {
+            margin: 20px 0;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: $cor-primaria;
+
+            small {
+                color: $cor-secundaria;
+            }
+        }
+    }
+
+    .menu-perfil {
+
+        @media #{$mq-xs-max} {
+            position: absolute;
+            top: 20px;
+            right: 0;
+        }
+    }
+}
+
+.bolao-pessoal, .bolao-geral {
+    margin: 20px 0;
+}

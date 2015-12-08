@@ -198,3 +198,7 @@ Home
     </div>
 </footer>
 @stop
+
+@section('js-especifico')
+<script src="{{ elixir('js/all-site.js') }}"></script>
+@endsection

@@ -19,13 +19,13 @@ Entrar
                         <div id="avisoEntrarErroTexto"></div>
                     </div>
                     <div class="form-group">
-                        <label for="loginUsuario" class="control-label">Usuário</label>
-                        <input type="text" name="loginUsuario" id="loginUsuario" ng-model="entrar.loginUsuario" class="form-control" placeholder="Digite o usuário" required maxlength="32" data-error="Campo obrigatório">
+                        <label for="login" class="control-label">Usuário</label>
+                        <input type="text" name="login" id="login" ng-model="entrar.login" class="form-control" placeholder="Digite o usuário" required maxlength="32" data-error="Campo obrigatório">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label for="senhaUsuario" class="control-label">Senha</label>
-                        <input type="password" name="senhaUsuario" id="senhaUsuario" ng-model="entrar.senhaUsuario" class="form-control" placeholder="Digite a senha" required minlength="6" maxlength="16" data-error="Campo obrigatório">
+                        <label for="senha" class="control-label">Senha</label>
+                        <input type="password" name="senha" id="senha" ng-model="entrar.senha" class="form-control" placeholder="Digite a senha" required minlength="6" maxlength="16" data-error="Campo obrigatório">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">

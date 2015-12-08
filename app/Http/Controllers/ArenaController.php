@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class ArenaController extends Controller
 {
 
     public function index()
     {
-        return view('site.arena');
+        $usuario = Auth::user();
+        $dados = [
+            'nome' => $usuario->nome,
+            'usuario' => $usuario->login,
+        ];
+        return view('site.arena', $dados);
     }
-
 }

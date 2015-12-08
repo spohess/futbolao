@@ -31,3 +31,48 @@ textarea {
     background-color: $cor-primaria;
     color: $cor-clara;
 }
+
+.sem-margin {
+    margin: 0;
+
+    ul, li, dl {
+        margin: 0;
+    }
+}
+
+.sem-padding {
+    padding: 0;
+}
+
+.sem-padding-y {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.sem-padding-x {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.mb-xs {
+    margin-bottom: 5px
+}
+
+.mb-sm {
+    margin-top: 5px;
+    margin-bottom: 10px
+}
+
+.mb-md {
+    margin-top: 5px;
+    margin-bottom: 20px
+}
+
+.mb-lg {
+    margin-top: 10px;
+    margin-bottom: 30px
+}
+
+.soft-hide {
+    display: none;
+}

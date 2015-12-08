@@ -1,12 +1,15 @@
 {
-  "css/all.css": "css/all-1c8766b00e.css",
-  "css/app.css": "css/app-e838dab4c9.css",
+  "css/all.css": "css/all-c8b60c8c20.css",
+  "css/app.css": "css/app-bd298062e3.css",
+  "css/arena.css": "css/arena-a5a2cabf99.css",
   "img/estadio-footer.jpg": "img/estadio-footer-e582a11682.jpg",
   "img/estadio.jpg": "img/estadio-0d7f3303db.jpg",
   "img/gramado.jpg": "img/gramado-987aae48d5.jpg",
   "img/icone.png": "img/icone-7ad587c320.png",
   "img/tecnico.png": "img/tecnico-078756df1f.png",
   "img/times_60x60.png": "img/times_60x60-1d95b64c32.png",
-  "js/all-auth.js": "js/all-auth-df8923cc26.js",
-  "js/all.js": "js/all-6f1f00aef6.js"
+  "js/all-arena.js": "js/all-arena-c10cabd8b4.js",
+  "js/all-auth.js": "js/all-auth-23298dabaf.js",
+  "js/all-site.js": "js/all-site-d753d5558d.js",
+  "js/all.js": "js/all-4093843e26.js"
 }

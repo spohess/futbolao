@@ -24,12 +24,12 @@ class UsuarioRequest extends Request
     public function rules()
     {
         return [
-            'nomeUsuario'       => 'required|max:255',
-            'emailUsuario'      => 'required|email|max:128|unique:App\Entities\Usuario,emailUsuario',
-            'loginUsuario'      => 'required|max:32|unique:App\Entities\Usuario,loginUsuario',
-            'senhaUsuario'      => 'required|min:6|max:16',
-            'resenhaUsuario'    => 'required|min:6|max:16|same:senhaUsuario',
-            'aceiteUsuario'     => 'required',
+            'nome' => 'required|max:255',
+            'email' => 'required|email|max:128|unique:usuarios,email',
+            'login' => 'required|max:32|unique:usuarios,login',
+            'senha' => 'required|min:6|max:16',
+            'resenha' => 'required|min:6|max:16|same:senha',
+            'aceite' => 'required',
         ];
     }
 }

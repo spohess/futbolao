@@ -1,23 +1,23 @@
 function fnSistemaController($scope, $http) {
 
     $scope.validaEmail = function(){
-        if( $scope.usuario.emailUsuario != '' ){
+        if( $scope.usuario.email != '' ){
             angular.element(".aviso-email").hide();
 
             $http.post('/cadastro/validaemail', $scope.usuario)
             .success(function(dados){
                 if( dados.estado == 'invalido' ){
                     angular.element(".aviso-email").show();
-                    $scope.usuario.emailUsuarioValido = 'invalido';
+                    $scope.usuario.emailValido = 'invalido';
                 } else {
-                    $scope.usuario.emailUsuarioValido = 'valido';
+                    $scope.usuario.emailValido = 'valido';
                 }
             });
         }
     }
 
     $scope.validaLogin = function(){
-        if( $scope.usuario.loginUsuario != '' ){
+        if( $scope.usuario.login != '' ){
             angular.element(".aviso-login-valido").hide();
             angular.element(".aviso-login-invalido").hide();
 
@@ -25,10 +25,10 @@ function fnSistemaController($scope, $http) {
             .success(function(dados){
                 if( dados.estado == 'valido' ){
                     angular.element(".aviso-login-valido").show();
-                    $scope.usuario.loginUsuarioValido = 'valido';
+                    $scope.usuario.loginValido = 'valido';
                 } else {
                     angular.element(".aviso-login-invalido").show();
-                    $scope.usuario.loginUsuarioValido = 'invalido';
+                    $scope.usuario.loginValido = 'invalido';
                 }
             });
         }
@@ -41,11 +41,11 @@ function fnSistemaController($scope, $http) {
         iconeEspera('iconeBtnCadastrar', 'fa-save', 'ativa');
 
         var erro = 0
-        if( $scope.usuario.emailUsuarioValido == 'invalido' ){
+        if( $scope.usuario.emailValido == 'invalido' ){
             angular.element(".aviso-email").show();
             erro++;
         }
-        if( $scope.usuario.loginUsuarioValido == 'invalido' ){
+        if( $scope.usuario.loginValido == 'invalido' ){
             angular.element(".aviso-login-invalido").show();
             erro++;
         }
