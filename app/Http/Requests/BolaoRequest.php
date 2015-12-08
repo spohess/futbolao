@@ -25,7 +25,7 @@ class BolaoRequest extends Request
     {
         return [
             'nome' => 'required|min:3',
-            'descricao' => 'string',
+            'descricao' => 'required|string',
             'permissao' => 'required|in:publico,moderado,privado',
         ];
     }

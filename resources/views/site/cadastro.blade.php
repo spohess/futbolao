@@ -106,7 +106,7 @@ Cadastro
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <div>O e-mail para confirmação do cadastro foi enviado, por favor verifique sua caixa de e-mail e não se esqueça de verificar o spam se for necessário..</div>
+                        <div>O e-mail para confirmação do cadastro foi enviado, por favor verifique sua caixa de e-mail e não se esqueça de verificar o spam se for necessário.</div>
                     </div>
                     <div class="form-group">
                         <label for="emailReenvia">E-mail</label>

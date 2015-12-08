@@ -118,8 +118,7 @@ Arena
                                 <th class="text-center">#</th>
                                 <th>Bolão</th>
                                 <th>Técnico</th>
-                                <th>Participantes</th>
-                                <th>Pontuação</th>
+                                <th class="text-center">Participantes</th>
                                 <th class="text-center">Ver</th>
                             </tr>
                         </thead>
@@ -140,7 +139,6 @@ Arena
                                 <td><a href="" data-target="@{{itemBolao.id}}" ng-click="carregaDetalheBolao(itemBolao)">@{{itemBolao.nome}}</a></td>
                                 <td>@{{itemBolao.nomeTecnico}} <small class="text-primary">@{{itemBolao.loginTecnico}}</small></td>
                                 <td class="text-center">@{{itemBolao.participantes}}</td>
-                                <td class="text-center">@{{itemBolao.pontuacao}}</td>
                                 <td class="text-center"><a href="" data-target="@{{itemBolao.id}}" ng-click="carregaDetalheBolao(itemBolao)"><i class="fa fa-search"></i></a></td>
                             </tr>
                         </tbody>
@@ -188,13 +186,25 @@ Arena
             <form id="formNovoBolao" name="formNovoBolao" method="post" ng-submit="gravaNovoBolao()" data-toggle="validator" role="form">
                 <input type="hidden" name="_token" ng-model="novoBolao._token" value="" ng-init="novoBolao._token='{{ csrf_token() }}'">
                 <div class="modal-body">
+                    <div id="avisoCriaErro" class="alert alert-danger alerta-oculto">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div>Não foi possível criar o bolão, tente novamente ou entre em contato se o problema persistir.</div>
+                    </div>
+                    <div id="avisoCriaSucesso" class="alert alert-success alerta-oculto">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div>Bolão criado com sucesso.</div>
+                    </div>
                     <div class="form-group">
                         <label for="nome" class="control-label">Nome do Bolão</label>
                         <input type="text" id="nome" name="nome" ng-model="novoBolao.nome" class="form-control" placeholder="Informe o nome do bolão" required>
                     </div>
                     <div class="form-group">
                         <label for="descricao" class="control-label">Descrição do Bolão</label>
-                        <textarea id="descricao" name="descricao" ng-model="novoBolao.descricao" class="form-control" placeholder="Dê uma descrição para este bolão" rows="5"></textarea>
+                        <textarea id="descricao" name="descricao" ng-model="novoBolao.descricao" class="form-control" placeholder="Dê uma descrição para este bolão" rows="5" required></textarea>
                     </div>
                     <div class="container-fluid">
                         <div class="row text-center">
@@ -212,7 +222,7 @@ Arena
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" ng-disabled="formNovoBolao.$invalid">Criar</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="formNovoBolao.$invalid"><i id="iconeBtnCria" class="fa fa-plus"></i> Criar</button>
                 </div>
             </form>
         </div>

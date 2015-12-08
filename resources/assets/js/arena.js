@@ -1,5 +1,9 @@
 function fnSistemaController($scope, $http) {
 
+    $scope.meusBoloes = [];
+    $scope.todosBoloes = [];
+
+
     $scope.limitesList = [
         {id:'5', valor:'5'},
         {id:'10', valor:'10'},
@@ -54,10 +58,28 @@ function fnSistemaController($scope, $http) {
     });
 
     $scope.gravaNovoBolao = function(){
+
+        angular.element('.alerta-oculto').hide();
+
         if($scope.formNovoBolao.$valid){
-            $http.post('/bolao/cria',$scope.novoBolao)
+            iconeEspera('iconeBtnCria', 'fa-plus', 'ativa');
+
+            $http.post('/bolao/cria', $scope.novoBolao)
             .success(function(dados){
-                console.info(dados);
+                if( dados.estado === 'sucesso' ){
+                    $scope.meusBoloes.push(dados.bolao);
+                    $scope.todosBoloes.push(dados.bolao);
+                    angular.element("#avisoCriaSucesso").show();
+                    $scope.novoBolao = [];
+                } else {
+                    angular.element("#avisoCriaErro").show();
+                }
+            })
+            .error(function(){
+                angular.element("#avisoCriaErro").show();
+            })
+            .finally(function(){
+                iconeEspera('iconeBtnCria', 'fa-plus', 'desativa');
             });
         }
     }

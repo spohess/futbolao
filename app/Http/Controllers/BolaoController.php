@@ -25,7 +25,16 @@ class BolaoController extends Controller
             $usuarioBolao->id_usuario = Auth::user()->id;
             $usuarioBolao->id_bolao = $bolao->id;
             if ($usuarioBolao->save()) {
-                return ['estado' => 'sucesso'];
+                $dados = [
+                    "permissao" => $bolao->permissao,
+                    "id" => $bolao->id,
+                    "nome" => $bolao->nome,
+                    "nomeTecnico" => $bolao->tecnico->nome,
+                    "loginTecnico" => $bolao->tecnico->login,
+                    "participantes" => $bolao->participantes->count(),
+                    "pontuacao" => 0,
+                ];
+                return ['estado' => 'sucesso', 'bolao' => $dados];
             }
         }
         return ['estado' => 'erro'];
@@ -60,7 +69,7 @@ class BolaoController extends Controller
             array_push($listaBoloes, $dados);
         }
         if (empty($listaBoloes)) {
-            return ['estado' => 'vazia'];
+            return ['estado' => 'vazio'];
         } else {
             return ['estado' => 'sucesso', 'lista' => $listaBoloes];
         }
@@ -87,7 +96,7 @@ class BolaoController extends Controller
             array_push($listaBoloes, $dados);
         }
         if (empty($listaBoloes)) {
-            return ['estado' => 'vazia'];
+            return ['estado' => 'vazio'];
         } else {
             return ['estado' => 'sucesso', 'lista' => $listaBoloes];
         }
