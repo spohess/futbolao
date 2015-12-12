@@ -25,6 +25,9 @@ Route::group(['prefix' => '/cadastro'], function () {
 Route::group(['prefix' => '/entrar'], function () {
     Route::get('/', 'Auth\EntrarController@index');
     Route::post('/', 'Auth\EntrarController@entrar');
+    Route::post('/reenvia', 'Auth\EntrarController@reenvia');
+    Route::get('/nova_senha/{serialUsuario}', 'Auth\EntrarController@novaSenha')->where('serialUsuario', '[a-zA-Z0-9]+');
+    Route::post('/nova_senha', 'Auth\EntrarController@gravaNovaSenha');
 });
 Route::get('/sair', 'Auth\SairController@sair');
 
@@ -36,6 +39,12 @@ Route::group(['prefix' => '/bolao', 'middleware' => 'auth'], function () {
     Route::post('/cria', 'BolaoController@cria');
     Route::get('/usuario_bolao', 'BolaoController@getUsuarioBolao');
     Route::get('/todos_bolao', 'BolaoController@getTodosBolao');
+    Route::get('/detalhe/{id}', 'BolaoController@getDetalheBolao')->where('id', '[0-9]+');
+    Route::post('/solicita_entrada', 'BolaoController@solicitaEntrada');
+});
+
+Route::group(['prefix' => '/competicao', 'middleware' => 'auth'], function () {
+    Route::get('/lista_select', 'CompeticaoController@getListaSelect');
 });
 
 /*

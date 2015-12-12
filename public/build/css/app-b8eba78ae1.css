@@ -138,7 +138,7 @@ header .hd-bloco {
   min-height: 600px;
   padding-top: 10rem;
   padding-bottom: 3rem;
-  background-image: url("../../img/estadio.jpg");
+  background-image: url("../../build//img/estadio-0d7f3303db.jpg");
   background-position: center bottom;
   background-size: cover;
   font-family: "Open Sans Condensed", sans-serif;
@@ -363,7 +363,7 @@ header .hd-bloco blockquote footer {
 .site .fundo-gramado {
   margin-top: 3rem;
   border-top: 4rem solid #a61d00;
-  background-image: url("../../img/gramado.jpg");
+  background-image: url("../../build//img/gramado-987aae48d5.jpg");
   background-position: center bottom;
   background-size: cover;
 }

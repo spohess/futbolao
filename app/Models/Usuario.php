@@ -40,12 +40,17 @@ class Usuario extends Model implements AuthenticatableContract, AuthorizableCont
 
     public function boloes()
     {
-        return $this->belongsToMany('App\Models\Bolao', 'usuarios_boloes', 'id_usuario', 'id_bolao');
+        return $this->belongsToMany('App\Models\Bolao', 'usuarios_boloes', 'id_usuario', 'id_bolao')->where('participacao', 'aceito');
     }
 
     public function setSerial()
     {
         $this->serial = str_random(128);
+    }
+
+    public function setSenha($senha)
+    {
+        $this->senha = bcrypt($senha);
     }
 
     /**
@@ -56,6 +61,7 @@ class Usuario extends Model implements AuthenticatableContract, AuthorizableCont
         $this->nome = $dados['nome'];
         $this->email = $dados['email'];
         $this->login = $dados['login'];
-        $this->senha = bcrypt($dados['senha']);
+        $this->setSenha($dados['senha']);
+        $this->serial = str_random(128);
     }
 }

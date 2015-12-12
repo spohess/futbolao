@@ -52,6 +52,7 @@ Arena
                                 <th class="text-center">#</th>
                                 <th>Bolão</th>
                                 <th>Técnico</th>
+                                <th>Competição</th>
                                 <th class="text-center">Participantes</th>
                                 <th class="text-center">Pontuação</th>
                                 <th class="text-center">Ver</th>
@@ -59,13 +60,13 @@ Arena
                         </thead>
                         <tbody id="lista-questionarios" class="row">
                             <tr id="carregaMeusBoloes">
-                                <td colspan="6" class="text-center"><i class="fa fa-refresh fa-spin"></i> Carregando informaçõçes</td>
+                                <td colspan="7" class="text-center"><i class="fa fa-refresh fa-spin"></i> Carregando informaçõçes</td>
                             </tr>
                             <tr id="erroMeusBoloes" class="soft-hide">
-                                <td colspan="6" class="text-center"><h3 class="alert alert-warning">Não foi possível carregar os dados</h3></td>
+                                <td colspan="7" class="text-center"><h3 class="alert alert-warning">Não foi possível carregar os dados</h3></td>
                             </tr>
                             <tr id="vazioMeusBoloes" class="soft-hide">
-                                <td colspan="6" class="text-center"><h3 class="alert alert-info">Não há informações para serem carregadas</h3></td>
+                                <td colspan="7" class="text-center"><h3 class="alert alert-info">Você não está participando de nenhum bolão</h3></td>
                             </tr>
                             <tr dir-paginate="meuBolao in meusBoloes | filter:pessoalFiltro | itemsPerPage:pessoalLimite" pagination-id="idListaPessoalBolao">
                                 <td class="text-center text-success" ng-if="meuBolao.permissao == 'publico'"><i class="fa fa-unlock-alt"></i></td>
@@ -73,6 +74,7 @@ Arena
                                 <td class="text-center text-danger" ng-if="meuBolao.permissao == 'privado'"><i class="fa fa-lock"></i></td>
                                 <td><a href="" data-target="@{{meuBolao.id}}" ng-click="carregaDetalheBolao(meuBolao)">@{{meuBolao.nome}}</a></td>
                                 <td>@{{meuBolao.nomeTecnico}} <small class="text-primary">@{{meuBolao.loginTecnico}}</small></td>
+                                <td>@{{meuBolao.competicao}}</td>
                                 <td class="text-center">@{{meuBolao.participantes}}</td>
                                 <td class="text-center">@{{meuBolao.pontuacao}}</td>
                                 <td class="text-center"><a href="" data-target="@{{meuBolao.id}}" ng-click="carregaDetalheBolao(meuBolao)"><i class="fa fa-search"></i></a></td>
@@ -80,7 +82,7 @@ Arena
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-list-ol"></i></span>
                                         <select id="pessoalLimite" name="" class="form-control" min="1" ng-model="pessoalLimite" ng-options="item.id as item.valor for item in limitesList"></select>
@@ -102,7 +104,7 @@ Arena
                 <h2 class="text-primary">Todos os Bolões <small>bolões criados no site</small></h2>
             </div>
             <div class="col-xs-24 col-sm-5 col-md-3">
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#mdNovoBolao">Cria Bolão</button>
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#mdNovoBolao" ng-click="carregaCompeticao()">Cria Bolão</button>
             </div>
             <div class="col-xs-24">
                 <div class="input-group">
@@ -118,19 +120,21 @@ Arena
                                 <th class="text-center">#</th>
                                 <th>Bolão</th>
                                 <th>Técnico</th>
+                                <th>Competição</th>
                                 <th class="text-center">Participantes</th>
+                                <th class="text-center">Pontuação</th>
                                 <th class="text-center">Ver</th>
                             </tr>
                         </thead>
                         <tbody id="lista-questionarios" class="row">
                             <tr id="carregaTodosBoloes">
-                                <td colspan="6" class="text-center"><i class="fa fa-refresh fa-spin"></i> Carregando informaçõçes</td>
+                                <td colspan="7" class="text-center"><i class="fa fa-refresh fa-spin"></i> Carregando informaçõçes</td>
                             </tr>
                             <tr id="erroTodosBoloes" class="soft-hide">
-                                <td colspan="6" class="text-center"><h3 class="alert alert-warning">Não foi possível carregar os dados</h3></td>
+                                <td colspan="7" class="text-center"><h3 class="alert alert-warning">Não foi possível carregar os dados</h3></td>
                             </tr>
                             <tr id="vazioTodosBoloes" class="soft-hide">
-                                <td colspan="6" class="text-center"><h3 class="alert alert-info">Não há informações para serem carregadas</h3></td>
+                                <td colspan="7" class="text-center"><h3 class="alert alert-info">Não há nenhum bolão cadastrado no site</h3></td>
                             </tr>
                             <tr dir-paginate="itemBolao in todosBoloes | filter:geralFiltro | itemsPerPage:geralLimite" pagination-id="idListaGeralBolao">
                                 <td class="text-center text-success" ng-if="itemBolao.permissao == 'publico'"><i class="fa fa-unlock-alt"></i></td>
@@ -138,13 +142,15 @@ Arena
                                 <td class="text-center text-danger" ng-if="itemBolao.permissao == 'privado'"><i class="fa fa-lock"></i></td>
                                 <td><a href="" data-target="@{{itemBolao.id}}" ng-click="carregaDetalheBolao(itemBolao)">@{{itemBolao.nome}}</a></td>
                                 <td>@{{itemBolao.nomeTecnico}} <small class="text-primary">@{{itemBolao.loginTecnico}}</small></td>
+                                <td>@{{itemBolao.competicao}}</td>
                                 <td class="text-center">@{{itemBolao.participantes}}</td>
+                                <td class="text-center">@{{itemBolao.pontuacao}}</td>
                                 <td class="text-center"><a href="" data-target="@{{itemBolao.id}}" ng-click="carregaDetalheBolao(itemBolao)"><i class="fa fa-search"></i></a></td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-list-ol"></i></span>
                                         <select id="geralLimite" name="" class="form-control" min="1" ng-model="geralLimite" ng-options="item.id as item.valor for item in limitesList"></select>
@@ -165,13 +171,50 @@ Arena
 
 @section('modais-sistema')
 <div class="modal fade" id="mdDetalheBolao" tabindex="-1" role="dialog" aria-labelledby="mdDetalheBolaoLabel">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header modal-primary">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="mdDetalheBolaoLabel">Detalhe Bolão: @{{detalheBolao.nome}}</h4>
+                <h4 class="modal-title" id="mdDetalheBolaoLabel"><strong>@{{detalheBolao.nome}}</strong> (@{{detalheBolao.permissaoNome}})</h4>
             </div>
             <div class="modal-body">
+                <div class="container-fluir">
+                    <div class="row">
+                        <div class="col-xs-24">
+                            <p><strong class="text-primary">Tecnico:</strong> @{{detalheBolao.nomeTecnico}} <small>@{{detalheBolao.loginTecnico}}</small></p>
+                            <p><strong class="text-primary">Descrição:</strong> @{{detalheBolao.descricao}}</p>
+                            <p><strong class="text-primary">Competição:</strong> @{{detalheBolao.competicao}}</p>
+                            <hr>
+                        </div>
+                        <div class="col-xs-24" ng-if="detalheBolao.admin == false && detalheBolao.banido == false && detalheBolao.permissao != 'privado'">
+                            <div class="alert alert-warning text-center" ng-if="detalheBolao.convite == true">Sua solicitação foi enviada e está aguardando análise</div>
+                            <button type="button" class="btn btn-warning" ng-if="detalheBolao.convite == true" ng-click="cancelarSolicitacao(detalheBolao)"><i class="fa fa-sign-out"></i> Cancelar Solicitação</button>
+                            <button type="button" class="btn btn-danger pull-right" ng-if="detalheBolao.integrante == true" ng-click="sairBolao(detalheBolao)"><i class="fa fa-sign-out"></i> Sair do Bolão</button>
+                            <button type="button" class="btn btn-success pull-right" ng-if="detalheBolao.integrante == false" ng-disabled="detalheBolao.convite == true" ng-click="entrarBolao(detalheBolao)"><i class="fa fa-sign-in"></i> Entrar no Bolão</button>
+                        </div>
+                        <div class="col-xs-24">
+                            <div class="table-scroll">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Participantes</th>
+                                            <th class="text-right">Pontos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="participante in detalheBolao.participantes">
+                                            <td>@{{participante.nome}} <small class="text-primary">@{{participante.login}}</small></td>
+                                            <td class="text-right">@{{participante.pontos}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-xs-24">
+                            <button type="button" class="btn btn-danger" ng-if="detalheBolao.admin == true" ng-click="excluirBolao(detalheBolao)"><i class="fa fa-trash"></i> Excluir Bolão</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -205,6 +248,10 @@ Arena
                     <div class="form-group">
                         <label for="descricao" class="control-label">Descrição do Bolão</label>
                         <textarea id="descricao" name="descricao" ng-model="novoBolao.descricao" class="form-control" placeholder="Dê uma descrição para este bolão" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_competicao" class="control-label">Competição</label>
+                        <select id="id_competicao" name="id_competicao" ng-model="novoBolao.id_competicao" class="form-control" ng-options="competicao.id as competicao.valor for competicao in competicoes" required></select>
                     </div>
                     <div class="container-fluid">
                         <div class="row text-center">

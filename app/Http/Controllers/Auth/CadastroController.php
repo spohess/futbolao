@@ -43,7 +43,6 @@ class CadastroController extends AuthController
         $usuario = new Usuario;
         $usuario->toObject($request->all());
         $usuario->deleted_at = new DateTime(date('Y-m-d H:i:s'));
-        $usuario->setSerial();
         if ($usuario->save()) {
 
             $novoUsuario = [

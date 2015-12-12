@@ -57,6 +57,14 @@ function fnSistemaController($scope, $http) {
         angular.element("#carregaTodosBoloes").hide();
     });
 
+    $scope.carregaCompeticao = function(){
+        $http.get('/competicao/lista_select')
+        .success(function(dados){
+            $scope.competicoes = dados;
+            $scope.novoBolao.id_competicao = '';
+        });
+    }
+
     $scope.gravaNovoBolao = function(){
 
         angular.element('.alerta-oculto').hide();
@@ -71,6 +79,8 @@ function fnSistemaController($scope, $http) {
                     $scope.todosBoloes.push(dados.bolao);
                     angular.element("#avisoCriaSucesso").show();
                     $scope.novoBolao = [];
+                    angular.element("#vazioMeusBoloes").hide();
+                    angular.element("#vazioTodosBoloes").hide();
                 } else {
                     angular.element("#avisoCriaErro").show();
                 }
@@ -84,9 +94,22 @@ function fnSistemaController($scope, $http) {
         }
     }
 
-    $scope.carregaDetalheBolao = function(meuBolao){
-        $scope.detalheBolao = meuBolao;
+    $scope.carregaDetalheBolao = function(bolao){
         angular.element("#mdDetalheBolao").modal('show');
+        $http.get('/bolao/detalhe/' + bolao.id)
+        .success(function(dados){
+            $scope.detalheBolao = dados;
+        })
+    }
+
+    $scope.entrarBolao = function(bolao){
+
+        $http.post('/bolao/solicita_entrada', bolao)
+        .success(function(dados){
+            if( dados.estado === 'sucesso' ){
+                $scope.detalheBolao = dados.lista;
+            }
+        });
     }
 }
 fnSistemaController.$inject = ['$scope', '$http'];

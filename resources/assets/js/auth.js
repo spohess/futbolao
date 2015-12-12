@@ -128,6 +128,64 @@ function fnSistemaController($scope, $http) {
         });
     }
 
+    $scope.reenviaDadosAcesso = function(){
+        if( $scope.formReenviadaddosAcesso.$invalid ){
+            return false;
+        }
+
+        iconeEspera('iconeBtnEnviaDados', 'fa-send', 'ativa');
+        $http.post('/entrar/reenvia', $scope.reenvia)
+        .success(function(dados){
+            if( dados.estado == 'confirmado' ){
+                angular.element(".aviso-oculto").hide();
+                angular.element("#avisoReenviaErro").show();
+            }
+            if( dados.estado == 'sucesso' ) {
+                angular.element(".aviso-oculto").hide();
+                angular.element("#avisoReenviaSucesso").show();
+                angular.element('#btnFechaEnvidaDados').show();
+                $scope.reenvia = [];
+                angular.element("form[name=formReenviadaddosAcesso]").validator('destroy');
+            }
+        })
+        .error(function(dados){
+            angular.element(".aviso-oculto").hide();
+            angular.element("#avisoReenviaErro").show();
+        })
+        .then(function(){
+            iconeEspera('iconeBtnEnviaDados', 'fa-send', 'desativa');
+        });
+    }
+
+    $scope.gravaNovaSenha = function(){
+        if( $scope.formNovaSenha.$invalid ){
+            return false;
+        }
+
+        iconeEspera('iconeBtnGravar', 'fa-send', 'ativa');
+        $http.post('/entrar/nova_senha', $scope.novaSenha)
+        .success(function(dados){
+            if( dados.estado == 'erro' ){
+                angular.element(".aviso-oculto").hide();
+                angular.element("#avisoGravaSenhaErro").show();
+            }
+            if( dados.estado == 'sucesso' ) {
+                angular.element(".aviso-oculto").hide();
+                angular.element("#avisoGravaSenhaSucesso").show();
+                angular.element('#btnFechaEnvidaDados').show();
+                $scope.novaSenha = [];
+                angular.element("form[name=formNovaSenha]").validator('destroy');
+            }
+        })
+        .error(function(dados){
+            angular.element(".aviso-oculto").hide();
+            angular.element("#avisoGravaSenhaErro").show();
+        })
+        .then(function(){
+            iconeEspera('iconeBtnGravar', 'fa-send', 'desativa');
+        });
+    }
+
 }
 fnSistemaController.$inject = ['$scope', '$http'];
 angular.module('app').controller('sistemaController', fnSistemaController);

@@ -26,7 +26,7 @@ class UsuarioRequest extends Request
         return [
             'nome' => 'required|max:255',
             'email' => 'required|email|max:128|unique:usuarios,email',
-            'login' => 'required|max:32|unique:usuarios,login',
+            'login' => 'required|alpha_dash|max:32|unique:usuarios,login',
             'senha' => 'required|min:6|max:16',
             'resenha' => 'required|min:6|max:16|same:senha',
             'aceite' => 'required',

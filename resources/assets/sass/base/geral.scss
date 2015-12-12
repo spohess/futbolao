@@ -76,3 +76,8 @@ textarea {
 .soft-hide {
     display: none;
 }
+
+.table-scroll {
+    overflow-y: auto;
+    max-height: 40%;
+}

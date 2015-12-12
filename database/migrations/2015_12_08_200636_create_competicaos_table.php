@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateBolaosTable extends Migration
+class CreateCompeticaosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateBolaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('boloes', function (Blueprint $table) {
+        Schema::create('competicoes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('descricao');
-            $table->enum('permissao', ['publico', 'moderado', 'privado']);
-            $table->bigInteger('id_tecnico');
-            $table->bigInteger('id_competicao');
+            $table->enum('modalidade', ['pontuacao', 'eliminatoria']);
+            $table->date('data_inicio');
+            $table->date('data_fim');
             $table->string('slug');
             $table->timestamps();
             $table->softDeletes();
@@ -32,6 +32,6 @@ class CreateBolaosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('boloes');
+        Schema::drop('competicoes');
     }
 }

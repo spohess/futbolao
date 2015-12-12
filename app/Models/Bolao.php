@@ -31,12 +31,17 @@ class Bolao extends Model
 
     public function participantes()
     {
-        return $this->belongsToMany('App\Models\Usuario', 'usuarios_boloes', 'id_bolao', 'id_usuario');
+        return $this->belongsToMany('App\Models\Usuario', 'usuarios_boloes', 'id_bolao', 'id_usuario')->where('participacao', 'aceito');
     }
 
-    public function setIdTecnico()
+    public function competicao()
     {
-        $this->id_tecnico = Auth::user()->id;
+        return $this->hasOne('App\Models\Competicao', 'id', 'id_competicao');
+    }
+
+    public function setIdTecnico($idTecnico)
+    {
+        $this->id_tecnico = $idTecnico;
     }
 
     /**
@@ -47,5 +52,9 @@ class Bolao extends Model
         $this->nome = $dados['nome'];
         $this->descricao = $dados['descricao'];
         $this->permissao = $dados['permissao'];
+        $idTecnico = (!isset($dados['id_tecnico'])) ? Auth::user()->id : $dados['id_tecnico'];
+        $this->setIdTecnico($idTecnico);
+        $this->id_competicao = $dados['id_competicao'];
+        $this->slug = str_slug($dados['nome'], "-");
     }
 }

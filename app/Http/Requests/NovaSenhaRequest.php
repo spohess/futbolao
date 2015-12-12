@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class BolaoRequest extends Request
+class NovaSenhaRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class BolaoRequest extends Request
     public function rules()
     {
         return [
-            'nome' => 'required|min:3',
-            'descricao' => 'required|string',
-            'permissao' => 'required|in:publico,moderado,privado',
-            'id_competicao' => 'required|numeric',
+            'serial' => 'required|min:128|max:128',
+            'login' => 'required|alpha_dash|max:32',
+            'senha' => 'required|min:6|max:16',
+            'resenha' => 'required|min:6|max:16|same:senha',
         ];
     }
 }

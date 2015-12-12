@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NovaSenhaRequest;
 use App\Models\Usuario;
 use Auth;
 use Hash;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\Request;
 use Lang;
+use Mail;
 
 class EntrarController extends AuthController
 {
@@ -45,6 +47,16 @@ class EntrarController extends AuthController
     public function index()
     {
         return view('site.entrar');
+    }
+
+    public function getUsuario($campo, $valor)
+    {
+        $usuario = Usuario::where($campo, $valor)->first();
+        if (!empty($usuario)) {
+            return $usuario;
+        }
+        abort(404, "Bad Request");
+
     }
 
     /**
@@ -135,6 +147,51 @@ class EntrarController extends AuthController
             "mensagem" => $this->getLockoutErrorMessage($seconds),
         ];
         return $dados;
+    }
+
+    public function reenvia(Request $request)
+    {
+        $usuario = $this->getUsuario("email", $request->email);
+        $usuario->setSerial();
+        if ($usuario->save()) {
+            $dadosEmail = [
+                'nome' => $usuario->nome,
+                'email' => $usuario->email,
+                'login' => $usuario->login,
+                'serial' => $usuario->serial,
+            ];
+            $enviado = Mail::send('emails.novaSenha', $dadosEmail, function ($message) use ($dadosEmail) {
+                $message->from(env('MAIL_USERNAME', getEmailContato()), $name = 'Palpiteiros Anônimos');
+                $message->to($dadosEmail['email'], $name = $dadosEmail['nome']);
+                $message->subject("Recuperar dados de acesso");
+            });
+            if ($enviado) {
+                return ["estado" => "sucesso"];
+            }
+        }
+        return ["estado" => "erro"];
+    }
+
+    public function novaSenha($serialUsuario)
+    {
+        $usuario = $this->getUsuario("serial", $serialUsuario);
+        return view("site.novaSenha", ["serial" => $serialUsuario]);
+    }
+
+    public function gravaNovaSenha(NovaSenhaRequest $request)
+    {
+        $usuario = Usuario::where("login", $request->login)->where("serial", $request->serial)->first();
+        if (empty($usuario)) {
+            abort(404, "Bad Request");
+        }
+        $usuario->setSenha($request->senha);
+        $usuario->setSerial();
+        if ($usuario->save()) {
+            return ["estado" => "sucesso"];
+        }
+
+        return ["estado" => "erro"];
+
     }
 
 }
