@@ -199,12 +199,14 @@ Arena
                                         <tr>
                                             <th>Participantes</th>
                                             <th class="text-right">Pontos</th>
+                                            <th ng-if="detalheBolao.admin" class="text-center">Ação</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="participante in detalheBolao.participantes">
                                             <td>@{{participante.nome}} <small class="text-primary">@{{participante.login}}</small></td>
                                             <td class="text-right">@{{participante.pontos}}</td>
+                                            <td ng-if="detalheBolao.admin"><button ng-if="participante.id != {{$id}}" ng-click="banirParticipante(participante, detalheBolao)" type="button" class="btn btn-xs btn-danger btn-block pull-right">Banir</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -231,7 +233,7 @@ Arena
                                 </table>
                             </div>
                         </div>
-                        <div ng-if="detalheBolao.admin == true">
+                        <div ng-if="detalheBolao.admin">
                             <div class="col-xs-24">
                                 <button type="button" class="btn btn-danger" ng-click="adminBolao.confirmaDelete = true" ng-disabled="adminBolao.confirmaDelete"><i class="fa fa-trash"></i> Excluir Bolão</button>
                             </div>

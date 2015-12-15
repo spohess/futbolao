@@ -160,6 +160,17 @@ function fnSistemaController($scope, $http) {
             $scope.detalheBolao = dados.detalheBolao;
         });
     }
+
+    $scope.banirParticipante = function(participante, idBolao){
+        var dadosPost = {
+            'participante': participante,
+            'bolao': idBolao.id
+        }
+        $http.post('/bolao/banir_participante', dadosPost)
+        .success(function(dados){
+            $scope.detalheBolao = dados.detalheBolao;
+        })
+    }
 }
 fnSistemaController.$inject = ['$scope', '$http'];
 angular.module('app').controller('sistemaController', fnSistemaController);

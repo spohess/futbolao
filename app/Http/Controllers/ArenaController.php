@@ -12,6 +12,7 @@ class ArenaController extends Controller
     {
         $usuario = Auth::user();
         $dados = [
+            'id' => $usuario->id,
             'nome' => $usuario->nome,
             'usuario' => $usuario->login,
             'participacaoBolao' => $usuario->boloes->count(),

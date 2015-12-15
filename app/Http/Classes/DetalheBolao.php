@@ -72,6 +72,7 @@ class DetalheBolao
         $dadosParticipante = [];
         foreach ($this->bolao->participantes->all() as $participante) {
             $dados = [
+                "id" => $participante->id,
                 "nome" => $participante->nome,
                 "login" => $participante->login,
                 "pontos" => 0,
@@ -126,7 +127,8 @@ class DetalheBolao
 
     private function banidoBolao()
     {
-        $usuarioBolao = UsuarioBolao::where("id_usuario", Auth::user()->id)
+        $usuarioBolao = UsuarioBolao::withTrashed()
+            ->where("id_usuario", Auth::user()->id)
             ->where("id_bolao", $this->getBolao()->id)
             ->where("participacao", "banido")
             ->count();

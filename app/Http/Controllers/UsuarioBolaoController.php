@@ -110,5 +110,29 @@ class UsuarioBolaoController extends BolaoAbstract
         if ($usuarioBolao->save()) {
             return $this->processaRetorno(Bolao::find($request->all()['bolao']['idBolao']));
         }
+
+        return ["estado" => "erro"];
+    }
+
+    public function banirParticipante(Request $request)
+    {
+        $bolao = Bolao::getBolaoFromId($request->all()['bolao']);
+
+        if (!$bolao->isAdmin()) {
+            throw new Exception("É preciso ser administrador do bolão para banir um participante");
+        }
+
+        $usuarioBolao = UsuarioBolao::where("id_bolao", $bolao->id)
+            ->where("id_usuario", $request->all()['participante']['id'])
+            ->first();
+
+        $usuarioBolao->participacao = 'banido';
+        $usuarioBolao->deleted_at = date('Y-m-d H:i:s');
+
+        if ($usuarioBolao->save()) {
+            return $this->processaRetorno($bolao);
+        }
+
+        return ["estado" => "erro"];
     }
 }
