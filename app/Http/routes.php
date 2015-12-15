@@ -40,7 +40,11 @@ Route::group(['prefix' => '/bolao', 'middleware' => 'auth'], function () {
     Route::get('/usuario_bolao', 'BolaoController@getUsuarioBolao');
     Route::get('/todos_bolao', 'BolaoController@getTodosBolao');
     Route::get('/detalhe/{id}', 'BolaoController@getDetalheBolao')->where('id', '[0-9]+');
-    Route::post('/solicita_entrada', 'BolaoController@solicitaEntrada');
+    Route::post('/solicita_entrada/{id}', 'UsuarioBolaoController@solicitaEntrada')->where('id', '[0-9]+');
+    Route::delete('/cancela_convite/{id}', 'UsuarioBolaoController@cancelaConvite')->where('id', '[0-9]+');
+    Route::delete('/sair_bolao/{id}', 'UsuarioBolaoController@saiBolao')->where('id', '[0-9]+');
+    Route::delete('/delete_bolao/{id}', 'BolaoController@delete')->where('id', '[0-9]+');
+    Route::post('/resposta_convite', 'UsuarioBolaoController@respostaConvite');
 });
 
 Route::group(['prefix' => '/competicao', 'middleware' => 'auth'], function () {

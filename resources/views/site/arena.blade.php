@@ -20,11 +20,11 @@ Arena
                         <tbody>
                             <tr>
                                 <td>Colocação geral</td>
-                                <td>1º</td>
+                                <td>-</td>
                             </tr>
                             <tr>
                                 <td>Bolões</td>
-                                <td>3</td>
+                                <td>{{$participacaoBolao}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -65,7 +65,7 @@ Arena
                             <tr id="erroMeusBoloes" class="soft-hide">
                                 <td colspan="7" class="text-center"><h3 class="alert alert-warning">Não foi possível carregar os dados</h3></td>
                             </tr>
-                            <tr id="vazioMeusBoloes" class="soft-hide">
+                            <tr id="vazioMeusBoloes" class="soft-hide" ng-if="meusBoloes.length == 0">
                                 <td colspan="7" class="text-center"><h3 class="alert alert-info">Você não está participando de nenhum bolão</h3></td>
                             </tr>
                             <tr dir-paginate="meuBolao in meusBoloes | filter:pessoalFiltro | itemsPerPage:pessoalLimite" pagination-id="idListaPessoalBolao">
@@ -210,8 +210,37 @@ Arena
                                 </table>
                             </div>
                         </div>
-                        <div class="col-xs-24">
-                            <button type="button" class="btn btn-danger" ng-if="detalheBolao.admin == true" ng-click="excluirBolao(detalheBolao)"><i class="fa fa-trash"></i> Excluir Bolão</button>
+                        <div class="col-xs-24" ng-if="detalheBolao.admin == true">
+                            <div class="table-scroll">
+                                <table class="table table-striped table-hover">
+                                    <caption>Lista de convites pendentes</caption>
+                                    <thead>
+                                        <tr>
+                                            <th>Solicitante</th>
+                                            <th class="text-center" colspan="3">Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="convite in detalheBolao.listaConvite" class="item-listaconvite">
+                                            <td class="nome-listaconvite">@{{convite.nome}} <small class="text-primary">@{{convite.login}}</small></td>
+                                            <td class="btn-listaconvite"><button ng-click="respostaConvite(convite, 'aceito')" type="button" class="btn btn-xs btn-success btn-block pull-right">Aceitar</button></td>
+                                            <td class="btn-listaconvite"><button ng-click="respostaConvite(convite, 'deletado')" type="button" class="btn btn-xs btn-warning btn-block pull-right">Recusar</button></td>
+                                            <td class="btn-listaconvite"><button ng-click="respostaConvite(convite, 'banido')" type="button" class="btn btn-xs btn-danger btn-block pull-right">&nbsp;Banir&nbsp;</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div ng-if="detalheBolao.admin == true">
+                            <div class="col-xs-24">
+                                <button type="button" class="btn btn-danger" ng-click="adminBolao.confirmaDelete = true" ng-disabled="adminBolao.confirmaDelete"><i class="fa fa-trash"></i> Excluir Bolão</button>
+                            </div>
+                            <div class="col-xs-24" ng-if="adminBolao.confirmaDelete">
+                                <hr>
+                                <h5 class="text-danger">Deseja mesmo excluir o Bolão: <strong>@{{detalheBolao.nome}}</strong></h5>
+                                <button type="button" class="btn btn-success" ng-click="adminBolao.confirmaDelete = false">NÃO Excluir</button>
+                                <button type="button" class="btn btn-danger pull-right" ng-click="deleteBolao(detalheBolao)">Excluir SIM</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -235,34 +264,28 @@ Arena
                         </button>
                         <div>Não foi possível criar o bolão, tente novamente ou entre em contato se o problema persistir.</div>
                     </div>
-                    <div id="avisoCriaSucesso" class="alert alert-success alerta-oculto">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div>Bolão criado com sucesso.</div>
-                    </div>
                     <div class="form-group">
                         <label for="nome" class="control-label">Nome do Bolão</label>
-                        <input type="text" id="nome" name="nome" ng-model="novoBolao.nome" class="form-control" placeholder="Informe o nome do bolão" required>
+                        <input type="text" id="nome" name="nome" ng-model="novoBolao.nome" class="form-control limpar" placeholder="Informe o nome do bolão" required>
                     </div>
                     <div class="form-group">
                         <label for="descricao" class="control-label">Descrição do Bolão</label>
-                        <textarea id="descricao" name="descricao" ng-model="novoBolao.descricao" class="form-control" placeholder="Dê uma descrição para este bolão" rows="5" required></textarea>
+                        <textarea id="descricao" name="descricao" ng-model="novoBolao.descricao" class="form-control limpar" placeholder="Dê uma descrição para este bolão" rows="5" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="id_competicao" class="control-label">Competição</label>
-                        <select id="id_competicao" name="id_competicao" ng-model="novoBolao.id_competicao" class="form-control" ng-options="competicao.id as competicao.valor for competicao in competicoes" required></select>
+                        <select id="id_competicao" name="id_competicao" ng-model="novoBolao.id_competicao" class="form-control limpar" ng-options="competicao.id as competicao.valor for competicao in competicoes" required></select>
                     </div>
                     <div class="container-fluid">
                         <div class="row text-center">
                             <div class="form-group col-xs-24 col-md-8">
-                                <label for="permissao-publico" class="control-label text-success"><input type="radio" id="permissao-publico" name="permissao" ng-model="novoBolao.permissao" value="publico" required> <i class="fa fa-unlock-alt"></i> Público</label>
+                                <label for="permissao-publico" class="control-label text-success"><input type="radio" id="permissao-publico" name="permissao" ng-model="novoBolao.permissao" class="limpar" value="publico" required> <i class="fa fa-unlock-alt"></i> Público</label>
                             </div>
                             <div class="form-group col-xs-24 col-md-8">
-                                <label for="permissao-moderado" class="control-label text-warning"><input type="radio" id="permissao-moderado" name="permissao" ng-model="novoBolao.permissao" value="moderado" required> <i class="fa fa-key"></i> Moderado</label>
+                                <label for="permissao-moderado" class="control-label text-warning"><input type="radio" id="permissao-moderado" name="permissao" ng-model="novoBolao.permissao" class="limpar" value="moderado" required> <i class="fa fa-key"></i> Moderado</label>
                             </div>
                             <div class="form-group col-xs-24 col-md-8">
-                                <label for="permissao-privado" class="control-label text-danger"><input type="radio" id="permissao-privado" name="permissao" ng-model="novoBolao.permissao" value="privado" required> <i class="fa fa-lock"></i> Privado</label>
+                                <label for="permissao-privado" class="control-label text-danger"><input type="radio" id="permissao-privado" name="permissao" ng-model="novoBolao.permissao" class="limpar" value="privado" required> <i class="fa fa-lock"></i> Privado</label>
                             </div>
                         </div>
                     </div>

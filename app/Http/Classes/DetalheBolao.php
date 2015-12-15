@@ -2,6 +2,7 @@
 
 namespace App\Http\Classes;
 
+use App\Models\Bolao;
 use App\Models\UsuarioBolao;
 use Auth;
 use Exception;
@@ -45,7 +46,7 @@ class DetalheBolao
     {
         $dadosBolao = [
             "id" => $this->bolao->id,
-            "admin" => $this->isAdmin(),
+            "admin" => $this->bolao->isAdmin(),
             "nome" => $this->bolao->nome,
             "descricao" => $this->bolao->descricao,
             "permissao" => $this->bolao->permissao,
@@ -55,19 +56,12 @@ class DetalheBolao
             "competicao" => $this->bolao->competicao->nome,
             "integrante" => $this->isIntegrante(),
             "convite" => $this->conviteEnviado(),
+            "listaConvite" => $this->listaConvite(),
             "banido" => $this->banidoBolao(),
             "_token" => csrf_token(),
         ];
         $dadosBolao["participantes"] = $this->listaParticipante();
         return $dadosBolao;
-    }
-
-    /**
-     * @param $bolao
-     */
-    private function isAdmin()
-    {
-        return ($this->bolao->tecnico->id === Auth::user()->id) ? true : false;
     }
 
     /**
@@ -87,16 +81,38 @@ class DetalheBolao
         return $dadosParticipante;
     }
 
+    private function listaConvite()
+    {
+        if (!$this->bolao->isAdmin()) {
+            return false;
+        }
+
+        $listaConvite = [];
+        foreach ($this->bolao->convites->all() as $convite) {
+            $dados = [
+                "idBolao" => $this->bolao->id,
+                "idUsuario" => $convite->id,
+                "nome" => $convite->nome,
+                "login" => $convite->login,
+                "serial" => $convite->serial,
+            ];
+            array_push($listaConvite, $dados);
+        }
+
+        return $listaConvite;
+    }
+
     /**
      * @return mixed
      */
     private function isIntegrante()
     {
-        $intergante = false;
         foreach ($this->bolao->participantes->all() as $participante) {
-            $intergante = ($participante->id === Auth::user()->id) ? true : false;
+            if ($participante->id === Auth::user()->id) {
+                return true;
+            }
         }
-        return $intergante;
+        return false;
     }
 
     private function conviteEnviado()

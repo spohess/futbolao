@@ -50,3 +50,15 @@
 .bolao-geral {
   margin: 20px 0;
 }
+
+.item-listaconvite {
+  width: 100%;
+}
+
+.item-listaconvite .nome-listaconvite {
+  width: 55%;
+}
+
+.item-listaconvite .btn-listaconvite {
+  width: 15%;
+}

@@ -16,8 +16,11 @@ class CreateUsuarioBolaosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_usuario');
             $table->bigInteger('id_bolao');
-            $table->enum('participacao', ['aceito', 'convite', 'banido']);
+            $table->enum('participacao', ['aceito', 'convite', 'deletado', 'banido']);
             $table->timestamps();
+            $table->softDeletes();
+            // Index
+            $table->unique(['id_usuario', 'id_bolao']);
         });
     }
 

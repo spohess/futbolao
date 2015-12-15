@@ -34,6 +34,11 @@ class Bolao extends Model
         return $this->belongsToMany('App\Models\Usuario', 'usuarios_boloes', 'id_bolao', 'id_usuario')->where('participacao', 'aceito');
     }
 
+    public function convites()
+    {
+        return $this->belongsToMany('App\Models\Usuario', 'usuarios_boloes', 'id_bolao', 'id_usuario')->where('participacao', 'convite');
+    }
+
     public function competicao()
     {
         return $this->hasOne('App\Models\Competicao', 'id', 'id_competicao');
@@ -56,5 +61,28 @@ class Bolao extends Model
         $this->setIdTecnico($idTecnico);
         $this->id_competicao = $dados['id_competicao'];
         $this->slug = str_slug($dados['nome'], "-");
+    }
+
+    public static function getBolaoFromId($id)
+    {
+        if (!isset($id)) {
+            throw new Exception("É preciso do bolão para poder enviar solicitação de entrada");
+        }
+
+        $bolao = Bolao::where("id", $id)->first();
+
+        if (empty($bolao)) {
+            throw new Exception("Não foi encontrado nenhum bolão com o ID enviado: " . $id);
+        }
+
+        return $bolao;
+    }
+
+    /**
+     * @param $bolao
+     */
+    public function isAdmin()
+    {
+        return ($this->tecnico->id === Auth::user()->id) ? true : false;
     }
 }

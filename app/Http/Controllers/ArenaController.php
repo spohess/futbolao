@@ -14,6 +14,7 @@ class ArenaController extends Controller
         $dados = [
             'nome' => $usuario->nome,
             'usuario' => $usuario->login,
+            'participacaoBolao' => $usuario->boloes->count(),
         ];
         return view('site.arena', $dados);
     }

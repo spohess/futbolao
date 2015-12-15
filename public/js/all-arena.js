@@ -2,7 +2,8 @@ function fnSistemaController($scope, $http) {
 
     $scope.meusBoloes = [];
     $scope.todosBoloes = [];
-
+    $scope.adminBolao = [];
+    $scope.adminBolao.confirmaDelete = false;
 
     $scope.limitesList = [
         {id:'5', valor:'5'},
@@ -75,10 +76,10 @@ function fnSistemaController($scope, $http) {
             $http.post('/bolao/cria', $scope.novoBolao)
             .success(function(dados){
                 if( dados.estado === 'sucesso' ){
-                    $scope.meusBoloes.push(dados.bolao);
-                    $scope.todosBoloes.push(dados.bolao);
-                    angular.element("#avisoCriaSucesso").show();
-                    $scope.novoBolao = [];
+                    $scope.meusBoloes = dados.listaMeus;
+                    $scope.todosBoloes = dados.listaTodos;
+                    angular.element("#mdNovoBolao").modal("hide");
+                    angular.element(".limpar").val('').html('').prop('checked', false);
                     angular.element("#vazioMeusBoloes").hide();
                     angular.element("#vazioTodosBoloes").hide();
                 } else {
@@ -90,11 +91,16 @@ function fnSistemaController($scope, $http) {
             })
             .finally(function(){
                 iconeEspera('iconeBtnCria', 'fa-plus', 'desativa');
+                $http.get('/ws/gettoken')
+                .success(function(dados){
+                    $scope.novoBolao._token = dados.token;
+                });
             });
         }
     }
 
     $scope.carregaDetalheBolao = function(bolao){
+        $scope.adminBolao.confirmaDelete = false;
         angular.element("#mdDetalheBolao").modal('show');
         $http.get('/bolao/detalhe/' + bolao.id)
         .success(function(dados){
@@ -104,11 +110,54 @@ function fnSistemaController($scope, $http) {
 
     $scope.entrarBolao = function(bolao){
 
-        $http.post('/bolao/solicita_entrada', bolao)
+        $http.post('/bolao/solicita_entrada/' + bolao.id)
         .success(function(dados){
             if( dados.estado === 'sucesso' ){
-                $scope.detalheBolao = dados.lista;
+                $scope.detalheBolao = dados.detalheBolao;
+                $scope.meusBoloes = dados.listaMeus;
             }
+        });
+    }
+
+    $scope.cancelarSolicitacao = function(bolao){
+        $http.delete('/bolao/cancela_convite/' + bolao.id)
+        .success(function(dados){
+            if( dados.estado === 'sucesso' ){
+                $scope.detalheBolao = dados.detalheBolao;
+                $scope.meusBoloes = dados.listaMeus;
+            }
+        });
+    }
+
+    $scope.sairBolao = function(bolao){
+        $http.delete('/bolao/sair_bolao/' + bolao.id)
+        .success(function(dados){
+            if( dados.estado === 'sucesso' ){
+                $scope.detalheBolao = dados.detalheBolao;
+                $scope.meusBoloes = dados.listaMeus;
+            }
+        });
+    }
+
+    $scope.deleteBolao = function(bolao){
+        $http.delete('/bolao/delete_bolao/' + bolao.id)
+        .success(function(dados){
+            if( dados.estado === 'sucesso' ){
+                $scope.meusBoloes = dados.listaMeus;
+                $scope.todosBoloes = dados.listaTodos;
+            }
+            angular.element("#mdDetalheBolao").modal("hide");
+        });
+    }
+
+    $scope.respostaConvite = function(dados, acao){
+        var dadosPost = {
+            'bolao': dados,
+            'acao': acao
+        }
+        $http.post('/bolao/resposta_convite', dadosPost)
+        .success(function(dados){
+            $scope.detalheBolao = dados.detalheBolao;
         });
     }
 }
