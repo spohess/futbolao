@@ -23,14 +23,22 @@ Arena
                                 <td>-</td>
                             </tr>
                             <tr>
-                                <td>Bolões</td>
+                                <td>Participação em bolões</td>
                                 <td>{{$participacaoBolao}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-11 menu-perfil">
+            <div class="col-xs-24 col-sm-7">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">{{$listaConvites}}</span>
+                        <div class="btn btn-link" ng-click="mostraListaConvitePendente('{{$listaConvites}}')">Convites pendêntes</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-4 menu-perfil">
                 <button type="button" class="btn btn-primary pull-right">Meus Dados</button>
             </div>
         </div>
@@ -170,6 +178,42 @@ Arena
 @endsection
 
 @section('modais-sistema')
+<div class="modal fade" id="mdListaConvites" tabindex="-1" role="dialog" aria-labelledby="mdListaConvitesLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mdListaConvitesLabel">Lista de Convites Pendêntes</h4>
+            </div>
+            <div class="modal-body">
+                <div ng-repeat="convitePendete in listaConvitesPendentes">
+                    <h4>Bolão: @{{convitePendete.nomeBolao}} <small>@{{convitePendete.descBolao}}</small></h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Solicitante</th>
+                                    <th class="text-center" colspan="3">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="convite in convitePendete.listaConvites" class="item-listaconvite">
+                                    <td class="nome-listaconvite">@{{convite.nomeUsuario}} <small class="text-primary">@{{convite.loginUsuario}}</small></td>
+                                    <td class="btn-listaconvite"><button ng-click="respostaConviteGeral(convite, 'aceito')" type="button" class="btn btn-xs btn-success btn-block pull-right">Aceitar</button></td>
+                                    <td class="btn-listaconvite"><button ng-click="respostaConviteGeral(convite, 'deletado')" type="button" class="btn btn-xs btn-warning btn-block pull-right">Recusar</button></td>
+                                    <td class="btn-listaconvite"><button ng-click="respostaConviteGeral(convite, 'banido')" type="button" class="btn btn-xs btn-danger btn-block pull-right">&nbsp;Banir&nbsp;</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="mdDetalheBolao" tabindex="-1" role="dialog" aria-labelledby="mdDetalheBolaoLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -193,7 +237,7 @@ Arena
                             <button type="button" class="btn btn-success pull-right" ng-if="detalheBolao.integrante == false" ng-disabled="detalheBolao.convite == true" ng-click="entrarBolao(detalheBolao)"><i class="fa fa-sign-in"></i> Entrar no Bolão</button>
                         </div>
                         <div class="col-xs-24">
-                            <div class="table-scroll">
+                            <div class="table-responsive table-scroll">
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
@@ -213,9 +257,9 @@ Arena
                             </div>
                         </div>
                         <div class="col-xs-24" ng-if="detalheBolao.admin == true">
-                            <div class="table-scroll">
+                            <h4>Lista de convites pendentes</h4>
+                            <div class="table-responsive table-scroll">
                                 <table class="table table-striped table-hover">
-                                    <caption>Lista de convites pendentes</caption>
                                     <thead>
                                         <tr>
                                             <th>Solicitante</th>

@@ -18,24 +18,20 @@ class CadastroController extends AuthController
 
     public function validaEmail(Request $request)
     {
-        if (!is_null($request->email)) {
-            $existe = Usuario::where('email', $request->email)->count();
-            if ($existe === 0) {
-                return ["estado" => "valido"];
-            }
-            return ["estado" => "invalido"];
-        }
+        $this->validate($request, [
+            'email' => 'required|email|max:128|unique:usuarios,email',
+        ]);
+
+        return ["estado" => "valido"];
     }
 
     public function validaLogin(Request $request)
     {
-        if (!is_null($request->login)) {
-            $existe = Usuario::where('email', $request->login)->count();
-            if ($existe === 0) {
-                return ["estado" => "valido"];
-            }
-            return ["estado" => "invalido"];
-        }
+        $this->validate($request, [
+            'login' => 'required|alpha_dash|max:32|unique:usuarios,login',
+        ]);
+
+        return ["estado" => "valido"];
     }
 
     public function cadastro(UsuarioRequest $request)
@@ -51,7 +47,7 @@ class CadastroController extends AuthController
                 'serial' => $usuario->serial,
             ];
             $enviado = Mail::send('emails.novoCadastro', $novoUsuario, function ($message) use ($novoUsuario) {
-                $message->from(env('MAIL_USERNAME', getEmailContato()), $name = 'Palpiteiros Anônimos');
+                $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'Palpiteiros Anônimos');
                 $message->to($novoUsuario['email'], $name = $novoUsuario['nome']);
                 $message->subject("Confirmação de Cadastro");
             });
@@ -87,7 +83,7 @@ class CadastroController extends AuthController
                 'serial' => $usuario->serial,
             ];
             $enviado = Mail::send('emails.novoCadastro', $dadosUsuario, function ($message) use ($dadosUsuario) {
-                $message->from(env('MAIL_USERNAME', getEmailContato()), $name = 'Palpiteiros Anônimos');
+                $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'Palpiteiros Anônimos');
                 $message->to($dadosUsuario['email'], $name = $dadosUsuario['nome']);
                 $message->subject("Confirmação de Cadastro");
             });

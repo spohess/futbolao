@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Classes;
+namespace App\Http\Helpers;
 
 use App\Models\Bolao;
 use App\Models\UsuarioBolao;
 use Auth;
 use Exception;
 
-class DetalheBolao
+class BolaoHelper
 {
 
     private $bolao;
@@ -40,6 +40,26 @@ class DetalheBolao
     private function setBolao($bolao)
     {
         $this->bolao = $bolao;
+    }
+
+    public function montaListaBolao()
+    {
+        $listaBoloes = [];
+        foreach ($this->getBolao()->all() as $item) {
+            $dados = [
+                "permissao" => $item->permissao,
+                "id" => $item->id,
+                "nome" => $item->nome,
+                "nomeTecnico" => $item->tecnico->nome,
+                "loginTecnico" => $item->tecnico->login,
+                "competicao" => $item->competicao->nome,
+                "participantes" => $item->participantes->count(),
+                "pontuacao" => 0,
+            ];
+            array_push($listaBoloes, $dados);
+        }
+
+        return $listaBoloes;
     }
 
     public function getDetalhe()

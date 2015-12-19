@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Classes\DetalheBolao;
-use App\Http\Classes\MontaBolao;
 use App\Http\Controllers\Template\BolaoAbstract;
+use App\Http\Helpers\BolaoHelper;
 use App\Http\Requests\BolaoRequest;
 use App\Models\Bolao;
 use App\Models\UsuarioBolao;
@@ -61,7 +60,7 @@ class BolaoController extends BolaoAbstract
     public function getUsuarioBolao()
     {
         $boloes = Auth::user()->boloes;
-        $montaBolao = new MontaBolao($boloes);
+        $montaBolao = new BolaoHelper($boloes);
         $listaBoloes = $montaBolao->montaListaBolao();
         if (empty($listaBoloes)) {
             return ['estado' => 'vazio'];
@@ -110,7 +109,7 @@ class BolaoController extends BolaoAbstract
             if (empty($bolao)) {
                 return ["estado" => "vazio"];
             }
-            $detalheBolao = new DetalheBolao($bolao);
+            $detalheBolao = new BolaoHelper($bolao);
             return $detalheBolao->getDetalhe();
         }
         abort(400, "Bad Request");

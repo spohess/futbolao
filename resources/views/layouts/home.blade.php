@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{url('favicon.ico')}}">
-    <title>{{getTituloSite()}} | @yield('titulo-pagina')</title>
+    <title>{{get_titulo_site()}} | @yield('titulo-pagina')</title>
 
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans+Condensed:300,300italic,700'>
     <link rel="stylesheet" href="{{ elixir('css/all.css') }}">

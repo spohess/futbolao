@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Template;
 
-use App\Http\Classes\DetalheBolao;
-use App\Http\Classes\MontaBolao;
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\BolaoHelper;
 use App\Models\Bolao;
 use App\Models\UsuarioBolao;
 use Auth;
@@ -15,11 +14,10 @@ abstract class BolaoAbstract extends Controller
     protected function processaRetorno(Bolao $bolao)
     {
         $boloes = Auth::user()->boloes;
-        $detalheBolao = new DetalheBolao($bolao);
-        $montaBolao = new MontaBolao($boloes);
-        $listaMeus = $montaBolao->montaListaBolao();
-        $montaBolao->setBolao(Bolao::get());
-        $listaTodos = $montaBolao->montaListaBolao();
+        $detalheBolao = new BolaoHelper($bolao);
+        $detalheTodosBoloes = new BolaoHelper(Bolao::get());
+        $listaMeus = $detalheBolao->montaListaBolao();
+        $listaTodos = $detalheTodosBoloes->montaListaBolao();
         $dados = [
             "estado" => "sucesso",
             "detalheBolao" => $detalheBolao->getDetalhe(),

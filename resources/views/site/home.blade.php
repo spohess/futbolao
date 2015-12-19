@@ -138,8 +138,8 @@ Home
                     <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
                     <li class="active"><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
                     <li><hr></li>
-                    <li><a href="{{getLinkTwitter()}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i> palpiteiros</a></li>
-                    <li><a href="{{getLinkFacebook()}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i> palpiteiros.anonimos</a></li>
+                    <li><a href="{{get_link_twitter()}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i> palpiteiros</a></li>
+                    <li><a href="{{get_link_facebook()}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i> palpiteiros.anonimos</a></li>
                     <li><a href="mailto:contato@palpiteirosanonimos.com.br?subject=Contato pelo Site" title="E-mail" target="_blank"><i class="fa fa-envelope"></i> contato@</a></li>
                 </ul>
             </div>
@@ -194,7 +194,7 @@ Home
         </div>
     </div>
     <div class="copyright">
-        <small>{{getCopyrightSite()}}</small>
+        <small>{{get_copyright_site()}}</small>
     </div>
 </footer>
 @stop

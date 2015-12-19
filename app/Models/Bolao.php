@@ -85,4 +85,16 @@ class Bolao extends Model
     {
         return ($this->tecnico->id === Auth::user()->id) ? true : false;
     }
+
+    public function getUsuarioOndPoint()
+    {
+        return [
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'descricao' => $this->descricao,
+            'permissao' => $this->permissao,
+            'competicao' => $this->competicao,
+            'slug' => $this->slug,
+        ];
+    }
 }

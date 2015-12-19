@@ -38,7 +38,7 @@ Cadastro
                         <div class="aviso-block aviso-email text-danger">Este e-mail já está sendo usado, utilize a ferramenta de recuperação de dados para resgatar seus dados</div>
                     </div>
                     <div class="form-group">
-                        <label for="login" class="control-label">Usuário</label>
+                        <label for="login" class="control-label">Usuário <small class="text-warning">Permitido: letras, númemos, '-' e '_'</small></label>
                         <div class="input-group">
                             <input type="text" name="login" id="login" ng-model="usuario.login" class="form-control" placeholder="Escolha um login para autênticação" required maxlength="32" data-error="É preciso preencher este campo com nome de usuário único">
                             <span class="input-group-btn">

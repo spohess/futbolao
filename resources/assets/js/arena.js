@@ -161,6 +161,17 @@ function fnSistemaController($scope, $http) {
         });
     }
 
+    $scope.respostaConviteGeral = function(dados, acao){
+        var dadosPost = {
+            'bolao': dados,
+            'acao': acao
+        }
+        $http.post('/bolao/resposta_convite', dadosPost)
+        .success(function(){
+            $scope.listaConvitesPendentes.splice( $scope.listaConvitesPendentes.indexOf(dados), 1 );
+        });
+    }
+
     $scope.banirParticipante = function(participante, idBolao){
         var dadosPost = {
             'participante': participante,
@@ -170,6 +181,19 @@ function fnSistemaController($scope, $http) {
         .success(function(dados){
             $scope.detalheBolao = dados.detalheBolao;
         })
+    }
+
+    $scope.mostraListaConvitePendente = function(quantidade){
+        if(quantidade == 0){
+            return false;
+        }
+
+        $http.get('/bolao/convites_pendentes')
+        .success(function(dados){
+            $scope.listaConvitesPendentes = dados;
+        });
+
+        angular.element("#mdListaConvites").modal("show");
     }
 }
 fnSistemaController.$inject = ['$scope', '$http'];

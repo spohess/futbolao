@@ -46,6 +46,7 @@ Route::group(['prefix' => '/bolao', 'middleware' => 'auth'], function () {
     Route::delete('/delete_bolao/{id}', 'BolaoController@delete')->where('id', '[0-9]+');
     Route::post('/resposta_convite', 'UsuarioBolaoController@respostaConvite');
     Route::post('/banir_participante', 'UsuarioBolaoController@banirParticipante');
+    Route::get('/convites_pendentes', 'UsuarioBolaoController@listaConvitesPendentes');
 });
 
 Route::group(['prefix' => '/competicao', 'middleware' => 'auth'], function () {

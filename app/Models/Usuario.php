@@ -64,4 +64,13 @@ class Usuario extends Model implements AuthenticatableContract, AuthorizableCont
         $this->setSenha($dados['senha']);
         $this->serial = str_random(128);
     }
+
+    public function getUsuarioOndPoint()
+    {
+        return [
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'login' => $this->login,
+        ];
+    }
 }

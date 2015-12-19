@@ -61,4 +61,9 @@
 
 .item-listaconvite .btn-listaconvite {
   width: 15%;
+  min-width: 100px;
+}
+
+.list-group-item .btn-link {
+  padding: 0;
 }

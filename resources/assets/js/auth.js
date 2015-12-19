@@ -1,37 +1,47 @@
 function fnSistemaController($scope, $http) {
 
     $scope.validaEmail = function(){
-        if( $scope.usuario.email != '' ){
-            angular.element(".aviso-email").hide();
-
-            $http.post('/cadastro/validaemail', $scope.usuario)
-            .success(function(dados){
-                if( dados.estado == 'invalido' ){
-                    angular.element(".aviso-email").show();
-                    $scope.usuario.emailValido = 'invalido';
-                } else {
-                    $scope.usuario.emailValido = 'valido';
-                }
-            });
+        if( $scope.formCadastro.email.$invalid ){
+            return false;
         }
+
+        angular.element(".aviso-email").hide();
+        $http.post('/cadastro/validaemail', $scope.usuario)
+        .success(function(dados){
+            if( dados.estado == 'invalido' ){
+                angular.element(".aviso-email").show();
+                $scope.usuario.emailValido = 'invalido';
+            } else {
+                $scope.usuario.emailValido = 'valido';
+            }
+        })
+        .error(function(dados){
+            angular.element(".aviso-email").show();
+            $scope.usuario.emailValido = 'invalido';
+        });
     }
 
     $scope.validaLogin = function(){
-        if( $scope.usuario.login != '' ){
-            angular.element(".aviso-login-valido").hide();
-            angular.element(".aviso-login-invalido").hide();
-
-            $http.post('/cadastro/validalogin', $scope.usuario)
-            .success(function(dados){
-                if( dados.estado == 'valido' ){
-                    angular.element(".aviso-login-valido").show();
-                    $scope.usuario.loginValido = 'valido';
-                } else {
-                    angular.element(".aviso-login-invalido").show();
-                    $scope.usuario.loginValido = 'invalido';
-                }
-            });
+        if( $scope.formCadastro.email.$invalid ){
+            return false;
         }
+        angular.element(".aviso-login-valido").hide();
+        angular.element(".aviso-login-invalido").hide();
+
+        $http.post('/cadastro/validalogin', $scope.usuario)
+        .success(function(dados){
+            if( dados.estado == 'valido' ){
+                angular.element(".aviso-login-valido").show();
+                $scope.usuario.loginValido = 'valido';
+            } else {
+                angular.element(".aviso-login-invalido").show();
+                $scope.usuario.loginValido = 'invalido';
+            }
+        })
+        .error(function(dados){
+            angular.element(".aviso-login-invalido").show();
+            $scope.usuario.loginValido = 'invalido';
+        });
     }
 
     $scope.cadastroUsuario = function(){

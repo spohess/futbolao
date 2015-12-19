@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Template\BolaoAbstract;
+use App\Http\Helpers\UsuarioBolaoHelper;
 use App\Models\Bolao;
 use App\Models\UsuarioBolao;
 use Auth;
@@ -15,13 +16,13 @@ class UsuarioBolaoController extends BolaoAbstract
     {
         $bolao = Bolao::getBolaoFromId($id);
         $this->aptoParaSolicitar($bolao);
-
         $usuarioBolao = new UsuarioBolao;
         $usuarioBolao->id_usuario = Auth::user()->id;
         $usuarioBolao->id_bolao = $bolao->id;
         $usuarioBolao->participacao = $this->analisaPermissaoBolao($bolao);
 
         try {
+
             if ($usuarioBolao->save()) {
                 return $this->processaRetorno($bolao);
             }
@@ -34,21 +35,19 @@ class UsuarioBolaoController extends BolaoAbstract
             if (empty($usuarioBolao)) {
                 throw new Exception("Não é possível processar a solicitação");
             }
-
             $usuarioBolao->participacao = $this->analisaPermissaoBolao($bolao);
+
             if ($usuarioBolao->restore()) {
                 return $this->processaRetorno($bolao);
             }
         }
 
         return ["estado" => "erro"];
-
     }
 
     public function cancelaConvite($id)
     {
         $bolao = Bolao::getBolaoFromId($id);
-
         $usuarioBolao = UsuarioBolao::where("id_usuario", Auth::user()->id)
             ->where("id_bolao", $bolao->id)
             ->where("participacao", "convite")
@@ -63,13 +62,11 @@ class UsuarioBolaoController extends BolaoAbstract
         }
 
         return ["estado" => "erro"];
-
     }
 
     public function saiBolao($id)
     {
         $bolao = Bolao::getBolaoFromId($id);
-
         $usuarioBolao = UsuarioBolao::where("id_usuario", Auth::user()->id)
             ->where("id_bolao", $bolao->id)
             ->where("participacao", "aceito")
@@ -91,6 +88,7 @@ class UsuarioBolaoController extends BolaoAbstract
 
     public function respostaConvite(Request $request)
     {
+
         if (empty($request->all()['acao'])) {
             throw new Exception("É preciso de uma ação para responder um convite");
         }
@@ -125,7 +123,6 @@ class UsuarioBolaoController extends BolaoAbstract
         $usuarioBolao = UsuarioBolao::where("id_bolao", $bolao->id)
             ->where("id_usuario", $request->all()['participante']['id'])
             ->first();
-
         $usuarioBolao->participacao = 'banido';
         $usuarioBolao->deleted_at = date('Y-m-d H:i:s');
 
@@ -134,5 +131,11 @@ class UsuarioBolaoController extends BolaoAbstract
         }
 
         return ["estado" => "erro"];
+    }
+
+    public function listaConvitesPendentes()
+    {
+        $usuarioBolao = new UsuarioBolaoHelper();
+        return $usuarioBolao->listaConvitesPendentes();
     }
 }
