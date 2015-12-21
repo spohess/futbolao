@@ -14,13 +14,15 @@ abstract class BolaoAbstract extends Controller
     protected function processaRetorno(Bolao $bolao)
     {
         $boloes = Auth::user()->boloes;
-        $detalheBolao = new BolaoHelper($bolao);
-        $detalheTodosBoloes = new BolaoHelper(Bolao::get());
-        $listaMeus = $detalheBolao->montaListaBolao();
-        $listaTodos = $detalheTodosBoloes->montaListaBolao();
+        $montaMeusBoloes = new BolaoHelper($boloes);
+        $listaMeus = $montaMeusBoloes->montaListaBolao();
+
+        $montaTodosBoloes = new BolaoHelper($bolao);
+        $listaTodos = $montaTodosBoloes->montaListaBolao();
+
         $dados = [
             "estado" => "sucesso",
-            "detalheBolao" => $detalheBolao->getDetalhe(),
+            "detalheBolao" => $montaTodosBoloes->getDetalhe(),
             "listaMeus" => $listaMeus,
             "listaTodos" => $listaTodos,
         ];

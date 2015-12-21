@@ -33,8 +33,9 @@ Arena
             <div class="col-xs-24 col-sm-7">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <span class="badge">{{$listaConvites}}</span>
-                        <div class="btn btn-link" ng-click="mostraListaConvitePendente('{{$listaConvites}}')">Convites pendêntes</div>
+                        <span class="badge">@{{listaConvites}}</span>
+                        <input type="hidden" ng-model="listaConvites" ng-init="listaConvites='{{$listaConvites}}'">
+                        <div class="btn btn-link" ng-click="mostraListaConvitePendente()">Convites pendêntes</div>
                     </li>
                 </ul>
             </div>
@@ -186,6 +187,9 @@ Arena
                 <h4 class="modal-title" id="mdListaConvitesLabel">Lista de Convites Pendêntes</h4>
             </div>
             <div class="modal-body">
+                <div id="listaConvitesPendentesVazia" class="alert alert-danger alerta-oculto">
+                    <div>Não há convites pendentes</div>
+                </div>
                 <div ng-repeat="convitePendete in listaConvitesPendentes">
                     <h4>Bolão: @{{convitePendete.nomeBolao}} <small>@{{convitePendete.descBolao}}</small></h4>
                     <div class="table-responsive">
