@@ -23,25 +23,25 @@ Equipes
                     <legend>Nova Equipe</legend>
                     <div class="form-group">
                         <label for="nome" class="control-label">Nome</label>
-                        <input type="text" name="nome" id="nome" ng-model="equipe.nome" class="form-control" placeholder="Informe o nome da equipe" required>
+                        <input type="text" name="nome" id="nome" ng-model="equipe.nome" class="form-control limpa-form" placeholder="Informe o nome da equipe" required>
                     </div>
                     <div class="row">
                         <div class="col-xs-24 col-md-19">
                             <div class="form-group">
                                 <label for="apelido" class="control-label">Apelido</label>
-                                <input type="text" name="apelido" id="apelido" ng-model="equipe.apelido" class="form-control" placeholder="Informe o apelido da equipe" required>
+                                <input type="text" name="apelido" id="apelido" ng-model="equipe.apelido" class="form-control limpa-form" placeholder="Informe o apelido da equipe" required>
                             </div>
                         </div>
                         <div class="col-xs-24 col-md-5">
                             <div class="form-group">
                                 <label for="abreviado" class="control-label">Abreviado</label>
-                                <input type="text" name="abreviado" id="abreviado" ng-model="equipe.abreviado" class="form-control" placeholder="AAA" maxlength="3" required>
+                                <input type="text" name="abreviado" id="abreviado" ng-model="equipe.abreviado" class="form-control limpa-form" placeholder="AAA" maxlength="3" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="id_estadio" class="control-label">Estádio</label>
-                        <select id="id_estadio" name="id_estadio" ng-model="equipe.id_estadio" class="form-control limpar" ng-options="estadio.id as estadio.nome + ' (' + estadio.apelido + ')' for estadio in listaEstadios" required>
+                        <select id="id_estadio" name="id_estadio" ng-model="equipe.id_estadio" class="form-control limpa-form limpar" ng-options="estadio.id as estadio.nome + ' (' + estadio.apelido + ')' for estadio in listaEstadios" required>
                             <option value="">Escolha um estádio</option>
                         </select>
                     </div>

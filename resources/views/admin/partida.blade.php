@@ -23,7 +23,7 @@ Partidas
                     <legend>Nova Partida</legend>
                     <div class="form-group">
                         <label for="id_competicao" class="control-label">Competição</label>
-                        <select id="id_competicao" name="id_competicao" ng-model="partida.id_competicao" class="form-control limpar" ng-options="competicao.id as competicao.nome for competicao in listaCompetioes" ng-change="carregaEquipes()" required>
+                        <select id="id_competicao" name="id_competicao" ng-model="partida.id_competicao" class="form-control limpa-form" ng-options="competicao.id as competicao.nome for competicao in listaCompetioes" ng-change="carregaEquipes()" required>
                             <option value="">Escolha uma competição</option>
                         </select>
                     </div>
@@ -31,7 +31,7 @@ Partidas
                         <div class="col-xs-24 col-md-12">
                             <div class="form-group">
                                 <label for="id_estadio" class="control-label">Local</label>
-                                <select id="id_estadio" name="id_estadio" ng-model="partida.id_estadio" class="form-control limpar" ng-options="estadio.id as estadio.apelido + ' (' + estadio.cidade + ')' for estadio in listaEstadios" ng-change="carregaEquipes()" required>
+                                <select id="id_estadio" name="id_estadio" ng-model="partida.id_estadio" class="form-control limpa-form" ng-options="estadio.id as estadio.apelido + ' (' + estadio.cidade + ')' for estadio in listaEstadios" required>
                                     <option value="">Escolha um local</option>
                                 </select>
                             </div>
@@ -39,7 +39,7 @@ Partidas
                         <div class="col-xs-24 col-md-12">
                             <div class="form-group">
                                 <label for="data_partida" class="control-label">Data Hora</label>
-                                <input type="text" name="data_partida" id="data_partida" ng-model="partida.data_partida" class="form-control agenda" placeholder="YYYY-MM-DD HH:MI" required>
+                                <input type="text" name="data_partida" id="data_partida" ng-model="partida.data_partida" class="form-control agenda limpa-form" placeholder="YYYY-MM-DD HH:MI" required>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@ Partidas
                         <div class="col-xs-24 col-md-12">
                             <div class="form-group">
                                 <label for="id_equipe_casa" class="control-label">Equipe mandante</label>
-                                <select id="id_equipe_casa" name="id_equipe_casa" ng-model="partida.id_equipe_casa" class="form-control limpar" ng-options="equipe.id as equipe.apelido + ' (' + equipe.nome + ')' for equipe in listaEquipes" required>
+                                <select id="id_equipe_casa" name="id_equipe_casa" ng-model="partida.id_equipe_casa" class="form-control limpa-form" ng-options="equipe.id as equipe.apelido + ' (' + equipe.nome + ')' for equipe in listaEquipes" required>
                                     <option value="">Escolha a equipe mandante</option>
                                 </select>
                             </div>
@@ -55,7 +55,7 @@ Partidas
                         <div class="col-xs-24 col-md-12">
                             <div class="form-group">
                                 <label for="id_equipe_visitante" class="control-label">Equipe visitante</label>
-                                <select id="id_equipe_visitante" name="id_equipe_visitante" ng-model="partida.id_equipe_visitante" class="form-control limpar" ng-options="equipe.id as equipe.apelido + ' (' + equipe.nome + ')' for equipe in listaEquipes" required>
+                                <select id="id_equipe_visitante" name="id_equipe_visitante" ng-model="partida.id_equipe_visitante" class="form-control limpa-form" ng-options="equipe.id as equipe.apelido + ' (' + equipe.nome + ')' for equipe in listaEquipes" required>
                                     <option value="">Escolha a equipe visitante</option>
                                 </select>
                             </div>
@@ -65,7 +65,7 @@ Partidas
                         <div class="col-xs-24 col-md-12">
                             <div class="form-group">
                                 <label for="rodada" class="control-label">Rodara/Fase</label>
-                                <input type="text" name="rodada" id="rodada" ng-model="partida.rodada" class="form-control" placeholder="Informe a rodada ou fase" required>
+                                <input type="text" name="rodada" id="rodada" ng-model="partida.rodada" class="form-control limpa-form" placeholder="Informe a rodada ou fase" required>
                             </div>
                         </div>
                         <div class="col-xs-24 col-md-12">

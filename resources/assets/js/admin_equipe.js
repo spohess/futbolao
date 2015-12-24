@@ -17,7 +17,7 @@ function fnSistemaController($scope, $http) {
     $scope.getEstadios();
 
     $scope.cancelaEquipe = function(){
-        $scope.equipe = [];
+        angular.element(".limpa-form").val('').prop('checked', false);
     }
 
     $scope.saveEquipe = function(){

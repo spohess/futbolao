@@ -30,7 +30,7 @@ Competições
                     </thead>
                     <tbody class="container-fluid">
                         <tr class="row" ng-repeat="competicao in listaCompetioes">
-                            <td class="col-xs-10"><a href="" ng-click="editaCompeticao(competicao)">@{{competicao.nome}}</a></td>
+                            <td class="col-xs-10"><a href="" ng-click="editaCompeticao(competicao)" class="limpa-form">@{{competicao.nome}}</a></td>
                             <td class="col-xs-4">@{{competicao.data_inicio_ft}}</td>
                             <td class="col-xs-4">@{{competicao.data_fim_ft}}</td>
                             <td class="col-xs-4">@{{competicao.modalidade_ft}}</td>
@@ -54,29 +54,29 @@ Competições
                     <legend>Nova Competição</legend>
                     <div class="form-group">
                         <label for="nome" class="control-label">Nome</label>
-                        <input type="text" name="nome" id="nome" ng-model="competicao.nome" class="form-control" placeholder="Informe o nome da Competição" required>
+                        <input type="text" name="nome" id="nome" ng-model="competicao.nome" class="form-control limpa-form" placeholder="Informe o nome da Competição" required>
                     </div>
                     <div class="form-group">
                         <label for="descricao" class="control-label">Descrição</label>
-                        <textarea name="descricao" id="descricao" ng-model="competicao.descricao" class="form-control" placeholder="Dê uma descrição para a competição" rows="5" required></textarea>
+                        <textarea name="descricao" id="descricao" ng-model="competicao.descricao" class="form-control limpa-form" placeholder="Dê uma descrição para a competição" rows="5" required></textarea>
                     </div>
                     <div class="row">
                         <div class="col-xs-24 col-md-12">
                             <div class="form-group">
                                 <label for="data_inicio" class="control-label">Data de início</label>
-                                <input type="text" name="data_inicio" id="data_inicio" ng-model="competicao.data_inicio" class="form-control agenda" value="" placeholder="Data de início" required>
+                                <input type="text" name="data_inicio" id="data_inicio" ng-model="competicao.data_inicio" class="form-control limpa-form agenda" value="" placeholder="Data de início" required>
                             </div>
                         </div>
                         <div class="col-xs-24 col-md-12">
                             <div class="form-group">
                                 <label for="data_fim" class="control-label">Data fim</label>
-                                <input type="text" name="data_fim" id="data_fim" ng-model="competicao.data_fim" class="form-control agenda" value="" placeholder="Data fim" required>
+                                <input type="text" name="data_fim" id="data_fim" ng-model="competicao.data_fim" class="form-control limpa-form agenda" value="" placeholder="Data fim" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="modalidade" class="control-label">Modalidade da competição</label>
-                        <select name="modalidade" id="modalidade" ng-model="competicao.modalidade" class="form-control" required>
+                        <select name="modalidade" id="modalidade" ng-model="competicao.modalidade" class="form-control limpa-form" required>
                             <option value="">Escolha uma modalidade</option>
                             <option value="pontuacao">Pontos corrídos</option>
                             <option value="eliminatoria">Eliminatória</option>
@@ -106,7 +106,7 @@ Competições
                             <td class="col-xs-1"><input type="checkbox" ng-model="equipe.selecionada" value="@{{equipe.id}}"></td>
                             <td class="col-xs-9">@{{equipe.apelido}}</td>
                             <td class="col-xs-12">@{{equipe.nome}}</td>
-                            <td class="col-xs-2"><input type="text" ng-model="equipe.grupo" class="form-control text-center input-sm" maxlength="2"></td>
+                            <td class="col-xs-2"><input type="text" ng-model="equipe.grupo" class="form-control limpa-form text-center input-sm" maxlength="2"></td>
                         </tr>
                     </tbody>
                 </table>

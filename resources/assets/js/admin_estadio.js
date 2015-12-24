@@ -9,7 +9,7 @@ function fnSistemaController($scope, $http) {
     $scope.getEstadios();
 
     $scope.cancelaEstadio = function(){
-        $scope.estadio = [];
+        angular.element(".limpa-form").val('').prop('checked', false);
     }
 
     $scope.saveEstadio = function(){

@@ -23,23 +23,23 @@ Estádios
                     <legend>Novo Estádio</legend>
                     <div class="form-group">
                         <label for="nome" class="control-label">Nome</label>
-                        <input type="text" name="nome" id="nome" ng-model="estadio.nome" class="form-control" placeholder="Informe o nome do estádio" required>
+                        <input type="text" name="nome" id="nome" ng-model="estadio.nome" class="form-control limpa-form" placeholder="Informe o nome do estádio" required>
                     </div>
                     <div class="form-group">
                         <label for="apelido" class="control-label">Apelido</label>
-                        <input type="text" name="apelido" id="apelido" ng-model="estadio.apelido" class="form-control" placeholder="Informe o apelido do estádio" required>
+                        <input type="text" name="apelido" id="apelido" ng-model="estadio.apelido" class="form-control limpa-form" placeholder="Informe o apelido do estádio" required>
                     </div>
                     <div class="row">
                         <div class="col-xs-24 col-md-20">
                             <div class="form-group">
                                 <label for="cidade" class="control-label">Cidade</label>
-                                <input type="text" name="cidade" id="cidade" ng-model="estadio.cidade" class="form-control" placeholder="Informe a cidade do estádio" required>
+                                <input type="text" name="cidade" id="cidade" ng-model="estadio.cidade" class="form-control limpa-form" placeholder="Informe a cidade do estádio" required>
                             </div>
                         </div>
                         <div class="col-xs-24 col-md-4">
                             <div class="form-group">
                                 <label for="uf" class="control-label">UF</label>
-                                <input type="text" name="uf" id="uf" ng-model="estadio.uf" class="form-control" placeholder="UF" required>
+                                <input type="text" name="uf" id="uf" ng-model="estadio.uf" class="form-control limpa-form" placeholder="UF" required>
                             </div>
                         </div>
                     </div>

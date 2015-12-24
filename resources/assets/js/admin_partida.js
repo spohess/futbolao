@@ -32,7 +32,7 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.cancelaPartida = function(){
-        $scope.partida = [];
+        angular.element(".limpa-form").val('').prop('checked', false);
     }
 
     $scope.savePartida = function(){

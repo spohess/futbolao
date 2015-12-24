@@ -25,7 +25,7 @@ function fnSistemaController($scope, $http) {
     $scope.cancelaCompeticao = function(){
         $http.get('/ws/equipes')
         .success(function(dados){
-            $scope.competicao = [];
+            angular.element(".limpa-form").val('').prop('checked', false);
             $scope.competicao.equipes = dados;
         });
     }
