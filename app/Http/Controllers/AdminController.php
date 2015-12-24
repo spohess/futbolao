@@ -102,10 +102,6 @@ class AdminController extends Controller
     {
         $partida = Partida::firstOrNew(['id' => $request->id]);
         $partida->toObject($request->all());
-        $partida->placar_casa = $request->placar_casa;
-        $partida->penalti_casa = $request->penalti_casa;
-        $partida->placar_visitante = $request->placar_visitante;
-        $partida->penalti_visitante = $request->penalti_visitante;
         $partida->save();
     }
 
