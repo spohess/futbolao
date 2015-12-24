@@ -56,7 +56,7 @@ class Partida extends Model
         $this->placar_casa = (isset($dados['placar_casa'])) ? $dados['placar_casa'] : 0;
         $this->penalti_casa = (isset($dados['penalti_casa'])) ? $dados['penalti_casa'] : null;
         $this->id_equipe_visitante = $dados['id_equipe_visitante'];
-        $this->placar_visiatnte = (isset($dados['placar_visiatnte'])) ? $dados['placar_visiatnte'] : 0;
+        $this->placar_visitante = (isset($dados['placar_visitante'])) ? $dados['placar_visitante'] : 0;
         $this->penalti_visitante = (isset($dados['penalti_visitante'])) ? $dados['penalti_visitante'] : null;
     }
 }
