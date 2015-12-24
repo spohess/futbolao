@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use Artesaos\Defender\Traits\HasDefender;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -10,7 +11,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 
 class Usuario extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable, SoftDeletes;
+    use Authenticatable, Authorizable, SoftDeletes, HasDefender;
 
     /**
      * The database table used by the model.

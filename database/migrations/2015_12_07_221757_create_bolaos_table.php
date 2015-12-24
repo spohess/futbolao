@@ -17,11 +17,14 @@ class CreateBolaosTable extends Migration
             $table->string('nome');
             $table->string('descricao');
             $table->enum('permissao', ['publico', 'moderado', 'privado']);
-            $table->bigInteger('id_tecnico');
-            $table->bigInteger('id_competicao');
+            $table->bigInteger('id_tecnico')->unsigned();
+            $table->bigInteger('id_competicao')->unsigned();
             $table->string('slug');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('id_tecnico')->references('id')->on('usuarios')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_competicao')->references('id')->on('competicoes')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 

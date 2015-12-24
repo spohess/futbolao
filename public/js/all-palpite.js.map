@@ -1,0 +1,1 @@
+{"version":3,"sources":["palpite.js"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA","file":"all-palpite.js","sourcesContent":["function fnSistemaController($scope, $http) {\n\n}\nfnSistemaController.$inject = ['$scope', '$http'];\nangular.module('app').controller('sistemaController', fnSistemaController);"],"sourceRoot":"/source/"}

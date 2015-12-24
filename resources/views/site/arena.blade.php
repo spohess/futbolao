@@ -324,7 +324,10 @@ Arena
                     </div>
                     <div class="form-group">
                         <label for="id_competicao" class="control-label">Competição</label>
-                        <select id="id_competicao" name="id_competicao" ng-model="novoBolao.id_competicao" class="form-control limpar" ng-options="competicao.id as competicao.valor for competicao in competicoes" required></select>
+                        <select id="id_competicao" name="id_competicao" ng-model="novoBolao.id_competicao" class="form-control limpar" required>
+                            <option value="">Escolha uma competição</option>
+                            <option value="@{{competicao.id}}" ng-repeat="competicao in competicoes">@{{competicao.nome}}</option>
+                        </select>
                     </div>
                     <div class="container-fluid">
                         <div class="row text-center">

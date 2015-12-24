@@ -1,5 +1,5 @@
-$font-primaria: 'Montserrat', sans-serif;
-$font-secundaria: 'Open Sans Condensed', sans-serif;
+$font-primaria: 'Open Sans', sans-serif;
+$font-secundaria: 'Dosis', sans-serif;
 $font-size: 14px;
 
 $cor-primaria: #f68200;
@@ -7,7 +7,10 @@ $cor-secundaria: #a61d00;
 $cor-clara: #fffbf6;
 $cor-escura: #222;
 $cor-cinza: #f9f9f9;
-$cor-sucesso: #5cb85c;
+
+$cor-success: #5cb85c;
+$cor-warning: #f0ad4e;
+$cor-danger: #d9534f;
 
 $mq-xs-max: 'only screen and (max-width: 767px)';
 $mq-sm-min: 'only screen and (min-width: 768px)';

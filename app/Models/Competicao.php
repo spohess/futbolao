@@ -23,6 +23,11 @@ class Competicao extends Model
      */
     protected $fillable = ['nome', 'descricao', 'modalidade', 'data_inicio', 'data_fim'];
 
+    public function equipes()
+    {
+        return $this->belongsToMany('App\Models\Equipe', 'equipes_competicoes', 'id_competicao', 'id_equipe')->withPivot('grupo');
+    }
+
     /**
      * @param array $dados
      */

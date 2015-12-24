@@ -1,0 +1,14 @@
+@import "base/variaveis";
+
+.box-resultado {
+    padding: 10px;
+    
+    &.gravado {
+        background-color: lighten($cor-success, 35%);
+    }
+
+    p {
+        margin: 0;
+        line-height: 28px;
+    }
+}

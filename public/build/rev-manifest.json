@@ -1,15 +1,18 @@
 {
-  "css/all.css": "css/all-108380fb64.css",
-  "css/app.css": "css/app-a05a5d43a2.css",
+  "css/admin.css": "css/admin-84f4e11b40.css",
+  "css/all.css": "css/all-97524dbd6f.css",
+  "css/app.css": "css/app-5acbc9d377.css",
   "css/arena.css": "css/arena-38b6ec2765.css",
-  "img/estadio-footer.jpg": "img/estadio-footer-e582a11682.jpg",
-  "img/estadio.jpg": "img/estadio-0d7f3303db.jpg",
-  "img/gramado.jpg": "img/gramado-987aae48d5.jpg",
-  "img/icone.png": "img/icone-7ad587c320.png",
-  "img/tecnico.png": "img/tecnico-078756df1f.png",
-  "img/times_60x60.png": "img/times_60x60-1d95b64c32.png",
-  "js/all-arena.js": "js/all-arena-68ae4c65cb.js",
+  "css/palpite.css": "css/palpite-d41d8cd98f.css",
+  "js/all-admin.js": "js/all-admin-9134b5ebb1.js",
+  "js/all-admin_competicao.js": "js/all-admin_competicao-c168036d8c.js",
+  "js/all-admin_equipe.js": "js/all-admin_equipe-96d8235cc7.js",
+  "js/all-admin_estadio.js": "js/all-admin_estadio-e37c9b7879.js",
+  "js/all-admin_partida.js": "js/all-admin_partida-ab532980f3.js",
+  "js/all-admin_resultado.js": "js/all-admin_resultado-38259b0d06.js",
+  "js/all-arena.js": "js/all-arena-d82a85fc75.js",
   "js/all-auth.js": "js/all-auth-f8971dec2b.js",
+  "js/all-palpite.js": "js/all-palpite-097fbc5a22.js",
   "js/all-site.js": "js/all-site-2f46b8c777.js",
-  "js/all.js": "js/all-57452b65cf.js"
+  "js/all.js": "js/all-0ccc89aace.js"
 }

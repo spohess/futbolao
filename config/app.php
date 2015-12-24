@@ -6,7 +6,7 @@ return [
     'url' => 'http://palpiteirosanonimos.com.br',
     'timezone' => 'UTC',
     'locale' => 'pt_br',
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'pt_br',
     'key' => env('APP_KEY', 'SomeRandomString'),
     'cipher' => 'AES-256-CBC',
     'log' => 'single',
@@ -41,6 +41,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FunctionsServiceProvider::class,
+        Artesaos\Defender\Providers\DefenderServiceProvider::class,
 
     ],
 
@@ -79,6 +80,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Defender' => Artesaos\Defender\Facades\Defender::class,
 
     ],
 

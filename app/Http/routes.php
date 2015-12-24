@@ -49,8 +49,37 @@ Route::group(['prefix' => '/bolao', 'middleware' => 'auth'], function () {
     Route::get('/convites_pendentes', 'UsuarioBolaoController@listaConvitesPendentes');
 });
 
-Route::group(['prefix' => '/competicao', 'middleware' => 'auth'], function () {
-    Route::get('/lista_select', 'CompeticaoController@getListaSelect');
+Route::group(['prefix' => '/palpite', 'middleware' => 'auth'], function () {
+    Route::get('/', 'PalpiteController@index');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin
+|--------------------------------------------------------------------------
+ */
+Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'needsRole'], 'is' => 'admin'], function () {
+    Route::get('/', 'AdminController@index');
+
+    Route::get('/competicao', 'AdminController@indexCompeticao');
+    Route::post('/save_competicao', 'AdminController@saveCompeticao');
+    Route::delete('/delete_competicao/{id}', 'AdminController@deleteCompeticao')->where('id', '[0-9]+');
+
+    Route::get('/estadio', 'AdminController@indexEstadio');
+    Route::post('/save_estadio', 'AdminController@saveEstadio');
+    Route::delete('/delete_estadio/{id}', 'AdminController@deleteEstadio')->where('id', '[0-9]+');
+
+    Route::get('/equipe', 'AdminController@indexEquipe');
+    Route::post('/save_equipe', 'AdminController@saveEquipe');
+    Route::delete('/delete_equipe/{id}', 'AdminController@deleteEquipe')->where('id', '[0-9]+');
+
+    Route::get('/partida', 'AdminController@indexPartida');
+    Route::post('/save_partida', 'AdminController@savePartida');
+    Route::delete('/delete_partida/{id}', 'AdminController@deletePartida')->where('id', '[0-9]+');
+
+    Route::get('/resultado', 'AdminController@indexResultado');
+    Route::post('/save_resultado', 'AdminController@saveResultado');
+    Route::delete('/delete_resultado/{id}', 'AdminController@deleteResultado')->where('id', '[0-9]+');
 });
 
 /*
@@ -60,4 +89,11 @@ Route::group(['prefix' => '/competicao', 'middleware' => 'auth'], function () {
  */
 Route::group(['prefix' => '/ws'], function () {
     Route::get('/gettoken', 'WebServiceController@getToken');
+    Route::get('/competicoes', 'WebServiceController@getCompeticoes');
+    Route::get('/estadios', 'WebServiceController@getEstadios');
+    Route::get('/equipes', 'WebServiceController@getEquipes');
+    Route::get('/equipes_competicao/{id}', 'WebServiceController@getEquipesPorCompeticao')->where('id', '[0-9]+');
+    Route::get('/partidas', 'WebServiceController@getPartidas');
+    Route::get('/rodadas_competicao/{id}', 'WebServiceController@getRodadasCompeticao')->where('id', '[0-9]+');
+    Route::get('/partidas_rodada/{idCompeticao}/{rodada}', 'WebServiceController@getPartidasRodada')->where('idCompeticao', '[0-9]+');
 });

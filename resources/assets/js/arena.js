@@ -59,7 +59,7 @@ function fnSistemaController($scope, $http) {
     });
 
     $scope.carregaCompeticao = function(){
-        $http.get('/competicao/lista_select')
+        $http.get('/ws/competicoes')
         .success(function(dados){
             $scope.competicoes = dados;
             $scope.novoBolao.id_competicao = '';

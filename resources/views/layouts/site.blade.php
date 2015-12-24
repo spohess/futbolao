@@ -7,7 +7,7 @@
     <link rel="icon" href="{{url('favicon.ico')}}">
     <title>{{get_titulo_site()}} | @yield('titulo-pagina')</title>
 
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans+Condensed:300,300italic,700'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,700|Open+Sans">
     <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
     @yield('css-especifico')

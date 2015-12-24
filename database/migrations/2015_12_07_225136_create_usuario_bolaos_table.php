@@ -14,13 +14,15 @@ class CreateUsuarioBolaosTable extends Migration
     {
         Schema::create('usuarios_boloes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_usuario');
-            $table->bigInteger('id_bolao');
+            $table->bigInteger('id_usuario')->unsigned();
+            $table->bigInteger('id_bolao')->unsigned();
             $table->enum('participacao', ['aceito', 'convite', 'deletado', 'banido']);
             $table->timestamps();
             $table->softDeletes();
             // Index
             $table->unique(['id_usuario', 'id_bolao']);
+            $table->foreign('id_usuario')->references('id')->on('usuarios')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_bolao')->references('id')->on('boloes')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
