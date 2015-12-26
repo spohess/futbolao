@@ -216,8 +216,38 @@ function fnSistemaController($scope, $http) {
         .success(function(dados){
             $scope.listaPalpites = dados.palpites;
             $scope.palpite.itemPorPagina = dados.qtd_rodada;
-            console.info(dados);
         });
+    }
+
+    $scope.gravaPalpite = function(palpite){
+        if( palpite.palpite_casa == '' || palpite.palpite_visitante == '' ){
+            return false;
+        }
+
+        if(palpite.penalti){
+            if( palpite.palpite_penalti_casa != '' || palpite.palpite_penalti_visitante != '' ){
+                return false;
+            }
+        }
+
+        var dadosPost = {
+            "_token": palpite._token,
+            "id_bolao": $scope.palpite.id_bolao,
+            "id_palpite": palpite.id_palpite,
+            "id_partida": palpite.id_partida,
+            "id_competicao": palpite.id_competicao,
+            "palpite_casa": palpite.palpite_casa,
+            "palpite_penalti_casa": palpite.palpite_penalti_casa,
+            "palpite_penalti_visitante": palpite.palpite_penalti_visitante,
+            "palpite_visitante": palpite.palpite_visitante
+        }
+
+        $http.post('/palpite/save_palpite', dadosPost)
+        .success(function(dados){
+            palpite.id_palpite = dados.id_palpite;
+            angular.element("#box-palpite-" + palpite.id_partida).addClass("gravado");
+        });
+
     }
 }
 fnSistemaController.$inject = ['$scope', '$http'];

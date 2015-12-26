@@ -38,3 +38,31 @@
     color: $cor-danger;
     text-decoration: line-through;
 }
+
+.figura-ajuda {
+
+    img {
+        width: 100%;
+    }
+}
+
+.box-palpite {
+    padding: 10px;
+    
+    &.gravado {
+        background-color: lighten($cor-success, 35%);
+    }
+
+    p {
+        margin: 0;
+        line-height: 28px;
+    }
+}
+
+li {
+    
+    &.alert {
+        list-style: none;
+        margin: 5px 0;
+    }
+}

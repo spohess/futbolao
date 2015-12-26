@@ -52,6 +52,7 @@ Route::group(['prefix' => '/bolao', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => '/palpite', 'middleware' => 'auth'], function () {
     Route::get('/', 'PalpiteController@index');
     Route::get('/palpites_bolao/{id}', 'PalpiteController@getPalpitesBolao')->where('id', '[0-9]+');
+    Route::post('/save_palpite', 'PalpiteController@savePalpite');
 });
 
 Route::group(['prefix' => '/partida', 'middleware' => 'auth'], function () {
