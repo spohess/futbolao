@@ -28,6 +28,11 @@ class Competicao extends Model
         return $this->belongsToMany('App\Models\Equipe', 'equipes_competicoes', 'id_competicao', 'id_equipe')->withPivot('grupo');
     }
 
+    public function partidas()
+    {
+        return $this->hasMany('App\Models\Partida', 'id_competicao', 'id');
+    }
+
     /**
      * @param array $dados
      */

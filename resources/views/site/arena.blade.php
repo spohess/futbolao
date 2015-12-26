@@ -5,7 +5,7 @@ Arena
 @endsection
 
 @section('conteudo')
-<div class="container">
+<div class="container" ng-init="onLoadArena()">
     <div class="area-usuario">
         <div class="row">
             <div class="col-xs-12 col-sm-3">

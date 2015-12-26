@@ -1,0 +1,40 @@
+.brasao {
+    float: left;
+
+    &.xs {
+        width: 30px;
+        height: 30px;
+    }
+
+    &.sm {
+        width: 40px;
+        height: 40px;
+    }
+
+    &.md {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.abreviado-brasao {
+    float: left;
+    margin: 0 10px;
+}
+
+.lista-regulamento {
+    
+    dd {
+        margin-bottom: 10px;
+    }
+}
+
+.exp-success {
+    color: $cor-success;
+    text-decoration: underline;
+}
+
+.exp-danger {
+    color: $cor-danger;
+    text-decoration: line-through;
+}

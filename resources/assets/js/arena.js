@@ -1,62 +1,71 @@
 function fnSistemaController($scope, $http) {
 
-    $scope.meusBoloes = [];
-    $scope.todosBoloes = [];
-    $scope.adminBolao = [];
-    $scope.adminBolao.confirmaDelete = false;
+    $scope.onLoadArena = function(){
+        $scope.meusBoloes = [];
+        $scope.todosBoloes = [];
+        $scope.adminBolao = [];
+        $scope.adminBolao.confirmaDelete = false;
 
-    $scope.limitesList = [
-        {id:'5', valor:'5'},
-        {id:'10', valor:'10'},
-        {id:'15', valor:'15'},
-        {id:'20', valor:'20'},
-        {id:'25', valor:'25'},
-        {id:'30', valor:'30'}
-    ];
-    $scope.pessoalLimite = '5';
-    $scope.geralLimite = '5';
+        $scope.limitesList = [
+            {id:'5', valor:'5'},
+            {id:'10', valor:'10'},
+            {id:'15', valor:'15'},
+            {id:'20', valor:'20'},
+            {id:'25', valor:'25'},
+            {id:'30', valor:'30'}
+        ];
+        $scope.pessoalLimite = '5';
+        $scope.geralLimite = '5';
 
-    $http.get('/bolao/usuario_bolao')
-    .success(function(dados){
-        if( dados.estado === 'sucesso' ){
-            $scope.meusBoloes = dados.lista;
-        }
+        $scope.getUsuarioBolao();
+        $scope.getTodosBoloes();
+    }
 
-        if( dados.estado === 'vazio' ){
-            angular.element("#vazioMeusBoloes").show();    
-        }
+    $scope.getUsuarioBolao = function(){
+        $http.get('/bolao/usuario_bolao')
+        .success(function(dados){
+            if( dados.estado === 'sucesso' ){
+                $scope.meusBoloes = dados.lista;
+            }
 
-        if( dados.estado === 'erro' ){
-            angular.element("#erroMeusBoloes").show();    
-        }
-    })
-    .error(function(){
-        angular.element("#erroMeusBoloes").show();
-    })
-    .finally(function(){
-        angular.element("#carregaMeusBoloes").hide();
-    });
+            if( dados.estado === 'vazio' ){
+                angular.element("#vazioMeusBoloes").show();    
+            }
 
-    $http.get('/bolao/todos_bolao')
-    .success(function(dados){
-        if( dados.estado === 'sucesso' ){
-            $scope.todosBoloes = dados.lista;
-        }
+            if( dados.estado === 'erro' ){
+                angular.element("#erroMeusBoloes").show();    
+            }
+        })
+        .error(function(){
+            angular.element("#erroMeusBoloes").show();
+        })
+        .finally(function(){
+            angular.element("#carregaMeusBoloes").hide();
+        });
+    }
 
-        if( dados.estado === 'vazio' ){
-            angular.element("#vazioTodosBoloes").show();    
-        }
+    $scope.getTodosBoloes = function(){
+        $http.get('/bolao/todos_bolao')
+        .success(function(dados){
+            if( dados.estado === 'sucesso' ){
+                $scope.todosBoloes = dados.lista;
+            }
 
-        if( dados.estado === 'erro' ){
-            angular.element("#erroTodosBoloes").show();    
-        }
-    })
-    .error(function(){
-        angular.element("#erroTodosBoloes").show();
-    })
-    .finally(function(){
-        angular.element("#carregaTodosBoloes").hide();
-    });
+            if( dados.estado === 'vazio' ){
+                angular.element("#vazioTodosBoloes").show();    
+            }
+
+            if( dados.estado === 'erro' ){
+                angular.element("#erroTodosBoloes").show();    
+            }
+        })
+        .error(function(){
+            angular.element("#erroTodosBoloes").show();
+        })
+        .finally(function(){
+            angular.element("#carregaTodosBoloes").hide();
+        });
+    }
 
     $scope.carregaCompeticao = function(){
         $http.get('/ws/competicoes')
@@ -196,6 +205,19 @@ function fnSistemaController($scope, $http) {
         });
 
         angular.element("#mdListaConvites").modal("show");
+    }
+
+    $scope.onLoadPalpite = function(){
+        $scope.getUsuarioBolao();
+    }
+
+    $scope.carregaPartidas = function(){
+        $http.get('/palpite/palpites_bolao/' + $scope.palpite.id_bolao)
+        .success(function(dados){
+            $scope.listaPalpites = dados.palpites;
+            $scope.palpite.itemPorPagina = dados.qtd_rodada;
+            console.info(dados);
+        });
     }
 }
 fnSistemaController.$inject = ['$scope', '$http'];

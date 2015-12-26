@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\PartidaHelper;
 use App\Models\Competicao;
 use App\Models\Equipe;
 use App\Models\Estadio;
@@ -92,35 +93,12 @@ class WebServiceController extends Controller
 
     public function getPartidas()
     {
-        $listaPartidas = [];
-        foreach (Partida::all()->sortBy('data_partida') as $partida) {
-            $dados = [
-                'id' => $partida->id,
-                'id_competicao' => $partida->id_competicao,
-                'penalti' => ($partida->penalti) ? true : false,
-                'penalti_ft' => ($partida->penalti) ? 'Sim' : 'Não',
-                'id_estadio' => $partida->id_estadio,
-                'local' => $partida->local->apelido,
-                'data_partida' => $partida->data_partida,
-                'data_partida_ft' => get_data_formatada($partida->data_partida),
-                'rodada' => $partida->rodada,
-                'id_equipe_casa' => $partida->id_equipe_casa,
-                'equipe_casa_apelido' => $partida->equipeCasa->apelido,
-                'placar_casa' => $partida->placar_casa,
-                'penalti_casa' => $partida->penalti_casa,
-                'id_equipe_visitante' => $partida->id_equipe_visitante,
-                'equipe_visitante_apelido' => $partida->equipeVisitante->apelido,
-                'placar_visitante' => $partida->placar_visitante,
-                'penalti_visitante' => $partida->penalti_visitante,
-            ];
-            array_push($listaPartidas, $dados);
-        }
-        return $listaPartidas;
+        $partidas = new PartidaHelper(Partida::all()->sortBy('data_partida'));
+        return $partidas->montaPartidas();
     }
 
     public function getRodadasCompeticao($id)
     {
-        $listaRodadas = [];
         return Partida::select("rodada")->where("id_competicao", $id)->groupBy("rodada")->get()->all();
     }
 
