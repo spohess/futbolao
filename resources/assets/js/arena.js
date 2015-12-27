@@ -208,6 +208,7 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.onLoadPalpite = function(){
+        $scope.gravado = false;
         $scope.getUsuarioBolao();
     }
 
@@ -224,12 +225,6 @@ function fnSistemaController($scope, $http) {
             return false;
         }
 
-        if(palpite.penalti){
-            if( palpite.palpite_penalti_casa != '' || palpite.palpite_penalti_visitante != '' ){
-                return false;
-            }
-        }
-
         var dadosPost = {
             "_token": palpite._token,
             "id_bolao": $scope.palpite.id_bolao,
@@ -244,7 +239,9 @@ function fnSistemaController($scope, $http) {
 
         $http.post('/palpite/save_palpite', dadosPost)
         .success(function(dados){
+            $scope.gravado = true;
             palpite.id_palpite = dados.id_palpite;
+            angular.element("#box-palpite-" + palpite.id_partida).removeClass("inserido");
             angular.element("#box-palpite-" + palpite.id_partida).addClass("gravado");
         });
 

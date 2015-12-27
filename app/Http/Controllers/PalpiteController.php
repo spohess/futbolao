@@ -17,6 +17,11 @@ class PalpiteController extends Controller
         return view('site.palpite');
     }
 
+    public function indexPonto()
+    {
+        return view('site.ponto');
+    }
+
     public function getPalpitesBolao($id)
     {
         $bolao = Bolao::find($id);

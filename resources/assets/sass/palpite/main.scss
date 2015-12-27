@@ -53,6 +53,10 @@
         background-color: lighten($cor-success, 35%);
     }
 
+    &.inserido {
+        background-color: lighten($cor-primaria, 35%);
+    }
+
     p {
         margin: 0;
         line-height: 28px;

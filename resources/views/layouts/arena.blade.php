@@ -35,6 +35,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-left">
                             <li><a href="{{url('/palpite')}}">Palpites</a></li>
+                            <li><a href="{{url('/palpite/ponto')}}">Pontuação</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{url('/sair')}}">Sair</a></li>

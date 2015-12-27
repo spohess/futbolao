@@ -8,14 +8,6 @@ Palpites
 <div class="container" ng-init="onLoadPalpite()">
     <div class="row">
         <div class="col-xs-24">
-            <div id="avisoResultado" class="alert @{{avisoResultado.class}} alerta-oculto">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <div>@{{avisoResultado.mensagem}}</div>
-            </div>
-        </div>
-        <div class="col-xs-24">
             <div class="alert alert-info">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -44,14 +36,14 @@ Palpites
                     <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" pagination-id="idListalistaPalpites" class="sem-margin"></dir-pagination-controls>
                 </div>
             </div>
-            <h2 class="text-primary">Partidas <small><a href="" title="clicando aqui" data-toggle="modal" data-target="#mdAjudaPalpite">Ajuda</a></small></h2>
+            <h2 class="text-primary">Partidas <small class="pull-right"><a href="" title="clicando aqui" data-toggle="modal" data-target="#mdAjudaPalpite"><i class="fa fa-question-circle"></i> Ajuda</a></small></h2>
             <div dir-paginate="palpite in listaPalpites | filter:filtroPartida | itemsPerPage:palpite.itemPorPagina" pagination-id="idListalistaPalpites">
                 <div class="row">
                     <div class="col-xs-24">
                         <hr>
                     </div>
                 </div>
-                <div class="row box-palpite" id="box-palpite-@{{palpite.id_partida}}">
+                <div class="row box-palpite" id="box-palpite-@{{palpite.id_partida}}" ng-class="(palpite.id_palpite>0 && !gravado) ? 'inserido' : ''">
                     <div class="clearfix">
                         <input type="hidden" name="id_palpite" ng-model="palpite.id_palpite" ng-init="palpite.id_palpite=palpite.id_palpite">
                         <input type="hidden" name="_token" ng-model="palpite._token" ng-init="palpite._token='{{csrf_token()}}'">
@@ -59,29 +51,21 @@ Palpites
                         <div class="col-xs-24">
                             <div class="row text-center">
                                 <div class="col-xs-24 col-md-3"><small>Mandante</small></div>
-                                <div class="col-xs-24 col-md-2"><small>Palpite</small></div>
-                                <div class="col-xs-24 col-md-2"><small>Pênalti</small></div>
-                                <div class="col-xs-24 col-md-2"><small>Resultado</small></div>
-                                <div class="col-xs-24 col-md-2"><small>Pênalti</small></div>
+                                <div class="col-xs-24 col-md-4"><small>Palpite placar</small></div>
+                                <div class="col-xs-24 col-md-4"><small>Palpite pênalti</small></div>
                                 <div class="col-xs-24 col-md-2">&nbsp;</div>
-                                <div class="col-xs-24 col-md-2"><small>Pênalti</small></div>
-                                <div class="col-xs-24 col-md-2"><small>Resultado</small></div>
-                                <div class="col-xs-24 col-md-2"><small>Pênalti</small></div>
-                                <div class="col-xs-24 col-md-2"><small>Palpite</small></div>
+                                <div class="col-xs-24 col-md-4"><small>Palpite pênalti</small></div>
+                                <div class="col-xs-24 col-md-4"><small>Palpite placar</small></div>
                                 <div class="col-xs-24 col-md-3"><small>Visitante</small></div>
                             </div>
                             <br>
                         </div>
                         <div class="col-xs-24 col-md-3 text-center" title="@{{palpite.equipe_casa_nome}}"><img src="@{{palpite.equipe_casa_brasao}}" class="brasao xs"> <h3 class="abreviado-brasao">@{{palpite.equipe_casa_abreviado}}</h3></div>
-                        <div class="col-xs-24 col-md-2"><input type="text" name="palpite_casa" ng-model="palpite.palpite_casa" ng-init="palpite.palpite_casa=palpite.palpite_casa" class="form-control text-center"></div>
-                        <div class="col-xs-24 col-md-2"><input type="text" name="palpite_penalti_casa" ng-model="palpite.palpite_penalti_casa" ng-init="palpite.palpite_penalti_casa=palpite.palpite_penalti_casa" class="form-control text-center" ng-disabled="!palpite.penalti"></div>
-                        <div class="col-xs-24 col-md-2"><input type="text" name="placar_casa" ng-model="palpite.placar_casa" ng-init="palpite.placar_casa=palpite.resultado_casa" class="form-control text-center" disabled="disabled"></div>
-                        <div class="col-xs-24 col-md-2"><input type="text" name="penalti_casa" ng-model="palpite.penalti_casa" ng-init="palpite.penalti_casa=palpite.resultado_penalti_casa" class="form-control text-center" disabled="disabled"></div>
+                        <div class="col-xs-24 col-md-4"><input type="text" maxlength="2" name="palpite_casa" ng-model="palpite.palpite_casa" ng-init="palpite.palpite_casa=palpite.palpite_casa" class="form-control text-center"></div>
+                        <div class="col-xs-24 col-md-4"><input type="text" maxlength="2" name="palpite_penalti_casa" ng-model="palpite.palpite_penalti_casa" ng-init="palpite.palpite_penalti_casa=palpite.palpite_penalti_casa" class="form-control text-center" ng-disabled="!palpite.penalti"></div>
                         <div class="col-xs-24 col-md-2 text-center"><i class="fa fa-times fa-2x"></i></div>
-                        <div class="col-xs-24 col-md-2"><input type="text" name="penalti_visitante" ng-model="palpite.penalti_visitante" ng-init="palpite.penalti_visitante=palpite.resultado_penalti_visitante" class="form-control text-center" disabled="disabled"></div>
-                        <div class="col-xs-24 col-md-2"><input type="text" name="placar_visitante" ng-model="palpite.placar_visitante" ng-init="palpite.placar_visitante=palpite.resultado_visitante" class="form-control text-center" disabled="disabled"></div>
-                        <div class="col-xs-24 col-md-2"><input type="text" name="palpite_penalti_visitante" ng-model="palpite.palpite_penalti_visitante" ng-init="palpite.palpite_penalti_visitante=palpite.palpite_penalti_visitante" class="form-control text-center" ng-disabled="!palpite.penalti"></div>
-                        <div class="col-xs-24 col-md-2"><input type="text" name="palpite_visitante" ng-model="palpite.palpite_visitante" ng-init="palpite.palpite_visitante=palpite.palpite_visitante" class="form-control text-center"></div>
+                        <div class="col-xs-24 col-md-4"><input type="text" maxlength="2" name="palpite_penalti_visitante" ng-model="palpite.palpite_penalti_visitante" ng-init="palpite.palpite_penalti_visitante=palpite.palpite_penalti_visitante" class="form-control text-center" ng-disabled="!palpite.penalti"></div>
+                        <div class="col-xs-24 col-md-4"><input type="text" maxlength="2" name="palpite_visitante" ng-model="palpite.palpite_visitante" ng-init="palpite.palpite_visitante=palpite.palpite_visitante" class="form-control text-center"></div>
                         <div class="col-xs-24 col-md-3 text-center" title="@{{palpite.equipe_visitante_nome}}"><h3 class="abreviado-brasao">@{{palpite.equipe_visitante_abreviado}}</h3> <img src="@{{palpite.equipe_visitante_brasao}}" class="brasao xs"></div>
                     </div>
                 {{-- </div>
@@ -282,25 +266,45 @@ Palpites
                     <div class="text-center">Veja o regulamento <strong><a href="" title="clicando aqui" data-dismiss="modal" data-toggle="modal" data-target="#mdRegulamentoPalpite">clicando aqui</a></strong></div>
                 </div>
                 <div class="figura-ajuda">
-                    <img src="{{url('img/ajuda.jpg')}}" alt="Figura Ajuda">
+                    <small>Figura 1</small><img src="{{url('img/ajuda.jpg')}}" alt="Figura Ajuda">
                 </div>
                 <div class="row">
                 <div class="col-xs-24 col-md-20 col-md-offset-2">
-                        <h3 class="text-primary">Como dar seu palpite</h3>
+                        <h3 class="text-primary">Como dar seu palpite <small>Figura 1</small></h3>
                         <h4 class="text-secundary">Para carregar as partidas para dar o palpite selecione um bolão no campo "Bolão" e as partidas irão ser carregadas automaticamente</h4>
                         <ol>
+                            <li>Informação de local e data da partida;</li>
                             <li>Equipe mandante;</li>
                             <li>Campo para dar o seu palpite de gols da equipe mandante (preenchimento obrigatório);</li>
                             <li>Campo de palpite para os pênaltis do mandante. Este campo só estará habilitado caso a partida possa ser decidida nos pênaltis, caso contrário ficará desabilitado, quando habilitado seu preenchimento <strong>NÃO</strong> é obrigatório;</li>
-                            <li>Campo com o placar do mandante na partida, todo o placar já se inicia com 0;</li>
-                            <li>Campo com os pênaltis do mandante, caso a partida se decida nos pênaltis;</li>
-                            <li>Este campo segue a mesma característica do campo anterior, mas é referente ao time visitante;</li>
-                            <li>Este campo é para o placar do visitante na partida e como ao mandante se inicia com 0;</li>
-                            <li>Campo para preencher os pênaltis do visitante, como item 3, só estará habilitado caso a partida possa ser decidida nos pênaltis;</li>
+                            <li>Campo para preencher os pênaltis do visitante, como item 4, só estará habilitado caso a partida possa ser decidida nos pênaltis;</li>
                             <li>Campo para dar palpite do placar do visitante (preenchimento obrigatório);</li>
                             <li>Equipe visitante;</li>
-                            <li>Informação de local e data da partida;</li>
                             <li>Botão para gravar o palpite, após preencher e clicar nesse botão o fundo da linha da partida ficará verde claro para informar que foi gravado com sucesso;</li>
+                        </ol>
+                    </div>
+                </div>
+                <hr>
+                <div class="figura-ajuda">
+                    <small>Figura 2</small><img src="{{url('img/ajuda-gravado.jpg')}}" alt="Figura Ajuda">
+                </div>
+                <div class="row">
+                <div class="col-xs-24 col-md-20 col-md-offset-2">
+                    <h3 class="text-primary">Palpite Gravado <small>Figura 2</small></h3>
+                        <ol>
+                            <li>Logo após clicar no botão gravar essa será a aparência se o palpite for gravado com sucesso;</li>
+                        </ol>
+                    </div>
+                </div>
+                <hr>
+                <div class="figura-ajuda">
+                    <small>Figura 3</small><img src="{{url('img/ajuda-inserido.jpg')}}" alt="Figura Ajuda">
+                </div>
+                <div class="row">
+                <div class="col-xs-24 col-md-20 col-md-offset-2">
+                    <h3 class="text-primary">Palpite já Gravado <small>Figura 3</small></h3>
+                        <ol>
+                            <li>Quando as partidas forem carregadas e tiverem essa aparência é porque o palpite já está registrado no sistema;</li>
                         </ol>
                     </div>
                 </div>

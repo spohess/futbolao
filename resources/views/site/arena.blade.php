@@ -338,7 +338,7 @@ Arena
                                 <label for="permissao-moderado" class="control-label text-warning"><input type="radio" id="permissao-moderado" name="permissao" ng-model="novoBolao.permissao" class="limpar" value="moderado" required> <i class="fa fa-key"></i> Moderado</label>
                             </div>
                             <div class="form-group col-xs-24 col-md-8">
-                                <label for="permissao-privado" class="control-label text-danger"><input type="radio" id="permissao-privado" name="permissao" ng-model="novoBolao.permissao" class="limpar" value="privado" required> <i class="fa fa-lock"></i> Privado</label>
+                                <label for="permissao-privado" class="control-label text-danger"><input type="radio" id="permissao-privado" name="permissao" ng-model="novoBolao.permissao" class="limpar" value="privado" disabled="disabled"> <i class="fa fa-lock"></i> Privado</label>
                             </div>
                         </div>
                     </div>
