@@ -60,7 +60,7 @@
                         <ul class="social">
                             <li><a href="{{get_link_twitter()}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="{{get_link_facebook()}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="mailto:contato@palpiteirosanonimos.com.br?subject=Contato pelo Site" title="E-mail" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                            <li><a href="mailto:{{get_email_contato()}}?subject=Contato pelo Site" title="E-mail" target="_blank"><i class="fa fa-envelope"></i></a></li>
                         </ul>
                     </div>
                     <div class="col-xs-16 text-right">

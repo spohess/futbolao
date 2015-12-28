@@ -52,7 +52,7 @@ if (!function_exists('get_email_contato')) {
 if (!function_exists('get_link_twitter')) {
     function get_link_twitter()
     {
-        return "https://twitter.com/palpiteiros";
+        return "https://twitter.com/fut_bolao";
     }
 }
 
@@ -66,7 +66,7 @@ if (!function_exists('get_link_twitter')) {
 if (!function_exists('get_link_facebook')) {
     function get_link_facebook()
     {
-        return "https://www.facebook.com/palpiteiros.anonimos";
+        return "https://www.facebook.com/futbolao";
     }
 }
 

@@ -984,7 +984,7 @@ body,.wrapper,.emb-editor-canvas{background-color:#f5f7fa;}
             <tr>
                 <td class="border" style="padding: 0;vertical-align: top;font-size: 1px;line-height: 1px;background-color: #dddee1;width: 1px;">​</td>
                 <td style="padding: 0;vertical-align: top;">
-                    <table class="one-col" style="border-collapse: collapse;border-spacing: 0;Margin-left: auto;Margin-right: auto;width: 600px;background-color: #ffffff;table-layout: fixed;background-position: 0px 0px;background-image: url({{url('img/email/bgemail.jpg')}});background-repeat: no-repeat;">
+                    <table class="one-col" style="border-collapse: collapse;border-spacing: 0;Margin-left: auto;Margin-right: auto;width: 600px;height: 1000px;background-color: #ffffff;table-layout: fixed;background-position: 0px 0px;background-image: url({{url('img/email/bgemail.jpg')}});background-repeat: no-repeat;">
                         <tbody>
                             <tr>
                                 <td class="column" style="padding: 0;vertical-align: top;text-align: left;">

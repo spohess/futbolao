@@ -138,9 +138,9 @@ Home
                     <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
                     <li class="active"><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
                     <li><hr></li>
-                    <li><a href="{{get_link_twitter()}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i> palpiteiros</a></li>
-                    <li><a href="{{get_link_facebook()}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i> palpiteiros.anonimos</a></li>
-                    <li><a href="mailto:contato@palpiteirosanonimos.com.br?subject=Contato pelo Site" title="E-mail" target="_blank"><i class="fa fa-envelope"></i> contato@</a></li>
+                    <li><a href="{{get_link_twitter()}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i> @fut_bolao</a></li>
+                    <li><a href="{{get_link_facebook()}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i> facebook.com/futbolao</a></li>
+                    <li><a href="mailto:contato@palpiteirosanonimos.com.br?subject=Contato pelo Site" title="E-mail" target="_blank"><i class="fa fa-envelope"></i> contato@futbolao.com</a></li>
                 </ul>
             </div>
             <div class="col-xs-24 col-md-11">
