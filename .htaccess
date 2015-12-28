@@ -2,5 +2,5 @@ RewriteEngine On
 
 RewriteBase /
 
-RewriteCond %{REQUEST_URI} !^/palpite/
+RewriteCond %{REQUEST_URI} !^/bolao/
 RewriteRule ^(.*)$ /$1

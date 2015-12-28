@@ -47,7 +47,7 @@ class CadastroController extends AuthController
                 'serial' => $usuario->serial,
             ];
             $enviado = Mail::send('emails.novoCadastro', $novoUsuario, function ($message) use ($novoUsuario) {
-                $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'Palpiteiros Anônimos');
+                $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'FutBolão');
                 $message->to($novoUsuario['email'], $name = $novoUsuario['nome']);
                 $message->subject("Confirmação de Cadastro");
             });
@@ -83,7 +83,7 @@ class CadastroController extends AuthController
                 'serial' => $usuario->serial,
             ];
             $enviado = Mail::send('emails.novoCadastro', $dadosUsuario, function ($message) use ($dadosUsuario) {
-                $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'Palpiteiros Anônimos');
+                $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'FutBolão');
                 $message->to($dadosUsuario['email'], $name = $dadosUsuario['nome']);
                 $message->subject("Confirmação de Cadastro");
             });

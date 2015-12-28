@@ -23,7 +23,7 @@ class SiteController extends Controller
             'mensagem' => $request->mensagemContato,
         ];
         $enviado = Mail::send('emails.novoContato', $contato, function ($message) use ($contato) {
-            $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'Palpiteiros Anônimos');
+            $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'FutBolão');
             $message->to(env('MAIL_CONTATO', get_email_contato()), $name = 'Moderadores');
             $message->subject("Novo Contato pelo site: " . $contato['assunto']);
         });

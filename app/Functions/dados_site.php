@@ -10,7 +10,7 @@
 if (!function_exists('get_dominio_site')) {
     function get_dominio_site()
     {
-        return "palpiteirosanonimos.com.br";
+        return "futbolao.com";
     }
 }
 
@@ -24,7 +24,7 @@ if (!function_exists('get_dominio_site')) {
 if (!function_exists('get_nome_site')) {
     function get_nome_site()
     {
-        return 'Palpiteiros Anônimos';
+        return 'FutBolão';
     }
 }
 
@@ -38,7 +38,7 @@ if (!function_exists('get_nome_site')) {
 if (!function_exists('get_email_contato')) {
     function get_email_contato()
     {
-        return "contato@palpiteirosanonimos.com.br";
+        return "contato@futbolao.com";
     }
 }
 
@@ -80,7 +80,7 @@ if (!function_exists('get_link_facebook')) {
 if (!function_exists('get_email_delivery')) {
     function get_email_delivery()
     {
-        return "nao-responda@palpiteirosanonimos.com.br";
+        return "nao-responda@futbolao.com";
     }
 }
 
@@ -95,7 +95,7 @@ if (!function_exists('get_slogan_site')) {
     function get_slogan_site()
     {
         return "Bola pro mato que o jogo é de campeonato!";
-        //         return "Chuta essa que da certo!";
+        // return "Chuta essa que da certo!";
     }
 }
 
@@ -109,7 +109,7 @@ if (!function_exists('get_slogan_site')) {
 if (!function_exists('get_titulo_site')) {
     function get_titulo_site()
     {
-        return 'Palpiteiros Anônimos - Divirta-se dandos seus pitacos';
+        return 'FutBolão Seu site de bolão definitivo - Divirta-se dandos seus palpites no Brasileirão, Copa do Mundo, Paulistão, Olimpíadas e outros';
     }
 }
 
@@ -123,7 +123,7 @@ if (!function_exists('get_titulo_site')) {
 if (!function_exists('get_descricao_site')) {
     function get_descricao_site()
     {
-        return 'Palpiteiros Anônimos o seu site de palpites, o melhor jeito de se divertir com o futebol fora dos campos';
+        return 'FutBolão Seu site de bolão definitivo. Divirta-se com a sua turma fazendo bolões e dando palpites dos mais diversos campeonatos de futebol, como o Paulistão (Campeonato Paulista), Brasileirão (Campeonato Brasileiro), bolão do mundial (Copa do Mundo), Olimpíadas entre outros, faça seu cadastro e confira';
     }
 }
 
@@ -137,7 +137,7 @@ if (!function_exists('get_descricao_site')) {
 if (!function_exists('get_copyright_site')) {
     function get_copyright_site()
     {
-        return '&copy; ' . date('Y') . ' | Palpiteiros Anônimos Todos os Direitos Reservados';
+        return '&copy; ' . date('Y') . ' | FutBolão Todos os Direitos Reservados';
     }
 }
 

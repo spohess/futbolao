@@ -25,10 +25,10 @@ class PalpiteController extends Controller
     public function getPalpitesBolao($id)
     {
         $bolao = Bolao::find($id);
-        $partidas = new PalpiteHelper($bolao, Auth::user());
+        $listaPartidaPalpite = new PalpiteHelper($bolao, Auth::user());
         $dados = [
             'qtd_rodada' => Partida::select("rodada")->where("id_competicao", $bolao->competicao->id)->groupBy("rodada")->count(),
-            'palpites' => $partidas->montaPalpites(),
+            'palpites' => $listaPartidaPalpite->montaPalpites(),
         ];
         return $dados;
     }

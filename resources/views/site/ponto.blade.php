@@ -9,6 +9,44 @@ Pontos
     <div class="row">
         <div class="col-xs-24 col-md-12">
             <h3 class="text-primary">Rodada Atual</h3>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center" colspan="4">Resultado</th>
+                        <th class="text-center" colspan="4">Palpite</th>
+                        <th class="text-center" rowspan="3">Pontos</th>
+                    </tr>
+                    <tr>
+                        <th class="text-center" colspan="2">Placar</th>
+                        <th class="text-center" colspan="2">Pênalti</th>
+                        <th class="text-center" colspan="2">Placar</th>
+                        <th class="text-center" colspan="2">Pênalti</th>
+                    </tr>
+                    <tr>
+                        <th class="text-center" title="Mandante">MDT</th>
+                        <th class="text-center" title="Visitante">VST</th>
+                        <th class="text-center" title="Mandante">MDT</th>
+                        <th class="text-center" title="Visitante">VST</th>
+                        <th class="text-center" title="Mandante">MDT</th>
+                        <th class="text-center" title="Visitante">VST</th>
+                        <th class="text-center" title="Mandante">MDT</th>
+                        <th class="text-center" title="Visitante">VST</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-xs-24 col-md-12">
             <h3 class="text-primary">Histórico</h3>

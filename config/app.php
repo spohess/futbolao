@@ -3,7 +3,7 @@
 return [
 
     'debug' => env('APP_DEBUG', false),
-    'url' => 'http://palpiteirosanonimos.com.br',
+    'url' => 'http://futbolao.com',
     'timezone' => 'UTC',
     'locale' => 'pt_br',
     'fallback_locale' => 'pt_br',

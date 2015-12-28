@@ -9,7 +9,7 @@
     <table cellpadding="0" cellspacing="0" bgcolor="#FFF" style="padding: 10px; border: 1px solid #fa7920; margin: 0 auto; width: 700px; color:#fa7920;">
         <thead>
             <tr><th colspan="6">&nbsp;</th></tr>
-            <tr><th colspan="6" style="text-align:right;font-size:36px;">Palpiteiros Anônimos</th></tr>
+            <tr><th colspan="6" style="text-align:right;font-size:36px;">FutBolão</th></tr>
             <tr><th colspan="6">&nbsp;</th></tr>
         </thead>
         <tbody bgcolor="#fa7920">

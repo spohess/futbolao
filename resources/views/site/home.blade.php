@@ -27,7 +27,7 @@ Home
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <img alt="Palpiteiros Anônimos" src="img/icone.svg" class="brand-img">
+                    <img alt="FutBolão" src="img/icone.svg" class="brand-img">
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="mobile-menu">
@@ -43,7 +43,7 @@ Home
     <div class="hd-bloco container">
         <div class="row">
             <div class="col-xs-24">
-                <h1 class="titulo text-right"><em>Palpiteiros Anônimos</em></h1>
+                <h1 class="titulo text-right"><em>FutBolão</em></h1>
                 <p class="texto text-center">Divirta-se dando os seus palpites nas partidas dos maiores campeonatos do país. Torça mais ainda para o seu time ganhar e para os seus maiores adversários perderem. Explore suas habilidades e dê umas risadas daquele seu amigo que não sabe de nada. Mas faça seu cadastro logo, antes que a CBF acabe com o nosso futebol e seja tarde demais!</p>
                 <blockquote>
                     <p>"Nenhuma grande descoberta foi feita sem um palpite ousado."</p>
@@ -60,13 +60,13 @@ Home
                 <img src="img/tecnico.png" alt="Técnico" class="img-responsive">
             </div>
             <div class="col-xs-24 col-md-12">
-                <h1 class="titulo-funcionalidade"><em>Seja o Técnico do Bolão</em></h1>
+                <h1 class="titulo-funcionalidade"><em>Seja o Técnico</em></h1>
             </div>
             <div class="clearfix"></div>
             <div class="col-xs-24 col-md-20 col-md-offset-2">
-                <p class="text-center">Criando um bolão você se torna um técnico e além de participar do bolão como qualquer outro integrante, você tem a vantagem de <strong><s>nunca sair perdendo</s></strong>!!!</p>
-                <p class="text-center destaque"><s>Como pode isso? É bem simples, você nunca perde porque todo lucro arrecadado no seu bolão será dividido com você! É, você entendeu bem, todo lucro do site com o seu bolão será dividido com você, além de concorrer ao bolão como qualquer outro integrante, ao final do bolão, mesmo não sendo o maior pontuador você sai com <strong>dinheiro no bolso</strong>!</s></p>
-                <p class="text-center">Não perca tempo! Crie o seu bolão e escale a maior quantidade de integrantes que conseguir!</p>
+                <p class="text-center">Criando um bolão você se torna um técnico e além de participar dele como qualquer outro integrante, você tem a vantagem de <strong><s>nunca sair perdendo</s></strong>!!!</p>
+                <p class="text-center destaque"><s>Como pode isso? É bem simples, você nunca perde porque todo lucro arrecadado no seu bolão será dividido com você! É, você entendeu bem, todo lucro será dividido com você, além de concorrer ao prêmio como qualquer outro integrante, ao final do bolão, mesmo não sendo o maior pontuador você sai com <strong>dinheiro no bolso</strong>!</s></p>
+                <p class="text-center">Não perca tempo! Seja um técnico e escale a maior quantidade de integrantes que conseguir!</p>
             </div>
             <div class="col-xs-24 text-right">
                 <br>
@@ -89,7 +89,7 @@ Home
                     </div>
                 </div>
                 <div class="col-xs-24 col-md-4">
-                    <img src="img/icone.svg" alt="Palpiteiros Anônimos">
+                    <img src="img/icone.svg" alt="FutBolão">
                 </div>
                 <div class="col-xs-24 col-md-10">
                     <div class="box-tipo dir">
@@ -108,21 +108,21 @@ Home
             <div class="col-xs-24 col-md-8">
                 <div class="box-permissao publico">
                     <img src="img/publico.svg" alt="Público">
-                    <h2>Bolão Público</h2>
+                    <h2>Público</h2>
                     <p>Esse é o bolão da geral, qualquer um pode ser integrante, independente se é All In ou 4Fun, todos são bem vindos!</p>
                 </div>
             </div>
             <div class="col-xs-24 col-md-8">
                 <div class="box-permissao moderado">
                     <img src="img/moderado.svg" alt="Moderado">
-                    <h2>Bolão Moderado</h2>
-                    <p>Você da uma espiada vê que está para você, mas não é tão fácil assim, o técnico do bolão ainda vai precisar autorizar sua entrada ;)</p>
+                    <h2>Moderado</h2>
+                    <p>Você da uma espiada vê que está para você, mas não é tão fácil assim, o técnico ainda vai precisar autorizar sua entrada ;)</p>
                 </div>
             </div>
             <div class="col-xs-24 col-md-8">
                 <div class="box-permissao privado">
                     <img src="img/privado.svg" alt="Privado">
-                    <h2>Bolão Privado</h2>
+                    <h2>Privado</h2>
                     <p>Clube fechado amigo! Esse você só vê da porta quem está lá, mas só pode entrar se receber um convite do técnico!</p>
                 </div>
             </div>
@@ -146,9 +146,9 @@ Home
             <div class="col-xs-24 col-md-11">
                 <fieldset class="col-xs-24">
                     <legend id="sobre">Sobre</legend>
-                    <p>O Palpiteiros Anônimos é um site para gerenciamento de bolões, onde você pode criar bolões para a sua galera ou particiar de um bolão publico qualquer.</p>
-                    <p>O site <strong>NÃO</strong> faz transações financeiras nem gestão de valores. O Palpiteiros Anônimos se encarrega somente em calcular os resultados, raquear participantes, informar resultados e itens relacionado a partidas de futebol.</p>
-                    <p>Existe um projeto para que haja gerenaciamento financeiro onde não só o Palpiteiros Anônimos lucre com isso, mas qualquer participante também, mas é preciso que os jogos sejam legalizados no país, enquanto isso o site continuará gerenciando somente pontuação e resultados.</p>
+                    <p>O FutBolão é um site para gerenciamento de bolões, onde você pode criar bolões para a sua galera ou particiar de um bolão publico qualquer.</p>
+                    <p>O site <strong>NÃO</strong> faz transações financeiras nem gestão de valores. O FutBolão se encarrega somente em calcular os resultados, raquear participantes, informar resultados e itens relacionado a partidas de futebol.</p>
+                    <p>Existe um projeto para que haja gerenaciamento financeiro onde não só o FutBolão lucre com isso, mas qualquer participante também, mas é preciso que os jogos sejam legalizados no país, enquanto isso o site continuará gerenciando somente pontuação e resultados.</p>
                 </fieldset>
             </div>
             <div class="col-xs-24 col-md-8">

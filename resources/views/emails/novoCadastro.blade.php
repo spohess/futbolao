@@ -1073,7 +1073,7 @@ body,.wrapper,.emb-editor-canvas{background-color:#f5f7fa;}
                                         <a target="_blank" style="transition: opacity 0.2s ease-in;color: #b9b9b9;" href="https://twitter.com/palpiteiros"><img style="border: 0;-ms-interpolation-mode: bicubic;vertical-align: middle;" src="{{url('img/email/twitter-sf.png')}}" height="26" width="29"></a>
                                     </div>
                                     <div class="address" style="font-family: &quot;Open Sans&quot;,sans-serif;Margin-bottom: 18px;">
-                                        <div>Palpiteiros Anônimos</div>
+                                        <div>FutBolão</div>
                                     </div>
                                     <div class="permission" style="font-family: &quot;Open Sans&quot;,sans-serif;">
                                         <div>Este é um e-mail automático, favor não responpoder.</div>

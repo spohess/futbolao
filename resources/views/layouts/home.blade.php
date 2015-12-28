@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{url('favicon.ico')}}">
     <title>{{get_titulo_site()}} | @yield('titulo-pagina')</title>
+    <meta itemprop="description" name="description" content="{{get_descricao_site()}}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,700|Open+Sans">
     <link rel="stylesheet" href="{{ elixir('css/all.css') }}">

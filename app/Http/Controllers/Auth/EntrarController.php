@@ -161,7 +161,7 @@ class EntrarController extends AuthController
                 'serial' => $usuario->serial,
             ];
             $enviado = Mail::send('emails.novaSenha', $dadosEmail, function ($message) use ($dadosEmail) {
-                $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'Palpiteiros Anônimos');
+                $message->from(env('MAIL_USERNAME', get_email_contato()), $name = 'FutBolão');
                 $message->to($dadosEmail['email'], $name = $dadosEmail['nome']);
                 $message->subject("Recuperar dados de acesso");
             });
