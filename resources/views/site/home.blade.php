@@ -11,8 +11,8 @@ Home
     </a>
     <nav class="clearfix menu-principal hidden-xs">
         <ul class="nav nav-pills pull-right">
-            <li><a href="" title="API">API</a></li>
-            <li><a href="#contato" title="Contato">Contato</a></li>
+            <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
+            <li><a href="{{url('/#contato')}}">Contato</a></li>
             <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
             <li class="active"><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
         </ul>
@@ -32,8 +32,8 @@ Home
             </div>
             <div class="collapse navbar-collapse" id="mobile-menu">
                 <ul class="nav navbar-nav">
-                    <li><a href="" title="API">API</a></li>
-                    <li><a href="#contato" title="Contato">Contato</a></li>
+                    <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
+                    <li><a href="{{url('/#contato')}}">Contato</a></li>
                     <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
                     <li><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
                 </ul>
@@ -134,7 +134,7 @@ Home
         <div class="row">
             <div class="col-xs-24 col-md-5">
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="" title="API">API</a></li>
+                    <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
                     <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
                     <li class="active"><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
                     <li><hr></li>

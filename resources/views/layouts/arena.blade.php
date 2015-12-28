@@ -39,6 +39,7 @@
                             <li><a href="{{url('/palpite/ponto')}}">Pontuação</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
                             <li><a href="{{url('/sair')}}">Sair</a></li>
                         </ul>
                     </div>

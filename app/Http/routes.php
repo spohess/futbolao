@@ -12,6 +12,7 @@
  */
 
 Route::get('/', 'SiteController@index');
+Route::get('/regulamento', 'SiteController@indexRegulamento');
 Route::post('/contato', 'SiteController@enviaContato');
 
 Route::group(['prefix' => '/cadastro'], function () {

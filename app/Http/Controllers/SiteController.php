@@ -14,6 +14,11 @@ class SiteController extends Controller
         return view('site.home');
     }
 
+    public function indexRegulamento()
+    {
+        return view('site.regulamento');
+    }
+
     public function enviaContato(ContatoRequest $request)
     {
         $contato = [

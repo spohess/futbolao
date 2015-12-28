@@ -38,7 +38,7 @@
                             <li><a href="{{url('/')}}">Home</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">API</a></li>
+                            <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
                             <li><a href="{{url('/#contato')}}">Contato</a></li>
                             <li><a href="{{url('/cadastro')}}">Cadastro</a></li>
                             <li class="active"><a href="{{url('/entrar')}}">Entrar</a></li>
