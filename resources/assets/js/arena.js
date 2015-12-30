@@ -212,8 +212,16 @@ function fnSistemaController($scope, $http) {
         $scope.getUsuarioBolao();
     }
 
-    $scope.carregaPartidas = function(){
-        $http.get('/palpite/palpites_bolao/' + $scope.palpite.id_bolao)
+    $scope.carregaPartidasParaPalpitar = function(){
+        $http.get('/palpite/para_palpitar/' + $scope.palpite.id_bolao)
+        .success(function(dados){
+            $scope.listaPalpites = dados.palpites;
+            $scope.palpite.itemPorPagina = dados.qtd_rodada;
+        });
+    }
+
+    $scope.carregaPartidasParaConferir = function(){
+        $http.get('/palpite/para_conferir/' + $scope.palpite.id_bolao)
         .success(function(dados){
             $scope.listaPalpites = dados.palpites;
             $scope.palpite.itemPorPagina = dados.qtd_rodada;

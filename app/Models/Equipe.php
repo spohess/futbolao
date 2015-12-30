@@ -43,5 +43,6 @@ class Equipe extends Model
         $this->abreviado = strtoupper($dados['abreviado']);
         $this->slug = str_slug($dados['apelido'], "-");
         $this->id_estadio = $dados['id_estadio'];
+        $this->brasao = $dados['brasao'];
     }
 }

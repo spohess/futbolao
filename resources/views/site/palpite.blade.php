@@ -22,7 +22,7 @@ Palpites
                     <legend>Qual palpite irá dar?</legend>
                     <div class="form-group">
                         <label for="id_bolao" class="control-label">Bolão</label>
-                        <select id="id_bolao" name="id_bolao" ng-model="palpite.id_bolao" class="form-control" ng-options="bolao.id as bolao.nome for bolao in meusBoloes" ng-change="carregaPartidas()" required>
+                        <select id="id_bolao" name="id_bolao" ng-model="palpite.id_bolao" class="form-control" ng-options="bolao.id as bolao.nome for bolao in meusBoloes" ng-change="carregaPartidasParaPalpitar()" required>
                             <option value="">Escolha uma bolão</option>
                         </select>
                     </div>
@@ -30,14 +30,8 @@ Palpites
             </form>
         </div>
         <div class="col-xs-24">
-            <div class="row">
-                <div class="col-xs-24 text-center">
-                    <h2 class="text-primary">Rodadas/Fases</h2>
-                    <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" pagination-id="idListalistaPalpites" class="sem-margin"></dir-pagination-controls>
-                </div>
-            </div>
             <h2 class="text-primary">Partidas <small class="pull-right"><a href="" title="clicando aqui" data-toggle="modal" data-target="#mdAjudaPalpite"><i class="fa fa-question-circle"></i> Ajuda</a></small></h2>
-            <div dir-paginate="palpite in listaPalpites | filter:filtroPartida | itemsPerPage:palpite.itemPorPagina" pagination-id="idListalistaPalpites">
+            <div ng-repeat="palpite in listaPalpites">
                 <div class="row">
                     <div class="col-xs-24">
                         <hr>
@@ -47,6 +41,7 @@ Palpites
                     <div class="clearfix">
                         <input type="hidden" name="id_palpite" ng-model="palpite.id_palpite" ng-init="palpite.id_palpite=palpite.id_palpite">
                         <input type="hidden" name="_token" ng-model="palpite._token" ng-init="palpite._token='{{csrf_token()}}'">
+                        <div class="col-xs-24 text-center text-secundary"><h4>Rodada/Fase: @{{palpite.rodada}}</h4></div>
                         <div class="col-xs-24 text-center"><h4>@{{palpite.local}} - @{{palpite.data_partida_ft}}</h4></div>
                         <div class="col-xs-24">
                             <div class="row text-center">
@@ -68,8 +63,6 @@ Palpites
                         <div class="col-xs-24 col-md-4"><input type="text" maxlength="2" name="palpite_visitante" ng-model="palpite.palpite_visitante" ng-init="palpite.palpite_visitante=palpite.palpite_visitante" class="form-control text-center"></div>
                         <div class="col-xs-24 col-md-3 text-center" title="@{{palpite.equipe_visitante_nome}}"><h3 class="abreviado-brasao">@{{palpite.equipe_visitante_abreviado}}</h3> <img src="@{{palpite.equipe_visitante_brasao}}" class="brasao xs"></div>
                     </div>
-                {{-- </div>
-                <div class="row"> --}}
                     <br>
                     <div class="col-xs-24 text-center"><button type="button" class="btn btn-success btn-sm" ng-click="gravaPalpite(palpite)"><i class="fa fa-check"> Gravar</i></button></div>
                 </div>
@@ -128,7 +121,7 @@ Palpites
                     <small>Figura 1</small><img src="{{url('img/ajuda.jpg')}}" alt="Figura Ajuda">
                 </div>
                 <div class="row">
-                <div class="col-xs-24 col-md-20 col-md-offset-2">
+                    <div class="col-xs-24 col-md-20 col-md-offset-2">
                         <h3 class="text-primary">Como dar seu palpite <small>Figura 1</small></h3>
                         <h4 class="text-secundary">Para carregar as partidas para dar o palpite selecione um bolão no campo "Bolão" e as partidas irão ser carregadas automaticamente</h4>
                         <ol>
@@ -148,8 +141,8 @@ Palpites
                     <small>Figura 2</small><img src="{{url('img/ajuda-gravado.jpg')}}" alt="Figura Ajuda">
                 </div>
                 <div class="row">
-                <div class="col-xs-24 col-md-20 col-md-offset-2">
-                    <h3 class="text-primary">Palpite Gravado <small>Figura 2</small></h3>
+                    <div class="col-xs-24 col-md-20 col-md-offset-2">
+                        <h3 class="text-primary">Palpite Gravado <small>Figura 2</small></h3>
                         <ol>
                             <li>Logo após clicar no botão gravar essa será a aparência se o palpite for gravado com sucesso;</li>
                         </ol>
@@ -160,8 +153,8 @@ Palpites
                     <small>Figura 3</small><img src="{{url('img/ajuda-inserido.jpg')}}" alt="Figura Ajuda">
                 </div>
                 <div class="row">
-                <div class="col-xs-24 col-md-20 col-md-offset-2">
-                    <h3 class="text-primary">Palpite já Gravado <small>Figura 3</small></h3>
+                    <div class="col-xs-24 col-md-20 col-md-offset-2">
+                        <h3 class="text-primary">Palpite já Gravado <small>Figura 3</small></h3>
                         <ol>
                             <li>Quando as partidas forem carregadas e tiverem essa aparência é porque o palpite já está registrado no sistema;</li>
                         </ol>

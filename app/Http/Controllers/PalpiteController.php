@@ -8,6 +8,8 @@ use App\Models\Bolao;
 use App\Models\Palpite;
 use App\Models\Partida;
 use Auth;
+use DateInterval;
+use DateTime;
 use Illuminate\Http\Request;
 
 class PalpiteController extends Controller
@@ -22,13 +24,47 @@ class PalpiteController extends Controller
         return view('site.ponto');
     }
 
-    public function getPalpitesBolao($id)
+    public function getPartidasParaPalpite($id)
     {
         $bolao = Bolao::find($id);
-        $listaPartidaPalpite = new PalpiteHelper($bolao, Auth::user());
+        $partidas = $bolao->competicao->partidas->filter(function ($item) {
+            $dataInicio = new DateTime();
+            $dataInicio->add(new DateInterval("P14D"));
+            $dataPartida = new DateTime(date($item->data_partida));
+            if ($dataPartida < $dataInicio) {
+                $dataPartida->sub(new DateInterval("PT3H"));
+                $dataInicio = new DateTime();
+                if ($dataPartida > $dataInicio) {
+                    return $item;
+                }
+            }
+        });
+        $palpites = Palpite::where("id_usuario", Auth::user()->id)->where("id_bolao", $bolao->id)->get();
+        $listaPartidaPalpite = new PalpiteHelper($partidas, $palpites);
         $dados = [
             'qtd_rodada' => Partida::select("rodada")->where("id_competicao", $bolao->competicao->id)->groupBy("rodada")->count(),
             'palpites' => $listaPartidaPalpite->montaPalpites(),
+        ];
+        return $dados;
+    }
+
+    public function getPartidasParaConferir($id)
+    {
+        $bolao = Bolao::find($id);
+        $partidas = $bolao->competicao->partidas->filter(function ($item) {
+            $dataAtual = new DateTime();
+            $dataAtual->add(new DateInterval("PT3H"));
+            $dataPartida = new DateTime(date($item->data_partida));
+            if ($dataPartida < $dataAtual) {
+                return $item;
+            }
+        });
+        $palpites = Palpite::where("id_usuario", Auth::user()->id)->where("id_bolao", $bolao->id)->get();
+        $listaPartidaPalpite = new PalpiteHelper($partidas, $palpites);
+        $dados = [
+            'qtd_rodada' => Partida::select("rodada")->where("id_competicao", $bolao->competicao->id)->groupBy("rodada")->count(),
+            'palpites' => $listaPartidaPalpite->montaPalpites(),
+            'rodata_atual' => $listaPartidaPalpite->getRodadaAtual(),
         ];
         return $dados;
     }

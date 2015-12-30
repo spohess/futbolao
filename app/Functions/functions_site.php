@@ -14,3 +14,17 @@ if (!function_exists('get_data_formatada')) {
         return $novaData->format('d/m/Y H:i:s');
     }
 }
+
+/**
+ * get_datetime_diif
+ *
+ * Imprime o domínio do site
+ *
+ * @access public
+ */
+if (!function_exists('get_datetime_diif')) {
+    function get_datetime_diif($primeiraData, $segundaData)
+    {
+        return $primeiraData->diff($segundaData)->format('%Y%M%D%H%I%S');
+    }
+}

@@ -17,3 +17,7 @@ Regulamento
 @section('css-especifico')
 <link rel="stylesheet" href="{{ elixir('css/palpite.css') }}">
 @endsection
+
+@section('js-especifico')
+<script src="{{ elixir('js/all-auth.js') }}"></script>
+@endsection

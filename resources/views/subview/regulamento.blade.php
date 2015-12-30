@@ -12,8 +12,8 @@
                 <dl class="lista-regulamento">
                     <dt class="text-primary">Gravação</dt>
                     <dd>A regra mais importante do regulamento dos Palpites é que você precisa estar participando de um bolão para fazer um palpite. Para inserir um novo palpite ou alterar um já inserido é necessário utilizar o formulário de partidas, é preciso preencher o placar do mandante e do visitante e clicar no botão gravar, caso estaja na fase eliminatória e tiver decisão por pênaltis o campo para preencher os pênaltis estará habilitado e se optar pelo empate da partida <strong>PODERÁ</strong> palpitar os pênaltis, mas se preferir não informa, não é necessário pois não é obrigatório. No formulário de Partidas há um link de "Ajuda" com os detalhes do processo de inserir um palpite. Lembrando que tanto para inserir quanto para alterar é o mesmo procedimento.</dd>
-                    <dt class="text-primary">Tempo Limite</dt>
-                    <dd>O bloqueio para gravação/alteração de palpites é feito individualmente, por partida, e não por rodada. Os palpites devem ser inseridos/alterados até <strong>3 horas antes</strong> do início da respectiva partida, entrando no período limite os campos para preencher os placares (e pênalti quando houver) serão desabilitados e nenhuma gravação será processada.</dd>
+                    <dt class="text-primary">Período para Palpitar</dt>
+                    <dd>As partidas estarão liberadas para preencher os palpites <strong>2 semanas</strong> antes da data da partida e será bloqueado novamente <strong>3 horas</strong> antes do início. Fora desse período nenhuma inserção ou alteração será registrada.</dd>
                     <dt class="text-primary">Visualização</dt>
                     <dd>Não é possível visualizar os palpites dos outros participantes antes do "Tempo Limite", após entrar no período de bloqueio e os palpites não podem ser mais alterados é possível visualizar os demais palpites para a(s) próxima(s) partida(s). O histórico de palpites é possível ser vizualisado a qualuer momento.</dd>
                 </dl>

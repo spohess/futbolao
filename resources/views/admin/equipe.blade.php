@@ -46,6 +46,10 @@ Equipes
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="brasao" class="control-label">Brasão (imagem base64)</label>
+                        <input type="text" name="brasao" id="brasao" ng-model="equipe.brasao" class="form-control limpa-form" placeholder="Informe informe a imabem em base64">
+                    </div>
+                    <div class="form-group">
                         <button type="button" class="btn btn-danger pull-left" ng-click="cancelaEquipe()"><i class="fa fa-times"></i> Cancelar</button>
                         <button type="submit" class="btn btn-primary pull-right" ng-disabled="formSalvaEquipe.$invalid"><i class="fa fa-save"></i> Salva</button>
                     </div>
@@ -61,7 +65,8 @@ Equipes
                 <table class="table table-striped table-hover">
                     <thead class="container-fluid">
                         <tr class="row">
-                            <th class="col-xs-10">Nome</th>
+                            <th class="col-xs-1">#</th>
+                            <th class="col-xs-9">Nome</th>
                             <th class="col-xs-6">Apelido</th>
                             <th class="col-xs-2">Abreviado</th>
                             <th class="col-xs-5">Estádio</th>
@@ -70,7 +75,8 @@ Equipes
                     </thead>
                     <tbody class="container-fluid">
                         <tr class="row" ng-repeat="equipe in listaEquipes">
-                            <td class="col-xs-10"><a href="" ng-click="editaEquipe(equipe)">@{{equipe.nome}}</a></td>
+                            <td class="col-xs-1"><img class="brasao-tabela" src="@{{equipe.brasao_ft}}" alt="Escudo"></td>
+                            <td class="col-xs-9"><a href="" ng-click="editaEquipe(equipe)">@{{equipe.nome}}</a></td>
                             <td class="col-xs-6">@{{equipe.apelido}}</td>
                             <td class="col-xs-2">@{{equipe.abreviado}}</td>
                             <td class="col-xs-5">@{{equipe.nomeEstadio}}</td>

@@ -67,6 +67,8 @@ class WebServiceController extends Controller
                 'abreviado' => $equipe->abreviado,
                 'id_estadio' => $equipe->id_estadio,
                 'nomeEstadio' => $equipe->estadio->apelido,
+                'brasao' => $equipe->brasao,
+                'brasao_ft' => (!empty($equipe->brasao)) ? $equipe->brasao : get_brasao_generico(),
             ];
             array_push($listaEquipes, $dados);
         }
