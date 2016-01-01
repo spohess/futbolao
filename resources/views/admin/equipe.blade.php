@@ -60,7 +60,14 @@ Equipes
             <hr>
         </div>
         <div class="col-xs-24">
-            <h2 class="text-primary">Equipes</h2>
+            <div class="row">
+                <div class="col-xs-24 col-sm-6">
+                    <h2 class="text-primary sem-margin">Equipes</h2>
+                </div>
+                <div class="col-xs-24 col-sm-18">
+                    <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" pagination-id="idListaEquipes" class="pull-right sem-margin"></dir-pagination-controls>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="container-fluid">
@@ -74,7 +81,7 @@ Equipes
                         </tr>
                     </thead>
                     <tbody class="container-fluid">
-                        <tr class="row" ng-repeat="equipe in listaEquipes">
+                        <tr class="row" dir-paginate="equipe in listaEquipes | itemsPerPage:20" pagination-id="idListaEquipes">
                             <td class="col-xs-1"><img class="brasao-tabela" src="@{{equipe.brasao_ft}}" alt="Escudo"></td>
                             <td class="col-xs-9"><a href="" ng-click="editaEquipe(equipe)">@{{equipe.nome}}</a></td>
                             <td class="col-xs-6">@{{equipe.apelido}}</td>

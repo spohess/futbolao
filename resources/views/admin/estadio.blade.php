@@ -58,7 +58,14 @@ Estádios
             <hr>
         </div>
         <div class="col-xs-24">
-            <h2 class="text-primary">Estádios</h2>
+            <div class="row">
+                <div class="col-xs-24 col-sm-6">
+                    <h2 class="text-primary sem-margin">Estádios</h2>
+                </div>
+                <div class="col-xs-24 col-sm-18">
+                    <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" pagination-id="idListaEstadio" class="pull-right sem-margin"></dir-pagination-controls>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="container-fluid">
@@ -72,7 +79,7 @@ Estádios
                         </tr>
                     </thead>
                     <tbody class="container-fluid">
-                        <tr class="row" ng-repeat="estadio in listaEstadios">
+                        <tr class="row" dir-paginate="estadio in listaEstadios | itemsPerPage:20" pagination-id="idListaEstadio">
                             <td class="col-xs-9"><a href="" ng-click="editaEstadio(estadio)">@{{estadio.nome}}</a></td>
                             <td class="col-xs-5">@{{estadio.apelido}}</td>
                             <td class="col-xs-5">@{{estadio.cidade}}</td>

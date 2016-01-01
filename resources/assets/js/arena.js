@@ -213,18 +213,32 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.carregaPartidasParaPalpitar = function(){
+        angular.element("#listaCarregando").show();
         $http.get('/palpite/para_palpitar/' + $scope.palpite.id_bolao)
         .success(function(dados){
             $scope.listaPalpites = dados.palpites;
             $scope.palpite.itemPorPagina = dados.qtd_rodada;
+            if( dados.palpites.length == 0 ){
+                angular.element("#listaVazia").show();
+            }
+        })
+        .then(function(){
+            angular.element("#listaCarregando").hide();
         });
     }
 
     $scope.carregaPartidasParaConferir = function(){
+        angular.element("#listaCarregando").show();
         $http.get('/palpite/para_conferir/' + $scope.palpite.id_bolao)
         .success(function(dados){
             $scope.listaPalpites = dados.palpites;
             $scope.palpite.itemPorPagina = dados.qtd_rodada;
+            if( dados.palpites.length == 0 ){
+                angular.element("#listaVazia").show();
+            }
+        })
+        .then(function(){
+            angular.element("#listaCarregando").hide();
         });
     }
 
@@ -253,6 +267,11 @@ function fnSistemaController($scope, $http) {
             angular.element("#box-palpite-" + palpite.id_partida).addClass("gravado");
         });
 
+    }
+
+    $scope.outrosPalpites = function(palpite){
+        console.info(palpite);
+        angular.element("#mdOutrosPalpites").modal("show");
     }
 }
 fnSistemaController.$inject = ['$scope', '$http'];

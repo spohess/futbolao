@@ -22,6 +22,7 @@ class PartidaHelper
                 'id' => $partida->id,
                 'id_partida' => $partida->id,
                 'id_competicao' => $partida->id_competicao,
+                'nome_campeonato' => $partida->competicao->nome,
                 'penalti' => ($partida->penalti) ? true : false,
                 'penalti_ft' => ($partida->penalti) ? 'Sim' : 'Não',
                 'id_estadio' => $partida->id_estadio,

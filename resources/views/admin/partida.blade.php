@@ -88,27 +88,36 @@ Partidas
             <hr>
         </div>
         <div class="col-xs-24">
-            <h2 class="text-primary">Partidas</h2>
+            <div class="row">
+                <div class="col-xs-24 col-sm-6">
+                    <h2 class="text-primary sem-margin">Partidas</h2>
+                </div>
+                <div class="col-xs-24 col-sm-18">
+                    <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" pagination-id="idListaPartidas" class="pull-right sem-margin"></dir-pagination-controls>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="container-fluid">
                         <tr class="row">
-                            <th class="col-xs-6">Casa</th>
-                            <th class="col-xs-6">Visitante</th>
+                            <th class="col-xs-3">Campeonato</th>
+                            <th class="col-xs-5">Casa</th>
+                            <th class="col-xs-5">Visitante</th>
                             <th class="col-xs-4">Local</th>
                             <th class="col-xs-4">Data</th>
-                            <th class="col-xs-2">Pênalti</th>
+                            <th class="col-xs-1">Pênalti</th>
                             <th class="col-xs-1">Rodada</th>
                             <th class="col-xs-1 text-center">Ações</th>
                         </tr>
                     </thead>
                     <tbody class="container-fluid">
-                        <tr class="row" ng-repeat="partida in listaPartidas">
-                            <td class="col-xs-6">@{{partida.equipe_casa_apelido}}</td>
-                            <td class="col-xs-6">@{{partida.equipe_visitante_apelido}}</td>
+                        <tr class="row" dir-paginate="partida in listaPartidas | itemsPerPage:20" pagination-id="idListaPartidas">
+                            <td class="col-xs-3">@{{partida.nome_campeonato}}</td>
+                            <td class="col-xs-5">@{{partida.equipe_casa_apelido}}</td>
+                            <td class="col-xs-5">@{{partida.equipe_visitante_apelido}}</td>
                             <td class="col-xs-4">@{{partida.local}}</td>
                             <td class="col-xs-4">@{{partida.data_partida_ft}}</td>
-                            <td class="col-xs-2">@{{partida.penalti_ft}}</td>
+                            <td class="col-xs-1">@{{partida.penalti_ft}}</td>
                             <td class="col-xs-1">@{{partida.rodada}}</td>
                             <td class="col-xs-1" >
                                 <span class="btn btn-link" title="Editar" ng-click="editaPartida(partida)"><i class="fa fa-pencil"></i></span>

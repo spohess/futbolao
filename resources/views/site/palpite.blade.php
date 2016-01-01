@@ -31,6 +31,15 @@ Palpites
         </div>
         <div class="col-xs-24">
             <h2 class="text-primary">Partidas <small class="pull-right"><a href="" title="clicando aqui" data-toggle="modal" data-target="#mdAjudaPalpite"><i class="fa fa-question-circle"></i> Ajuda</a></small></h2>
+            <div id="listaVazia" class="alert alert-warning text-center alerta-oculto">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                Ainda não há partidas liberadas para palpite. Qualquer dúvida veja o regulamento <strong><a href="" title="clicando aqui" data-toggle="modal" data-target="#mdRegulamentoPalpite">clicando aqui</a></strong>
+            </div>
+            <div id="listaCarregando" class="alert alert-success text-center alerta-oculto">
+                <h2 class="sem-margin"><i class="fa fa-refresh fa-spin"></i> Carregando partidas</h2>
+            </div>
             <div ng-repeat="palpite in listaPalpites">
                 <div class="row">
                     <div class="col-xs-24">

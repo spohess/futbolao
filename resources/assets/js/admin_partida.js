@@ -45,6 +45,7 @@ function fnSistemaController($scope, $http) {
                 "class":"alert-success",
                 "mensagem":"A partida foi GRAVADA com sucesso"
             };
+            $scope.partida.id = '';
             angular.element("#avisoPartida").fadeIn('slow');
         });
     }

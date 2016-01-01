@@ -11,7 +11,7 @@ Pontos
             <form name="formSalvaResultado" method="post" accept-charset="utf-8" data-toggle="validator" role="form" ng-submit="saveResultado()">
                 <input type="hidden" name="_token" id="_token" ng-model="palpite._token" ng-init="palpite._token='{{csrf_token()}}'">
                 <fieldset>
-                    <legend>Qual bolão quer verificar pontiação?</legend>
+                    <legend>Qual bolão deseja conferir?</legend>
                     <div class="form-group">
                         <label for="id_bolao" class="control-label">Bolão</label>
                         <select id="id_bolao" name="id_bolao" ng-model="palpite.id_bolao" class="form-control" ng-options="bolao.id as bolao.nome for bolao in meusBoloes" ng-change="carregaPartidasParaConferir()" required>
@@ -28,6 +28,15 @@ Pontos
                 </div>
             </div>
             <h2 class="text-primary">Palpites e resultados</h2>
+            <div id="listaVazia" class="alert alert-warning text-center alerta-oculto">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                Ainda não há resultados para conferir. Qualquer dúvida veja o regulamento <strong><a href="" title="clicando aqui" data-toggle="modal" data-target="#mdRegulamentoPalpite">clicando aqui</a></strong>
+            </div>
+            <div id="listaCarregando" class="alert alert-success text-center alerta-oculto">
+                <h2 class="sem-margin"><i class="fa fa-refresh fa-spin"></i> Carregando partidas</h2>
+            </div>
             <div dir-paginate="palpite in listaPalpites | filter:filtroPartida | itemsPerPage:palpite.itemPorPagina" pagination-id="idListalistaPalpites">
                 <div class="row">
                     <div class="col-xs-24">
@@ -46,8 +55,8 @@ Pontos
                                 <div class="col-xs-24 col-md-4"><small>Palpite</small></div>
                                 <div class="col-xs-24 col-md-4"><small>Resultado</small></div>
                                 <div class="col-xs-24 col-md-2">&nbsp;</div>
-                                <div class="col-xs-24 col-md-4"><small>Palpite pênalti</small></div>
-                                <div class="col-xs-24 col-md-4"><small>Palpite placar</small></div>
+                                <div class="col-xs-24 col-md-4"><small>Resultado</small></div>
+                                <div class="col-xs-24 col-md-4"><small>Palpite</small></div>
                                 <div class="col-xs-24 col-md-3"><small>Visitante</small></div>
                             </div>
                             <br>
@@ -65,6 +74,7 @@ Pontos
                         <div class="col-xs-24 col-md-3 text-center" title="@{{palpite.equipe_visitante_nome}}"><h3 class="abreviado-brasao">@{{palpite.equipe_visitante_abreviado}}</h3> <img src="@{{palpite.equipe_visitante_brasao}}" class="brasao xs"></div>
                     </div>
                     <br>
+                    <div class="col-xs-24 text-center"><a href="" title="Outros palpites para essa partida" ng-click="outrosPalpites(palpite)">Outros palpites para essa partida</a></div>
                     <div class="col-xs-24 text-center"><h2>Pontos: @{{palpite.pontos}}</h2></div>
                 </div>
             </div>
@@ -74,19 +84,41 @@ Pontos
 @endsection
 
 @section('modais-sistema')
-<div class="modal fade" id="mdConfirmaDelete" tabindex="-1" role="dialog" aria-labelledby="mdConfirmaDeleteLabel">
+<div class="modal fade" id="mdOutrosPalpites" tabindex="-1" role="dialog" aria-labelledby="mdOutrosPalpitesLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header modal-danger">
+            <div class="modal-header modal-primary">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="mdConfirmaDeleteLabel">Confirma Exclusão</h4>
+                <h4 class="modal-title" id="mdOutrosPalpitesLabel">Outros Palpites</h4>
             </div>
             <div class="modal-body">
-                <h5>Deseja mesmo deletar a competição: <span class="text-danger texto-destaque">@{{mdResultado.nome}}</span></h5>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center" rowspan="2">Participante</th>
+                            <th class="text-center" colspan="2">@{{detalhePalpite.time_casa}}</th>
+                            <th class="text-center" colspan="2">@{{detalhePalpite.time_visitante}}</th>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Placar</th>
+                            <th class="text-center">Pênalti</th>
+                            <th class="text-center">Placar</th>
+                            <th class="text-center">Pênalti</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">spohess</td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">0</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Não</button>
-                <button type="button" class="btn btn-danger pull-right" ng-click="deleteResultado(mdResultado)">Sim</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
             </div>
         </div>
     </div>
