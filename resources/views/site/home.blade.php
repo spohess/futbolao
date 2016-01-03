@@ -42,19 +42,6 @@ Home
     </nav>
     <div class="hd-bloco container">
         <div class="row">
-            <div class="col-xs-24 text-center">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- Header -->
-                <ins class="adsbygoogle"
-                style="display:inline-block;width:728px;height:90px"
-                data-ad-client="ca-pub-7139617322508756"
-                data-ad-slot="7252322624"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-xs-24">
                 <h1 class="titulo text-right"><em>FutBolão</em></h1>
                 <p class="texto text-center">Divirta-se dando os seus palpites nas partidas dos maiores campeonatos do país. Torça mais ainda para o seu time ganhar e para os seus maiores adversários perderem. Explore suas habilidades e dê umas risadas daquele seu amigo que não sabe de nada. Mas faça seu cadastro logo, antes que a CBF acabe com o nosso futebol e seja tarde demais!</p>
@@ -89,19 +76,6 @@ Home
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-24 text-center">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- Header -->
-                <ins class="adsbygoogle"
-                style="display:inline-block;width:728px;height:90px"
-                data-ad-client="ca-pub-7139617322508756"
-                data-ad-slot="7252322624"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </div>
         <div class="row">
             <div class="col-xs-24">
                 <h1 class="titulo-funcionalidade simples vermelho">Categorias de Bolões</h1>
@@ -159,19 +133,6 @@ Home
                         <p>Clube fechado amigo! Esse você só vê da porta quem está lá, mas só pode entrar se receber um convite do técnico!</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-24 text-center">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- Header -->
-                <ins class="adsbygoogle"
-                style="display:inline-block;width:728px;height:90px"
-                data-ad-client="ca-pub-7139617322508756"
-                data-ad-slot="7252322624"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
         </div>
     </div>
