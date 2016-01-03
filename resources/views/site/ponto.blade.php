@@ -95,24 +95,37 @@ Pontos
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center" rowspan="2">Participante</th>
-                            <th class="text-center" colspan="2">@{{detalhePalpite.time_casa}}</th>
-                            <th class="text-center" colspan="2">@{{detalhePalpite.time_visitante}}</th>
+                            <th class="text-center text-primary" rowspan="3">Resultado</th>
+                            <th class="text-center" colspan="2">@{{detalhePalpite.equipe_casa_apelido}}</th>
+                            <th class="text-center" colspan="2">@{{detalhePalpite.equipe_visitante_apelido}}</th>
                         </tr>
                         <tr>
                             <th class="text-center">Placar</th>
                             <th class="text-center">Pênalti</th>
                             <th class="text-center">Placar</th>
                             <th class="text-center">Pênalti</th>
+                        </tr>
+                        <tr>
+                            <th class="text-center text-primary">@{{detalhePalpite.resultado_casa}}</th>
+                            <th class="text-center text-primary">@{{detalhePalpite.resultado_penalti_casa}}</th>
+                            <th class="text-center text-primary">@{{detalhePalpite.resultado_visitante}}</th>
+                            <th class="text-center text-primary">@{{detalhePalpite.resultado_penalti_visitante}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center">spohess</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center">0</td>
+                        <tr id="listaVazia_@{{detalhePalpite.id_partida}}" class="alerta-oculto">
+                            <td colspan="5">
+                                <div class="alert alert-warning text-center sem-margin">
+                                    Não há palpites para essa partida
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="palpiteUsuario in listaPalpiteUsuario">
+                            <td class="text-center">@{{palpiteUsuario.usuario}}</td>
+                            <td class="text-center">@{{palpiteUsuario.palpite_casa}}</td>
+                            <td class="text-center">@{{palpiteUsuario.palpite_penalti_casa}}</td>
+                            <td class="text-center">@{{palpiteUsuario.palpite_visitante}}</td>
+                            <td class="text-center">@{{palpiteUsuario.palpite_penalti_visitante}}</td>
                         </tr>
                     </tbody>
                 </table>

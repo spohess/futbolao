@@ -126,6 +126,7 @@ class WebServiceController extends Controller
                 'equipe_visitante_apelido' => $partida->equipeVisitante->apelido,
                 'placar_visitante' => $partida->placar_visitante,
                 'penalti_visitante' => $partida->penalti_visitante,
+                'gravado' => $partida->gravado,
             ];
             array_push($listaPartidas, $dados);
         }

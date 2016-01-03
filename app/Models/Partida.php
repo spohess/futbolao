@@ -23,6 +23,7 @@ class Partida extends Model
         'id_equipe_visitante',
         'placar_visitante',
         'penalti_visitante',
+        'gravado',
     ];
 
     public function competicao()

@@ -11,7 +11,7 @@ class PalpiteHelper
 
     private $palpites;
 
-    public function __construct($partidas, $palpites)
+    public function __construct($partidas = null, $palpites = null)
     {
         $this->setPartidas($partidas);
         $this->setPalpites($palpites);

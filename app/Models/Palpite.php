@@ -21,4 +21,19 @@ class Palpite extends Model
         'penalti_visitante',
         'pontos',
     ];
+
+    public function bolao()
+    {
+        return $this->hasOne('App\Models\Bolao', 'id', 'id_bolao');
+    }
+
+    public function partida()
+    {
+        return $this->hasOne('App\Models\Partida', 'id', 'id_partida');
+    }
+
+    public function usuario()
+    {
+        return $this->hasOne('App\Models\Usuario', 'id', 'id_usuario');
+    }
 }

@@ -46,7 +46,7 @@ Resultados
             <h2 class="text-primary">Partidas: @{{resultado.rodada}} Rodada/Fase</h2>
             <div class="row" ng-repeat="partida in listaPartidas">
                 <hr>
-                <div class="box-resultado clearfix" id="box-resultado-@{{partida.id}}">
+                <div class="box-resultado clearfix" id="box-resultado-@{{partida.id}}" ng-class="(partida.gravado == 'GRAVADO') ? 'inserido' : ''">
                     <input type="hidden" name="id" ng-model="partida.id" value="@{{partida.id}}">
                     <input type="hidden" name="_token" ng-model="partida._token" ng-init="partida._token='{{csrf_token()}}'">
                     <div class="col-xs-24 col-md-5 text-center"><p>@{{partida.equipe_casa_apelido}}</p></div>

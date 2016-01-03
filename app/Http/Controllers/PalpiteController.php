@@ -94,4 +94,21 @@ class PalpiteController extends Controller
 
         return ["estado" => "erro"];
     }
+
+    public function getPalpitesUsuariosBolao($idBolao, $idPartida)
+    {
+        $palpites = Palpite::where("id_bolao", $idBolao)->where("id_partida", $idPartida)->get();
+        $listaPlapites = [];
+        foreach ($palpites->all() as $palpite) {
+            $dados = [
+                'usuario' => $palpite->usuario->login,
+                'palpite_casa' => $palpite->placar_casa,
+                'palpite_penalti_casa' => $palpite->penalti_casa,
+                'palpite_visitante' => $palpite->placar_visitante,
+                'palpite_penalti_visitante' => $palpite->penalti_visitante,
+            ];
+            array_push($listaPlapites, $dados);
+        }
+        return $listaPlapites;
+    }
 }

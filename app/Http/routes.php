@@ -56,6 +56,7 @@ Route::group(['prefix' => '/palpite', 'middleware' => 'auth'], function () {
     Route::get('/para_palpitar/{id}', 'PalpiteController@getPartidasParaPalpite')->where('id', '[0-9]+');
     Route::get('/para_conferir/{id}', 'PalpiteController@getPartidasParaConferir')->where('id', '[0-9]+');
     Route::post('/save_palpite', 'PalpiteController@savePalpite');
+    Route::get('/palpites_usuarios/{idBolao}/{idPartida}', 'PalpiteController@getPalpitesUsuariosBolao')->where(['idBolao', 'idPartida'], '[0-9]+');
 });
 
 Route::group(['prefix' => '/partida', 'middleware' => 'auth'], function () {
@@ -84,6 +85,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'needsRole'], 'is' 
 
     Route::get('/partida', 'AdminController@indexPartida');
     Route::post('/save_partida', 'AdminController@savePartida');
+    Route::post('/save_resultado', 'AdminController@saveResultado');
     Route::delete('/delete_partida/{id}', 'AdminController@deletePartida')->where('id', '[0-9]+');
 
     Route::get('/resultado', 'AdminController@indexResultado');

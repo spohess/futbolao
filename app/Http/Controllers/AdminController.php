@@ -110,4 +110,12 @@ class AdminController extends Controller
         $partida = Partida::find($id);
         $partida->delete();
     }
+
+    public function saveResultado(Request $request)
+    {
+        $partida = Partida::firstOrNew(['id' => $request->id]);
+        $partida->toObject($request->all());
+        $partida->gravado = 'GRAVADO';
+        $partida->save();
+    }
 }

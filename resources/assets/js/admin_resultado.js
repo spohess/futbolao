@@ -23,8 +23,9 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.gravaResultado = function(partida){
-        $http.post('/admin/save_partida', partida)
+        $http.post('/admin/save_resultado', partida)
         .success(function(){
+            angular.element("#box-resultado-" + partida.id).removeClass("inserido");
             angular.element("#box-resultado-" + partida.id).addClass("gravado");
         });
     }

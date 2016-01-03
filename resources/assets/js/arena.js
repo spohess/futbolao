@@ -271,7 +271,15 @@ function fnSistemaController($scope, $http) {
 
     $scope.outrosPalpites = function(palpite){
         console.info(palpite);
-        angular.element("#mdOutrosPalpites").modal("show");
+        $scope.detalhePalpite = palpite;
+        $http.get('/palpite/palpites_usuarios/' + $scope.palpite.id_bolao + '/' + palpite.id_partida)
+        .success(function(dados){
+            $scope.listaPalpiteUsuario = dados;
+            angular.element("#mdOutrosPalpites").modal("show");
+            if(dados.length == 0){
+                angular.element("#listaVazia_" + palpite.id_partida).show();
+            }
+        });
     }
 }
 fnSistemaController.$inject = ['$scope', '$http'];

@@ -42,7 +42,7 @@ Home
     </nav>
     <div class="hd-bloco container">
         <div class="row">
-            <div class="col-xs-24">
+            <div class="col-xs-24 text-center">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- Header -->
                 <ins class="adsbygoogle"
@@ -89,55 +89,89 @@ Home
         </div>
     </div>
     <div class="container-fluid">
-        <div class="col-xs-24">
-            <h1 class="titulo-funcionalidade simples vermelho">Categorias de Bolões</h1>
+        <div class="row">
+            <div class="col-xs-24 text-center">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Header -->
+                <ins class="adsbygoogle"
+                style="display:inline-block;width:728px;height:90px"
+                data-ad-client="ca-pub-7139617322508756"
+                data-ad-slot="7252322624"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-24">
+                <h1 class="titulo-funcionalidade simples vermelho">Categorias de Bolões</h1>
+            </div>
         </div>
         <div class="clearfix"></div>
-        <div class="fundo-gramado">
-            <div class="tipo clearfix">
-                <div class="col-xs-24 col-md-10">
-                    <div class="box-tipo esq">
-                        <h2><i class="glyphicon glyphicon-credit-card"></i> ALL IN <small><s>Bolões de aposta</s></small></h2>
-                        <p><s>Para você confia no seu talento, para você que está sempre com sorte, para você que acha que hoje é o seu dia ou até mesmo para você que só quer tentar a sorte! Sua opção são os bolões de aposta, dê seus palpites e invista neles!</s></p>
+        <div class="row">
+            <div class="fundo-gramado">
+                <div class="tipo clearfix">
+                    <div class="col-xs-24 col-md-10">
+                        <div class="box-tipo esq">
+                            <h2><i class="glyphicon glyphicon-credit-card"></i> ALL IN <small><s>Bolões de aposta</s></small></h2>
+                            <p><s>Para você confia no seu talento, para você que está sempre com sorte, para você que acha que hoje é o seu dia ou até mesmo para você que só quer tentar a sorte! Sua opção são os bolões de aposta, dê seus palpites e invista neles!</s></p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-24 col-md-4">
-                    <img src="img/icone.svg" alt="FutBolão">
-                </div>
-                <div class="col-xs-24 col-md-10">
-                    <div class="box-tipo dir">
-                        <h2><small>Só por diversão</small> 4Fun <i class="glyphicon glyphicon-sunglasses"></i></h2>
-                        <p>Você adora dar seus palpites, mas é daqueles que não gosta de apostas? Tudo bem, também temos um lugar para você aqui!</p>
-                        <p>Participe dos bolões 4Fun, feitos para vocês que só querem se tivertir sem preocupações</p>
+                    <div class="col-xs-24 col-md-4">
+                        <img src="img/icone.svg" alt="FutBolão">
+                    </div>
+                    <div class="col-xs-24 col-md-10">
+                        <div class="box-tipo dir">
+                            <h2><small>Só por diversão</small> 4Fun <i class="glyphicon glyphicon-sunglasses"></i></h2>
+                            <p>Você adora dar seus palpites, mas é daqueles que não gosta de apostas? Tudo bem, também temos um lugar para você aqui!</p>
+                            <p>Participe dos bolões 4Fun, feitos para vocês que só querem se tivertir sem preocupações</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <br>
-        <div class="col-xs-24">
-            <h1 class="titulo-funcionalidade vermelho">Permissões de Bolões</h1>
+        <div class="row">
+            <div class="col-xs-24">
+                <h1 class="titulo-funcionalidade vermelho">Permissões de Bolões</h1>
+            </div>
         </div>
-        <div class="container-permissao clearfix">
-            <div class="col-xs-24 col-md-8">
-                <div class="box-permissao publico">
-                    <img src="img/publico.svg" alt="Público">
-                    <h2>Público</h2>
-                    <p>Esse é o bolão da geral, qualquer um pode ser integrante, independente se é All In ou 4Fun, todos são bem vindos!</p>
+        <div class="row">
+            <div class="container-permissao clearfix">
+                <div class="col-xs-24 col-md-8">
+                    <div class="box-permissao publico">
+                        <img src="img/publico.svg" alt="Público">
+                        <h2>Público</h2>
+                        <p>Esse é o bolão da geral, qualquer um pode ser integrante, independente se é All In ou 4Fun, todos são bem vindos!</p>
+                    </div>
+                </div>
+                <div class="col-xs-24 col-md-8">
+                    <div class="box-permissao moderado">
+                        <img src="img/moderado.svg" alt="Moderado">
+                        <h2>Moderado</h2>
+                        <p>Você da uma espiada vê que está para você, mas não é tão fácil assim, o técnico ainda vai precisar autorizar sua entrada ;)</p>
+                    </div>
+                </div>
+                <div class="col-xs-24 col-md-8">
+                    <div class="box-permissao privado">
+                        <img src="img/privado.svg" alt="Privado">
+                        <h2>Privado</h2>
+                        <p>Clube fechado amigo! Esse você só vê da porta quem está lá, mas só pode entrar se receber um convite do técnico!</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-24 col-md-8">
-                <div class="box-permissao moderado">
-                    <img src="img/moderado.svg" alt="Moderado">
-                    <h2>Moderado</h2>
-                    <p>Você da uma espiada vê que está para você, mas não é tão fácil assim, o técnico ainda vai precisar autorizar sua entrada ;)</p>
-                </div>
-            </div>
-            <div class="col-xs-24 col-md-8">
-                <div class="box-permissao privado">
-                    <img src="img/privado.svg" alt="Privado">
-                    <h2>Privado</h2>
-                    <p>Clube fechado amigo! Esse você só vê da porta quem está lá, mas só pode entrar se receber um convite do técnico!</p>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-24 text-center">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Header -->
+                <ins class="adsbygoogle"
+                style="display:inline-block;width:728px;height:90px"
+                data-ad-client="ca-pub-7139617322508756"
+                data-ad-slot="7252322624"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
     </div>
