@@ -8,6 +8,7 @@ use App\Models\Equipe;
 use App\Models\EquipeCompeticao;
 use App\Models\Estadio;
 use App\Models\Partida;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -117,5 +118,10 @@ class AdminController extends Controller
         $partida->toObject($request->all());
         $partida->gravado = 'GRAVADO';
         $partida->save();
+    }
+
+    public function getListaUsuarios()
+    {
+        return Usuario::withTrashed()->get();
     }
 }

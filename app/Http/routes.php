@@ -91,6 +91,10 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'needsRole'], 'is' 
     Route::get('/resultado', 'AdminController@indexResultado');
     Route::post('/save_resultado', 'AdminController@saveResultado');
     Route::delete('/delete_resultado/{id}', 'AdminController@deleteResultado')->where('id', '[0-9]+');
+
+    Route::group(['prefix' => '/usuario'], function () {
+        Route::get('/lista_usuarios', 'AdminController@getListaUsuarios');
+    });
 });
 
 /*

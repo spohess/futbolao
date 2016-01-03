@@ -40,6 +40,9 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
+                            @is('admin')
+                            <li><a href="{{url('/admin')}}">Admin</a></li>
+                            @endis
                             <li><a href="{{url('/sair')}}">Sair</a></li>
                         </ul>
                     </div>

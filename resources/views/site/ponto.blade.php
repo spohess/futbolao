@@ -95,9 +95,10 @@ Pontos
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center text-primary" rowspan="3">Resultado</th>
+                            <th class="text-center text-secundary" rowspan="3">Participante</th>
                             <th class="text-center" colspan="2">@{{detalhePalpite.equipe_casa_apelido}}</th>
                             <th class="text-center" colspan="2">@{{detalhePalpite.equipe_visitante_apelido}}</th>
+                            <th class="text-center text-secundary" rowspan="3">Pontos</th>
                         </tr>
                         <tr>
                             <th class="text-center">Placar</th>
@@ -114,18 +115,19 @@ Pontos
                     </thead>
                     <tbody>
                         <tr id="listaVazia_@{{detalhePalpite.id_partida}}" class="alerta-oculto">
-                            <td colspan="5">
+                            <td colspan="6">
                                 <div class="alert alert-warning text-center sem-margin">
                                     Não há palpites para essa partida
                                 </div>
                             </td>
                         </tr>
                         <tr ng-repeat="palpiteUsuario in listaPalpiteUsuario">
-                            <td class="text-center">@{{palpiteUsuario.usuario}}</td>
+                            <td class="text-center text-secundary">@{{palpiteUsuario.usuario}}</td>
                             <td class="text-center">@{{palpiteUsuario.palpite_casa}}</td>
                             <td class="text-center">@{{palpiteUsuario.palpite_penalti_casa}}</td>
                             <td class="text-center">@{{palpiteUsuario.palpite_visitante}}</td>
                             <td class="text-center">@{{palpiteUsuario.palpite_penalti_visitante}}</td>
+                            <td class="text-center text-secundary">@{{palpiteUsuario.pontos}}</td>
                         </tr>
                     </tbody>
                 </table>
