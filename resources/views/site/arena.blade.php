@@ -40,7 +40,7 @@ Arena
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-4 menu-perfil">
-                <button type="button" class="btn btn-primary pull-right">Meus Dados</button>
+                <a href="{{url('/usuario/dados')}}" class="btn btn-primary pull-right">Meus Dados</a>
             </div>
         </div>
     </div>

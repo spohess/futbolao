@@ -31,7 +31,7 @@ class Bolao extends Model
 
     public function participantes()
     {
-        return $this->belongsToMany('App\Models\Usuario', 'usuarios_boloes', 'id_bolao', 'id_usuario')->where('participacao', 'aceito');
+        return $this->belongsToMany('App\Models\Usuario', 'usuarios_boloes', 'id_bolao', 'id_usuario')->where('participacao', 'aceito')->withPivot('pontos');
     }
 
     public function convites()

@@ -77,19 +77,21 @@ class BolaoController extends BolaoAbstract
     {
         $listaBoloes = [];
         $boloes = Bolao::all();
-        foreach ($boloes as $bolao) {
-            $dados = [
-                "permissao" => $bolao->permissao,
-                "id" => $bolao->id,
-                "nome" => $bolao->nome,
-                "nomeTecnico" => $bolao->tecnico->nome,
-                "loginTecnico" => $bolao->tecnico->login,
-                "competicao" => $bolao->competicao->nome,
-                "participantes" => $bolao->participantes->count(),
-                "pontuacao" => '-',
-            ];
-            array_push($listaBoloes, $dados);
-        }
+        $montaBolao = new BolaoHelper($boloes);
+        $listaBoloes = $montaBolao->montaListaBolao();
+        // foreach ($boloes as $bolao) {
+        //     $dados = [
+        //         "permissao" => $bolao->permissao,
+        //         "id" => $bolao->id,
+        //         "nome" => $bolao->nome,
+        //         "nomeTecnico" => $bolao->tecnico->nome,
+        //         "loginTecnico" => $bolao->tecnico->login,
+        //         "competicao" => $bolao->competicao->nome,
+        //         "participantes" => $bolao->participantes->count(),
+        //         "pontuacao" => '-',
+        //     ];
+        //     array_push($listaBoloes, $dados);
+        // }
         if (empty($listaBoloes)) {
             return ['estado' => 'vazio'];
         } else {

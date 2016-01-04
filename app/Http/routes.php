@@ -63,6 +63,10 @@ Route::group(['prefix' => '/partida', 'middleware' => 'auth'], function () {
     Route::get('/partidas_bolao/{id}', 'PartidaController@getPartidasBolao')->where('id', '[0-9]+');
 });
 
+Route::group(['prefix' => '/usuario', 'middleware' => 'auth'], function () {
+    Route::get('/dados', 'UsuarioController@getDadosUsuario');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Admin

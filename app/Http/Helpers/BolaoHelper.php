@@ -45,16 +45,16 @@ class BolaoHelper
     public function montaListaBolao()
     {
         $listaBoloes = [];
-        foreach ($this->getBolao()->all() as $item) {
+        foreach ($this->getBolao()->all() as $bolao) {
             $dados = [
-                "permissao" => $item->permissao,
-                "id" => $item->id,
-                "nome" => $item->nome,
-                "nomeTecnico" => $item->tecnico->nome,
-                "loginTecnico" => $item->tecnico->login,
-                "competicao" => $item->competicao->nome,
-                "participantes" => $item->participantes->count(),
-                "pontuacao" => 0,
+                "permissao" => $bolao->permissao,
+                "id" => $bolao->id,
+                "nome" => $bolao->nome,
+                "nomeTecnico" => $bolao->tecnico->nome,
+                "loginTecnico" => $bolao->tecnico->login,
+                "competicao" => $bolao->competicao->nome,
+                "participantes" => $bolao->participantes->count(),
+                "pontuacao" => $this->pontuacaoUsuario($bolao->participantes->where("id", Auth::user()->id)->first()),
             ];
             array_push($listaBoloes, $dados);
         }
@@ -90,12 +90,12 @@ class BolaoHelper
     private function listaParticipante()
     {
         $dadosParticipante = [];
-        foreach ($this->bolao->participantes->all() as $participante) {
+        foreach ($this->getBolao()->participantes->all() as $participante) {
             $dados = [
                 "id" => $participante->id,
                 "nome" => $participante->nome,
                 "login" => $participante->login,
-                "pontos" => 0,
+                "pontos" => $this->pontuacaoUsuario($participante),
             ];
             array_push($dadosParticipante, $dados);
         }
@@ -153,5 +153,14 @@ class BolaoHelper
             ->where("participacao", "banido")
             ->count();
         return ($usuarioBolao === 0) ? false : true;
+    }
+
+    private function pontuacaoUsuario($participante)
+    {
+        if (!empty($participante)) {
+            return $participante->pivot->pontos;
+        }
+
+        return 0;
     }
 }
