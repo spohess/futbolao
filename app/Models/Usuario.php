@@ -44,6 +44,11 @@ class Usuario extends Model implements AuthenticatableContract, AuthorizableCont
         return $this->belongsToMany('App\Models\Bolao', 'usuarios_boloes', 'id_usuario', 'id_bolao')->where('participacao', 'aceito');
     }
 
+    public function novoEmail()
+    {
+        return $this->hasOne('App\Models\UsuarioNovoEmail', 'id_usuario', 'id');
+    }
+
     public function setSerial()
     {
         $this->serial = str_random(128);

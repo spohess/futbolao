@@ -63,6 +63,7 @@ elixir(function(mix) {
 elixir(function(mix) {
     mix.scripts(['site.js'], 'public/js/all-site.js')
         .scripts(['auth.js'], 'public/js/all-auth.js')
+        .scripts(['usuario.js'], 'public/js/all-usuario.js')
         .scripts(['arena.js'], 'public/js/all-arena.js')
         .scripts(['palpite.js'], 'public/js/all-palpite.js')
         .scripts(['admin.js'], 'public/js/all-admin.js')

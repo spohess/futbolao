@@ -22,7 +22,7 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.validaLogin = function(){
-        if( $scope.formCadastro.email.$invalid ){
+        if( $scope.formCadastro.login.$invalid ){
             return false;
         }
         angular.element(".aviso-login-valido").hide();
