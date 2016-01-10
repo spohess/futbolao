@@ -128,6 +128,7 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.selecionaAvatar = function(avatar){
+        angular.element("#avisoCarregaAvatar").show();
         $http.put('/usuario/avatar', avatar)
         .success(function(dados){
             if(dados.estado == 'sucesso'){
