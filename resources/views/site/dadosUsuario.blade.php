@@ -76,6 +76,9 @@ Dados Usuário
         <div class="col-xs-24 col-md-16">
             <legend>Avatar</legend>
             <div class="row">
+                <div class="col-xs-24" id="avisoCarregaAvatar">
+                    <h3 class="sem-mergin text-center"><i class="fa fa-refresh fa-spin"></i> Carregando</h3>
+                </div>
                 <div class="col-xs-12 col-md-6" ng-repeat="avatar in listaAvatares">
                     <div class="avatar">
                         <img class="@{{avatar.class}}" src="@{{avatar.img}}" alt="Avatar" ng-if="avatar.img != ''" ng-click="selecionaAvatar(avatar)">

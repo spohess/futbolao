@@ -49,6 +49,7 @@ Resultados
                 <div class="box-resultado clearfix" id="box-resultado-@{{partida.id}}" ng-class="(partida.gravado == 'GRAVADO') ? 'inserido' : ''">
                     <input type="hidden" name="id" ng-model="partida.id" value="@{{partida.id}}">
                     <input type="hidden" name="_token" ng-model="partida._token" ng-init="partida._token='{{csrf_token()}}'">
+                    <div class="col-xs-24 text-center"><h3>@{{partida.data_partida_ft}}</h3></div>
                     <div class="col-xs-24 col-md-5 text-center"><p>@{{partida.equipe_casa_apelido}}</p></div>
                     <div class="col-xs-24 col-md-3"><input type="text" name="placar_casa" value="@{{partida.placar_casa}}" ng-model="partida.placar_casa" class="form-control input-sm text-center" placeholder="Placar"></div>
                     <div class="col-xs-24 col-md-3"><input type="text" name="penalti_casa" value="@{{partida.penalti_casa}}" ng-model="partida.penalti_casa" class="form-control input-sm text-center" placeholder="Pênalti" ng-disabled="!partida.penalti"></div>

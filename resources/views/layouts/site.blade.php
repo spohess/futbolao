@@ -41,7 +41,11 @@
                             <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
                             <li><a href="{{url('/#contato')}}">Contato</a></li>
                             <li><a href="{{url('/cadastro')}}">Cadastro</a></li>
+                            @if (Auth::check())
+                            <li class="active"><a href="{{url('/arena')}}">Arena</a></li>
+                            @else
                             <li class="active"><a href="{{url('/entrar')}}">Entrar</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>

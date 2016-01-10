@@ -13,8 +13,12 @@ Home
         <ul class="nav nav-pills pull-right">
             <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
             <li><a href="{{url('/#contato')}}">Contato</a></li>
+            @if (!Auth::check())
             <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
-            <li class="active"><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
+            <li class="active"><a href="{{url('/entrar')}}">Entrar</a></li>
+            @else
+            <li class="active"><a href="{{url('/arena')}}">Arena</a></li>
+            @endif
         </ul>
     </nav>
     <nav class="navbar navbar-inverse visible-xs">
@@ -35,7 +39,11 @@ Home
                     <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
                     <li><a href="{{url('/#contato')}}">Contato</a></li>
                     <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
-                    <li><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
+                    @if (Auth::check())
+                    <li class="active"><a href="{{url('/arena')}}">Arena</a></li>
+                    @else
+                    <li class="active"><a href="{{url('/entrar')}}">Entrar</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -143,8 +151,12 @@ Home
             <div class="col-xs-24 col-md-5">
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
+                    @if (!Auth::check())
                     <li><a href="{{url('/cadastro')}}" title="Cadastrar">Cadastrar</a></li>
-                    <li class="active"><a href="{{url('/entrar')}}" title="Entrar">Entrar</a></li>
+                    <li class="active"><a href="{{url('/entrar')}}">Entrar</a></li>
+                    @else
+                    <li class="active"><a href="{{url('/arena')}}">Arena</a></li>
+                    @endif
                     <li><hr></li>
                     <li><a href="{{get_link_twitter()}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i> @fut_bolao</a></li>
                     <li><a href="{{get_link_facebook()}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i> facebook.com/futbolao</a></li>

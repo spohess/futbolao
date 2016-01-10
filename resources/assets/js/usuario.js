@@ -8,6 +8,9 @@ function fnSistemaController($scope, $http) {
         $http.get('/usuario/avatares')
         .success(function(dados){
             $scope.listaAvatares = dados;
+        })
+        .then(function(){
+            angular.element("#avisoCarregaAvatar").hide();
         });
     }
 
