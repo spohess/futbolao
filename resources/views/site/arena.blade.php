@@ -10,7 +10,7 @@ Arena
         <div class="row">
             <div class="col-xs-12 col-sm-3">
                 <div class="avatar">
-                    {!! file_get_contents(public_path() . "/img/avatar-homem.svg") !!}
+                    <img src="{{$avatar}}" alt="Avatar">
                 </div>
             </div>
             <div class="col-xs-24 col-sm-10">

@@ -19,6 +19,7 @@ class ArenaController extends Controller
             'usuario' => $usuario->login,
             'participacaoBolao' => $usuario->boloes->count(),
             'listaConvites' => count($usuarioBolao->listaConvitesPendentes()),
+            'avatar' => (empty(Auth::user()->design->avatar)) ? get_avatar_bolao() : Auth::user()->design->avatar,
         ];
         return view('site.arena', $dados);
     }

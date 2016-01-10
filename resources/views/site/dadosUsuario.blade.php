@@ -5,7 +5,7 @@ Dados Usuário
 @endsection
 
 @section('conteudo')
-<div class="container">
+<div class="container" ng-init="onLoadUsuario()">
     <div class="row">
         <div class="col-xs-24 col-md-8">
             <form ng-submit="atualizaUsuario()" method="post" name="formDadosUsuario" accept-charset="utf-8" data-toggle="validator" role="form">
@@ -73,13 +73,23 @@ Dados Usuário
                 </fieldset>
             </form>
         </div>
-        <div class="col-xs-24 col-md-16"></div>
+        <div class="col-xs-24 col-md-16">
+            <legend>Avatar</legend>
+            <div class="row">
+                <div class="col-xs-12 col-md-6" ng-repeat="avatar in listaAvatares">
+                    <div class="avatar">
+                        <img class="@{{avatar.class}}" src="@{{avatar.img}}" alt="Avatar" ng-if="avatar.img != ''" ng-click="selecionaAvatar(avatar)">
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
 @endsection
 
 @section('css-especifico')
-<link rel="stylesheet" href="{{ elixir('css/palpite.css') }}">
+<link rel="stylesheet" href="{{ elixir('css/arena.css') }}">
 @endsection
 
 @section('js-especifico')

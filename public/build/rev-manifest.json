@@ -1,8 +1,8 @@
 {
   "css/admin.css": "css/admin-796e14e232.css",
   "css/all.css": "css/all-97524dbd6f.css",
-  "css/app.css": "css/app-63a861369b.css",
-  "css/arena.css": "css/arena-38b6ec2765.css",
+  "css/app.css": "css/app-f7b6a10f0b.css",
+  "css/arena.css": "css/arena-02a7889d00.css",
   "css/palpite.css": "css/palpite-f2a9d02af1.css",
   "js/all-admin.js": "js/all-admin-3d339e70d9.js",
   "js/all-admin_competicao.js": "js/all-admin_competicao-0a508221d3.js",
@@ -14,6 +14,6 @@
   "js/all-auth.js": "js/all-auth-52fa2f2364.js",
   "js/all-palpite.js": "js/all-palpite-097fbc5a22.js",
   "js/all-site.js": "js/all-site-2f46b8c777.js",
-  "js/all-usuario.js": "js/all-usuario-34adb7fd0c.js",
+  "js/all-usuario.js": "js/all-usuario-8348141483.js",
   "js/all.js": "js/all-0ccc89aace.js"
 }

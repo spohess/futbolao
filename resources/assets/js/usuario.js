@@ -1,5 +1,16 @@
 function fnSistemaController($scope, $http) {
 
+    $scope.onLoadUsuario = function(){
+        $scope.carregaAvatar();
+    };
+
+    $scope.carregaAvatar = function(){
+        $http.get('/usuario/avatares')
+        .success(function(dados){
+            $scope.listaAvatares = dados;
+        });
+    }
+
     $scope.validaEmail = function(){
         if( $scope.formDadosUsuario.email.$invalid ){
             return false;
@@ -63,7 +74,7 @@ function fnSistemaController($scope, $http) {
 
             angular.element(".alerta-oculto").hide();
 
-            $http.post('/usuario', $scope.usuario)
+            $http.put('/usuario', $scope.usuario)
             .success(function(dados){
                 if( dados.estado == 'senhaAtualInvalida' ){
                     angular.element("#avisoSenhaAtualInvalida").show();
@@ -110,6 +121,15 @@ function fnSistemaController($scope, $http) {
         })
         .then(function(){
             iconeEspera('iconeBtnReenvia', 'fa-send', 'desativa');
+        });
+    }
+
+    $scope.selecionaAvatar = function(avatar){
+        $http.put('/usuario/avatar', avatar)
+        .success(function(dados){
+            if(dados.estado == 'sucesso'){
+                $scope.carregaAvatar();
+            }
         });
     }
 
