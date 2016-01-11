@@ -16,3 +16,28 @@
         padding: 0;
     }
 }
+
+.novo-avatar {
+    width: 110px;
+    height: 110px;
+    display: inline-block;
+    border: 8px dashed lighten($cor-primaria, 40%);
+    border-radius: 90px;
+    cursor: pointer;
+
+    .texto {
+        color: lighten($cor-primaria, 40%);
+
+        i {
+            margin-top: 7px;
+        }
+    }
+
+    &:hover {
+        border: 8px dashed lighten($cor-primaria, 20%);
+
+        .texto {
+            color: lighten($cor-primaria, 20%);
+        }
+    }
+}

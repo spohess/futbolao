@@ -8,6 +8,12 @@
     <title>{{get_titulo_site()}} | @yield('titulo-pagina')</title>
     <meta itemprop="description" name="description" content="{{get_descricao_site()}}">
 
+    <meta property="og:url"           content="{{url('/')}}" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="{{get_titulo_site()}}" />
+    <meta property="og:description"   content="{{get_descricao_site()}}" />
+    <meta property="og:image"         content="{{url('/img/logo.svg')}}" />
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,700|Open+Sans">
     <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">

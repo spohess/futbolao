@@ -32,11 +32,11 @@ class UsuarioController extends Controller
                 "class" => ($design->avatar == get_avatar_mulher()) ? "ativo" : "",
                 "img" => get_avatar_mulher(),
             ],
-            "novo" => [
-                "id" => "upload",
-                "class" => "novo-avatar",
-                "img" => "",
-            ],
+            // "novo" => [
+            //     "id" => "upload",
+            //     "class" => "novo-avatar",
+            //     "img" => "",
+            // ],
         ];
         $dados = [
             "usuario" => Auth::user(),

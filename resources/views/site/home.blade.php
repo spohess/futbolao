@@ -5,6 +5,7 @@ Home
 @endsection
 
 @section('conteudo')
+<div id="fb-root" class="hide"></div>
 <header class="hd-principal">
     <a href="{{url('/')}}">
         <img src="img/logo.svg" class="logo-header hidden-xs">
@@ -78,7 +79,7 @@ Home
             </div>
             <div class="col-xs-24 text-right">
                 <br>
-                <a href="#sobre" title="Regras">Vejas as Regras</a>
+                <a href="{{url('/regulamento')}}" title="Regras">Vejas as Regras</a>
                 <hr>
             </div>
         </div>
@@ -148,7 +149,7 @@ Home
 <footer id="contato" class="rodape">
     <div class="container">
         <div class="row">
-            <div class="col-xs-24 col-md-5">
+            <div class="col-xs-24 col-md-4">
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
                     @if (!Auth::check())
@@ -158,20 +159,11 @@ Home
                     <li class="active"><a href="{{url('/arena')}}">Arena</a></li>
                     @endif
                     <li><hr></li>
-                    <li><a href="{{get_link_twitter()}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i> @fut_bolao</a></li>
-                    <li><a href="{{get_link_facebook()}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i> facebook.com/futbolao</a></li>
-                    <li><a href="mailto:contato@palpiteirosanonimos.com.br?subject=Contato pelo Site" title="E-mail" target="_blank"><i class="fa fa-envelope"></i> contato@futbolao.com</a></li>
+                    <li class="mb-sm"><div class="fb-share-button" data-href="http://futbolao.com" data-layout="button"></div></li>
+                    <li class="mb-sm"><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=FutBol%C3%A3o%20seu%20site%20de%20%23bol%C3%A3o%20definitivo!%20Divirta-se%20dando%20seus%20pitacos%20%40fut_bolao">Tweet</a></li>
                 </ul>
             </div>
-            <div class="col-xs-24 col-md-11">
-                <fieldset class="col-xs-24">
-                    <legend id="sobre">Sobre</legend>
-                    <p>O FutBolão é um site para gerenciamento de bolões, onde você pode criar bolões para a sua galera ou particiar de um bolão publico qualquer.</p>
-                    <p>O site <strong>NÃO</strong> faz transações financeiras nem gestão de valores. O FutBolão se encarrega somente em calcular os resultados, raquear participantes, informar resultados e itens relacionado a partidas de futebol.</p>
-                    <p>Existe um projeto para que haja gerenaciamento financeiro onde não só o FutBolão lucre com isso, mas qualquer participante também, mas é preciso que os jogos sejam legalizados no país, enquanto isso o site continuará gerenciando somente pontuação e resultados.</p>
-                </fieldset>
-            </div>
-            <div class="col-xs-24 col-md-8">
+            <div class="col-xs-24 col-md-6">
                 <form name="formContato" method="post" accept-charset="utf-8" class="row" data-toggle="validator" role="form" ng-submit="enviaContato()">
                     <input type="hidden" name="_token" ng-model="contato._token" ng-init="contato._token='{{csrf_token()}}'">
                     <fieldset class="col-xs-24">
@@ -211,6 +203,18 @@ Home
                     </fieldset>
                 </form>
             </div>
+            <div class="col-xs-24 col-md-7">
+                <div class="fb-page" data-href="https://www.facebook.com/futbolao" data-tabs="timeline" data-height="450px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    <div class="fb-xfbml-parse-ignore">
+                        <blockquote cite="https://www.facebook.com/futbolao">
+                            <a href="https://www.facebook.com/futbolao">FutBolão</a>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-24 col-md-7">
+                <a class="twitter-timeline" href="https://twitter.com/fut_bolao" data-widget-id="686613167531802625">Tweets by @fut_bolao</a>
+            </div>
         </div>
     </div>
     <div class="copyright">
@@ -221,4 +225,28 @@ Home
 
 @section('js-especifico')
 <script src="{{ elixir('js/all-site.js') }}"></script>
+<script>
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    t._e = [];
+    t.ready = function(f) {
+        t._e.push(f);
+    };
+    return t;
+}(document, "script", "twitter-wjs"));
+</script>
 @endsection

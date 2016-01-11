@@ -74,13 +74,21 @@ Dados Usuário
             </form>
         </div>
         <div class="col-xs-24 col-md-16">
-            <legend>Avatar <span id="avisoCarregaAvatar" class="sem-mergin pull-right alerta-oculto"><i class="fa fa-refresh fa-spin"></i> Carregando</span></legend>
+            <legend>Avatar <span id="avisoGravaAvatar" class="sem-mergin pull-right alerta-oculto"><i class="fa fa-refresh fa-spin"></i> Gravando</span></legend>
             <div class="row">
+                <input type="file" name="" value="" placeholder="" class="hide">
                 @foreach ($avatares as $avatar)
                 <div class="col-xs-12 col-md-6">
                     <div class="avatar">
                         @if ($avatar['img'] != '')
                             <img class="avatar-{{$avatar['id']}} {{$avatar['class']}}" src="{{$avatar['img']}}" alt="Avatar" ng-click="selecionaAvatar('{{$avatar['id']}}')">
+                        @else
+                            <div class="avatar-{{$avatar['id']}} {{$avatar['class']}}">
+                                <div class="texto">
+                                    <i class="fa fa-plus fa-3x"></i>
+                                    <h3 class="sem-margin">Upload</h3>
+                                </div>
+                            </div>
                         @endif
                     </div>
                 </div>

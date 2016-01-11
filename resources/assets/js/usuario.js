@@ -117,6 +117,7 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.selecionaAvatar = function(avatar){
+        angular.element("#avisoGravaAvatar").show();
         var dadosPut = {
             id: avatar
         }
@@ -126,6 +127,9 @@ function fnSistemaController($scope, $http) {
                 angular.element(".ativo").removeClass("ativo");
                 angular.element(".avatar-" + avatar).addClass("ativo");
             }
+        })
+        .then(function(){
+            angular.element("#avisoGravaAvatar").hide();
         });
     }
 
