@@ -14,8 +14,33 @@ class UsuarioController extends Controller
 {
     public function getDadosUsuario()
     {
+        $design = Auth::user()->design;
+        $design = (!empty($design)) ? $design : new UsuarioDesign;
+        $avatares = [
+            "bolao" => [
+                "id" => "bolao",
+                "class" => ($design->avatar == get_avatar_bolao()) ? "ativo" : "",
+                "img" => get_avatar_bolao(),
+            ],
+            "homem" => [
+                "id" => "homem",
+                "class" => ($design->avatar == get_avatar_homem()) ? "ativo" : "",
+                "img" => get_avatar_homem(),
+            ],
+            "mulher" => [
+                "id" => "mulher",
+                "class" => ($design->avatar == get_avatar_mulher()) ? "ativo" : "",
+                "img" => get_avatar_mulher(),
+            ],
+            "novo" => [
+                "id" => "upload",
+                "class" => "novo-avatar",
+                "img" => "",
+            ],
+        ];
         $dados = [
-            'usuario' => Auth::user(),
+            "usuario" => Auth::user(),
+            "avatares" => $avatares,
         ];
         return view('site.dadosUsuario', $dados);
     }

@@ -70,7 +70,6 @@ Route::group(['prefix' => '/usuario', 'middleware' => 'auth'], function () {
     Route::post('/validalogin', 'UsuarioController@validaLogin');
     Route::get('/confirma_email/{serial}', 'UsuarioController@confirmaEmail')->where('serial', '[a-zA-Z0-9]+');
 
-    Route::get('/avatares', 'UsuarioDesignController@getAvatares');
     Route::put('/avatar', 'UsuarioDesignController@putAvatar');
 });
 

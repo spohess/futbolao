@@ -1,18 +1,7 @@
 function fnSistemaController($scope, $http) {
 
     $scope.onLoadUsuario = function(){
-        $scope.carregaAvatar();
     };
-
-    $scope.carregaAvatar = function(){
-        $http.get('/usuario/avatares')
-        .success(function(dados){
-            $scope.listaAvatares = dados;
-        })
-        .then(function(){
-            angular.element("#avisoCarregaAvatar").hide();
-        });
-    }
 
     $scope.validaEmail = function(){
         if( $scope.formDadosUsuario.email.$invalid ){
@@ -128,11 +117,14 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.selecionaAvatar = function(avatar){
-        angular.element("#avisoCarregaAvatar").show();
-        $http.put('/usuario/avatar', avatar)
+        var dadosPut = {
+            id: avatar
+        }
+        $http.put('/usuario/avatar', dadosPut)
         .success(function(dados){
             if(dados.estado == 'sucesso'){
-                $scope.carregaAvatar();
+                angular.element(".ativo").removeClass("ativo");
+                angular.element(".avatar-" + avatar).addClass("ativo");
             }
         });
     }
