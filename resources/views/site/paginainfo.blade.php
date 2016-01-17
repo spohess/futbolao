@@ -17,7 +17,7 @@ Informações do site
                 <p class="text-secundary">Se tiver problemas ou dúvidas entre em contato conosco pelo site ou pelo e-mail: {{get_email_contato()}}</p>
             </div>
             <div class="text-right">
-                <h3 class="text-primary">Equipe PA</h3>
+                <h3 class="text-primary">Equipe FutBolão</h3>
             </div>
         </div>
     </div>
