@@ -39,7 +39,8 @@ function fnSistemaController($scope, $http) {
         console.info($scope.partida.penalti);
         $http.post('/admin/save_partida', $scope.partida)
         .success(function(dados){
-            $scope.cancelaPartida();
+            // $scope.cancelaPartida();
+            $scope.partida = [];
             $scope.getPartidas();
             $scope.avisoPartida = {
                 "class":"alert-success",
