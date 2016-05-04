@@ -107,6 +107,12 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'needsRole'], 'is' 
     });
 });
 
+Route::group(['prefix' => '/adminapp', 'middleware' => 'adminApp'], function () {
+
+    Route::post('/entrar', 'AdminAppController@entrar');
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Rotas do Web Service

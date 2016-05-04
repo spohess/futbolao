@@ -32,6 +32,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'needsPermission' => \Artesaos\Defender\Middlewares\NeedsPermissionMiddleware::class,
         'needsRole' => \Artesaos\Defender\Middlewares\NeedsRoleMiddleware::class,
+        'adminApp' => \App\Http\Middleware\AdminApp::class,
     ];
 
 }
