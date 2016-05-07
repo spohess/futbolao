@@ -60,4 +60,5 @@ class Partida extends Model
         $this->placar_visitante = (isset($dados['placar_visitante'])) ? $dados['placar_visitante'] : 0;
         $this->penalti_visitante = (isset($dados['penalti_visitante'])) ? $dados['penalti_visitante'] : null;
     }
+
 }

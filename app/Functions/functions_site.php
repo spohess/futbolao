@@ -11,7 +11,7 @@ if (!function_exists('get_data_formatada')) {
     function get_data_formatada($data)
     {
         $novaData = new DateTime($data);
-        return $novaData->format('d/m/Y H:i:s');
+        return $novaData->format('d/m/Y H:i');
     }
 }
 

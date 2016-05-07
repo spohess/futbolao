@@ -175,6 +175,39 @@ Arena
             </div>
         </div>
     </div>
+    <div class="dashboard-partidas">
+        <div class="row">
+            <div class="col-xs-24">
+                <h1 class="text-primary text-center">Partidas</h1>
+                <hr>
+            </div>
+            <div class="col-xs-24 col-md-12">
+                <h2 class="text-primary">Próximas Partidas</h2>
+                <div class="proximas-partidas row">
+                    @foreach ($proximasPartidas as $partida)
+                    <div class="well">
+                        <div class="col-xs-24">
+                            <h3 class="text-primary text-center">{{$partida->competicao->nome}}</h3>
+                            <h4 class="text-center text-secundary">{{get_data_formatada($partida->data_partida)}} <small>{{$partida->local->apelido}}</small></h4>
+                        </div>
+                        <div class="col-xs-12 text-center">
+                            <img src="{{$partida->equipeCasa->brasao}}" alt="{{$partida->equipeCasa->nome}}">
+                            <h3>{{$partida->equipeCasa->apelido}}</h3>
+                        </div>
+                        <div class="col-xs-12 text-center">
+                            <img src="{{$partida->equipeVisitante->brasao}}" alt="{{$partida->equipeVisitante->nome}}">
+                            <h3>{{$partida->equipeVisitante->apelido}}</h3>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-xs-24 col-md-12">
+                <h3 class="text-primary">Últimos resultados</h3>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 

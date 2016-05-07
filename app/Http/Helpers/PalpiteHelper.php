@@ -73,7 +73,7 @@ class PalpiteHelper
      */
     public function getPartidas()
     {
-        return $this->partidas;
+        return $this->partidas->sortBy('data_partida')->sortBy('id');
     }
 
     /**
