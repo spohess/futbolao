@@ -25,6 +25,10 @@ textarea {
 
 .text-secundary {
     color: $cor-secundaria;
+
+    small {
+        color: darken($cor-secundaria, 15%);
+    }
 }
 
 .modal-primary {
