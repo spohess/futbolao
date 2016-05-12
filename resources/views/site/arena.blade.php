@@ -210,37 +210,41 @@ Arena
             <div class="col-xs-24 col-md-12">
                 <h2 class="text-primary text-right">Últimos resultados</h2>
                 <div class="ultimas-partidas row">
-                    @foreach ($ultimosResultados as $ultima)
-                    <div class="box-partida">
-                        <div class="col-xs-24">
-                            <h3 class="text-primary text-center sem-margin">{{$ultima->competicao->nome}}</h3>
-                            <h4 class="text-center text-secundary">{{get_data_formatada($ultima->data_partida)}} <small>{{$ultima->local->apelido}}</small></h4>
-                        </div>
-                        <div class="col-xs-12 text-center">
+                    <div class="col-xs-24">
+                        @foreach ($ultimosResultados as $ultima)
+                        <div class="box-partida">
                             <div class="row">
-                                <div class="col-xs-12 text-right">
-                                    <img src="{{$ultima->equipeCasa->brasao}}" alt="{{$ultima->equipeCasa->nome}}">
+                                <div class="col-xs-24">
+                                    <h3 class="text-primary text-center sem-margin">{{$ultima->competicao->nome}}</h3>
+                                    <h4 class="text-center text-secundary">{{get_data_formatada($ultima->data_partida)}} <small>{{$ultima->local->apelido}}</small></h4>
                                 </div>
-                                <div class="col-xs-12">
-                                    <h1 class="text-left">{{$ultima->placar_casa}} <small>{{$ultima->penalti_casa}}</small></h1>
+                                <div class="col-xs-12 text-center">
+                                    <div class="row">
+                                        <div class="col-xs-12 text-right">
+                                            <img src="{{$ultima->equipeCasa->brasao}}" alt="{{$ultima->equipeCasa->nome}}">
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <h1 class="text-left">{{$ultima->placar_casa}} <small>{{$ultima->penalti_casa}}</small></h1>
+                                        </div>
+                                    </div>
+                                    <h3 class="sem-margin">{{$ultima->equipeCasa->apelido}}</h3>
                                 </div>
+                                <div class="col-xs-12 text-center">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h1 class="text-right"><small>{{$ultima->penalti_visitante}}</small> {{$ultima->placar_visitante}}</h1>
+                                        </div>
+                                        <div class="col-xs-12 text-left">
+                                            <img src="{{$ultima->equipeVisitante->brasao}}" alt="{{$ultima->equipeVisitante->nome}}">
+                                        </div>
+                                    </div>
+                                    <h3 class="sem-margin">{{$ultima->equipeVisitante->apelido}}</h3>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <h3 class="sem-margin">{{$ultima->equipeCasa->apelido}}</h3>
                         </div>
-                        <div class="col-xs-12 text-center">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h1 class="text-right"><small>{{$ultima->penalti_visitante}}</small> {{$ultima->placar_visitante}}</h1>
-                                </div>
-                                <div class="col-xs-12 text-left">
-                                    <img src="{{$ultima->equipeVisitante->brasao}}" alt="{{$ultima->equipeVisitante->nome}}">
-                                </div>
-                            </div>
-                            <h3 class="sem-margin">{{$ultima->equipeVisitante->apelido}}</h3>
-                        </div>
-                        <div class="clearfix"></div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
             </div>
         </div>

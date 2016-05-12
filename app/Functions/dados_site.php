@@ -165,7 +165,7 @@ if (!function_exists('get_copyright_small_site')) {
 if (!function_exists('get_time_zone')) {
     function get_time_zone()
     {
-        // return 'Brazil/East';    // Horário normal
-        return 'America/Noronha'; // Horário de verão
+        return 'Brazil/East';    // Horário normal
+        // return 'America/Noronha'; // Horário de verão
     }
 }

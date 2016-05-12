@@ -7,6 +7,8 @@ use App\Http\Helpers\SessaoHelper;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Partida;
+use Carbon\Carbon;
 
 class AdminAppController extends Controller
 {
@@ -35,6 +37,11 @@ class AdminAppController extends Controller
         }
 
         return ['estado' => 'desconhecido'];
+    }
+
+    public function getPartidasFinalizadas()
+    {
+        return Partida::whereDate('data_partida', '>', Carbon::now())->get();
     }
 
 }

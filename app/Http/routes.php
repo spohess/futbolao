@@ -108,9 +108,11 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'needsRole'], 'is' 
 });
 
 Route::group(['prefix' => '/adminapp', 'middleware' => 'adminApp'], function () {
-
     Route::post('/entrar', 'AdminAppController@entrar');
+});
 
+Route::group(['prefix' => '/getapp'], function () {
+    Route::get('/partidasfinalizadas', 'AdminAppController@getPartidasFinalizadas');
 });
 
 /*
