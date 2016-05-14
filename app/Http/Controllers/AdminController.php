@@ -15,7 +15,11 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.home');
+        $dados = [
+            'usuarios_cadastrados' => Usuario::withTrashed()->count(),
+            'usuarios_confirmados' => Usuario::count(),
+        ];
+        return view('admin.home', $dados);
     }
 
     public function indexEstadio()
