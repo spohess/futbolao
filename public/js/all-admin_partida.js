@@ -52,7 +52,7 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.editaPartida = function(partida){
-        $scope.partida = partida;
+        // $scope.partida = partida;
         $http.get('/ws/equipes_competicao/' + $scope.partida.id_competicao)
         .success(function(dados){
             $scope.listaEquipes = dados;
