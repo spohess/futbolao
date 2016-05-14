@@ -39,7 +39,6 @@ function fnSistemaController($scope, $http) {
         console.info($scope.partida.penalti);
         $http.post('/admin/save_partida', $scope.partida)
         .success(function(dados){
-            // $scope.cancelaPartida();
             $scope.partida = [];
             $scope.getPartidas();
             $scope.avisoPartida = {
@@ -52,18 +51,20 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.editaPartida = function(partida){
-        console.info(partida);
-        console.info($scope.partida);
         partida._token = $scope.partida._token;
-        // $scope.partida = partida;
         $http.get('/ws/equipes_competicao/' + partida.id_competicao)
         .success(function(dados){
             $scope.listaEquipes = dados;
         })
         .finally(function(){
             angular.element(document).scrollTop(0);
-            $scope.partida = partida;
-            console.info($scope.partida);
+            $scope.partida.id_competicao = partida.id_competicao;
+            $scope.partida.id_estadio = partida.id_estadio;
+            $scope.partida.data_partida = partida.data_partida;
+            $scope.partida.id_equipe_casa = partida.id_equipe_casa;
+            $scope.partida.id_equipe_visitante = partida.id_equipe_visitante;
+            $scope.partida.rodada = partida.rodada;
+            $scope.partida.penalti = partida.penalti;
         });
     }
 
