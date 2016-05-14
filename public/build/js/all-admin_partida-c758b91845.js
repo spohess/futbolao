@@ -52,12 +52,16 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.editaPartida = function(partida){
-        // $scope.partida = partida;
-        $http.get('/ws/equipes_competicao/' + $scope.partida.id_competicao)
+        console.info(partida);
+        console.info($scope.partida);
+        partida._token = $scope.partida._token;
+        $scope.partida = partida;
+        $http.get('/ws/equipes_competicao/' + partida.id_competicao)
         .success(function(dados){
             $scope.listaEquipes = dados;
             angular.element(document).scrollTop(0);
             $scope.partida = partida;
+            console.info($scope.partida);
         });
     }
 
