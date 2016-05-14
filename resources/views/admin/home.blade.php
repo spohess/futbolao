@@ -47,10 +47,14 @@ Home
                         @foreach ($usuarios as $usuario)
                         <tr>
                             <td>{{$i}}</td>
-                            <td>{{$usuario->login}}</td>
+                            <td class="text-info">{{$usuario->login}}</span></td>
                             <td>{{$usuario->email}}</td>
                             <td>{{$usuario->nome}}</td>
-                            <td>{{(is_null($usuario->deleted_at)) ? 'CONFIRMADO' : 'NÃO CONFIRMADO'}}</td>
+                            @if (is_null($usuario->deleted_at))
+                                <td class="text-center"><span class="label label-success">CONFIRMADO</span></td>
+                            @else
+                                <td class="text-center"><span class="label label-danger">NÃO CONFIRMADO</span></td>
+                            @endif
                             <td>{{get_data_formatada($usuario->created_at)}}</td>
                         </tr>
                         <?php $i++; ?>
