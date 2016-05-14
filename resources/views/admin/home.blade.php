@@ -43,7 +43,7 @@ Home
                         </tr>
                     </thead>
                     <tbody>
-                        {{$i = 1}}
+                        <?php $i = 1; ?>
                         @foreach ($usuarios as $usuario)
                         <tr>
                             <td>{{$i}}</td>
@@ -53,7 +53,7 @@ Home
                             <td>{{(is_null($usuario->deleted_at)) ? 'CONFIRMADO' : 'NÃO CONFIRMADO'}}</td>
                             <td>{{get_data_formatada($usuario->created_at)}}</td>
                         </tr>
-                        {{$i++}}
+                        <?php $i++; ?>
                         @endforeach
                     </tbody>
                 </table>
