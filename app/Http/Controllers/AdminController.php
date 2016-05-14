@@ -16,6 +16,7 @@ class AdminController extends Controller
     public function index()
     {
         $dados = [
+            'usuarios' => Usuario::withTrashed()->get(),
             'usuarios_cadastrados' => Usuario::withTrashed()->count(),
             'usuarios_confirmados' => Usuario::count(),
         ];

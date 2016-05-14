@@ -39,16 +39,22 @@ Home
                             <th>E-mail</th>
                             <th>Nome</th>
                             <th>Ativo</th>
+                            <th>Cadastro</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="(chave, usuario) in listaUsuarios">
-                            <td>@{{chave + 1}}</td>
-                            <td>@{{usuario.login}}</td>
-                            <td>@{{usuario.email}}</td>
-                            <td>@{{usuario.nome}}</td>
-                            <td>@{{usuario.deleted_at}}</td>
+                        {{$i = 1}}
+                        @foreach ($usuarios as $usuario)
+                        <tr>
+                            <td>{{$i}}</td>
+                            <td>{{$usuario->login}}</td>
+                            <td>{{$usuario->email}}</td>
+                            <td>{{$usuario->nome}}</td>
+                            <td>{{(is_null($usuario->deleted_at)) ? 'CONFIRMADO' : 'NÃO CONFIRMADO'}}</td>
+                            <td>{{get_data_formatada($usuario->created_at)}}</td>
                         </tr>
+                        {{$i++}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
