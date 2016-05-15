@@ -105,9 +105,9 @@ class PontuacaoCalcula extends Command
 
             Log::info('Atualizando pontuação dos usuários');
             $this->atualizaPontuacaoUsuarios($palpites);
-            Log::info('Finalizado');
-            Log::info('#######################################################');
         }
+        Log::info('Finalizado');
+        Log::info('#######################################################');
     }
 
     private function atualizaPontuacaoUsuarios($palpites)
