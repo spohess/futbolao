@@ -7,6 +7,7 @@ use App\Models\PartidaProcessada;
 use App\Models\UsuarioBolao;
 use DB;
 use Illuminate\Console\Command;
+use Log;
 
 class PontuacaoCalcula extends Command
 {
@@ -41,8 +42,12 @@ class PontuacaoCalcula extends Command
      */
     public function handle()
     {
+        Log::info('#######################################################');
+        Log::info('Início da atualização dos resultados');
+        Log::info('-------------------------------------------------------');
         $partidas = DB::select("SELECT  p.* FROM partidas p LEFT OUTER JOIN partidas_processadas pp ON p.id = pp.id_partida WHERE pp.id IS NULL AND p.gravado = 'GRAVADO' ORDER BY p.id");
         foreach ($partidas as $partida) {
+            Log::info('Partida: ' . $partida->id);
             $palpites = Palpite::where('id_partida', $partida->id)->get();
             $cinquentaPontos = $palpites->filter(function ($item) use ($partida) {
                 if ($item->placar_casa === $partida->placar_casa && $item->placar_visitante === $partida->placar_visitante) {
@@ -95,7 +100,13 @@ class PontuacaoCalcula extends Command
             $partidaProcessada->quantidade_palpites = $palpites->count();
             $partidaProcessada->save();
 
+            Log::info('Fim da atualização dos resultados');
+            Log::info('=======================================================');
+
+            Log::info('Atualizando pontuação dos usuários');
             $this->atualizaPontuacaoUsuarios($palpites);
+            Log::info('Finalizado');
+            Log::info('#######################################################');
         }
     }
 
@@ -103,8 +114,11 @@ class PontuacaoCalcula extends Command
     {
         $palpites->each(function ($palpite) {
             $usuarioBolao = UsuarioBolao::where("id_usuario", $palpite->id_usuario)->where("id_bolao", $palpite->id_bolao)->first();
-            $usuarioBolao->pontos += $palpite->pontos;
-            $usuarioBolao->save();
+            if(!empty($usuarioBolao)){
+                Log::info('Usuário: ' . $usuarioBolao->id_usuario);
+                $usuarioBolao->pontos += $palpite->pontos;
+                $usuarioBolao->save();
+            }
         });
     }
 }

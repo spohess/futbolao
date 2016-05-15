@@ -41,7 +41,26 @@ class AdminAppController extends Controller
 
     public function getPartidasFinalizadas()
     {
-        return Partida::whereDate('data_partida', '>', Carbon::now())->get();
+        $partidas = Partida::whereDate('data_partida', '>', Carbon::now())->get();
+        $lista = [];
+        foreach ($partidas as $partida) {
+            $dados = [
+                'id' => $partida->id,
+                'rodada' => $partida->rodada,
+                'data' => $partida->data_partida,
+                'estadio' => $partida->local->apelido,
+                'cidade' => $partida->local->cidade,
+                'uf' => $partida->local->uf,
+                'equipe_casa' => $partida->equipeCasa->apelido,
+                'placar_casa' => $partida->equipeCasa->placar_casa,
+                'penalti_casa' => $partida->equipeCasa->penalti_casa,
+                'equipe_visitante' => $partida->equipeVisitante->apelido,
+                'placar_visitante' => $partida->equipeCasa->placar_visitante,
+                'penalti_visitante' => $partida->equipeCasa->penalti_visitante,
+            ];
+            array_push($lista, $dados);
+        }
+        return $lista;
     }
 
 }

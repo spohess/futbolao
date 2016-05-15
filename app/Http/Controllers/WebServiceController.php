@@ -107,7 +107,7 @@ class WebServiceController extends Controller
     public function getPartidasRodada($idCompeticao, $rodada)
     {
         $listaPartidas = [];
-        foreach (Partida::where('id_competicao', $idCompeticao)->where('rodada', $rodada)->get()->all() as $partida) {
+        foreach (Partida::where('id_competicao', $idCompeticao)->where('rodada', $rodada)->orderBy('data_partida')->orderBy('id')->get()->all() as $partida) {
             $dados = [
                 'id' => $partida->id,
                 'id_competicao' => $partida->id_competicao,
