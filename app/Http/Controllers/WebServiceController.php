@@ -8,6 +8,8 @@ use App\Models\Competicao;
 use App\Models\Equipe;
 use App\Models\Estadio;
 use App\Models\Partida;
+use App\Models\Usuario;
+use DB;
 
 class WebServiceController extends Controller
 {
@@ -131,5 +133,11 @@ class WebServiceController extends Controller
             array_push($listaPartidas, $dados);
         }
         return $listaPartidas;
+    }
+
+    public function getRankUsuarios()
+    {
+        $usuario = DB::select("SELECT  u.login, FORMAT(AVG(ub.pontos), 0) AS pontos FROM usuarios u JOIN usuarios_boloes ub ON u.id = ub.id_usuario WHERE u.deleted_at IS NULL GROUP BY u.login ORDER BY AVG(ub.pontos) DESC");
+        return $usuario;
     }
 }

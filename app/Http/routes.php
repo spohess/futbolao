@@ -120,11 +120,12 @@ Route::group(['prefix' => '/getapp'], function () {
 | Rotas do Web Service
 |--------------------------------------------------------------------------
  */
-Route::group(['prefix' => '/ws'], function () {
+Route::group(['prefix' => '/ws', 'middleware' => 'allowOriginMiddleware'], function () {
     Route::get('/gettoken', 'WebServiceController@getToken');
     Route::get('/competicoes', 'WebServiceController@getCompeticoes');
     Route::get('/estadios', 'WebServiceController@getEstadios');
     Route::get('/equipes', 'WebServiceController@getEquipes');
+    Route::get('/rank_usuarios', 'WebServiceController@getRankUsuarios');
     Route::get('/equipes_competicao/{id}', 'WebServiceController@getEquipesPorCompeticao')->where('id', '[0-9]+');
     Route::get('/partidas', 'WebServiceController@getPartidas');
     Route::get('/rodadas_competicao/{id}', 'WebServiceController@getRodadasCompeticao')->where('id', '[0-9]+');
