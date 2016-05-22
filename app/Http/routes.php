@@ -120,7 +120,7 @@ Route::group(['prefix' => '/getapp'], function () {
 | Rotas do Web Service
 |--------------------------------------------------------------------------
  */
-Route::group(['prefix' => '/ws', 'middleware' => 'allowOriginMiddleware'], function () {
+Route::group(['prefix' => '/ws'], function () {
     Route::get('/gettoken', 'WebServiceController@getToken');
     Route::get('/competicoes', 'WebServiceController@getCompeticoes');
     Route::get('/estadios', 'WebServiceController@getEstadios');
@@ -130,4 +130,9 @@ Route::group(['prefix' => '/ws', 'middleware' => 'allowOriginMiddleware'], funct
     Route::get('/partidas', 'WebServiceController@getPartidas');
     Route::get('/rodadas_competicao/{id}', 'WebServiceController@getRodadasCompeticao')->where('id', '[0-9]+');
     Route::get('/partidas_rodada/{idCompeticao}/{rodada}', 'WebServiceController@getPartidasRodada')->where('idCompeticao', '[0-9]+');
+});
+
+
+Route::group(['prefix' => '/api', 'middleware' => 'allowOriginMiddleware'], function () {
+    Route::get('/rank_usuarios', 'WebServiceController@getRankUsuarios');
 });
