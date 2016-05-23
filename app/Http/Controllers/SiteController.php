@@ -9,6 +9,11 @@ use Mail;
 class SiteController extends Controller
 {
 
+    public function manutencao()
+    {
+        return view('errors.manutencao');
+    }
+
     public function index()
     {
         return view('site.home');

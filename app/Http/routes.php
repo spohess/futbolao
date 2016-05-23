@@ -11,6 +11,8 @@
 |
  */
 
+Route::any('{page?}', 'SiteController@manutencao');
+
 Route::get('/', 'SiteController@index');
 Route::get('/regulamento', 'SiteController@indexRegulamento');
 Route::post('/contato', 'SiteController@enviaContato');
