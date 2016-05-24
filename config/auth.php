@@ -2,6 +2,7 @@
 
 return [
     'model' => App\Models\Usuario::class,
+    'table' => 'usuarios',
 
     'defaults' => [
         'guard' => 'web',
