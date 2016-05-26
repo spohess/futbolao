@@ -16,7 +16,7 @@ Arena
                 <hr>
                 <h4 class="text-center"><strong>Um novo método para informá-los da gravação efetiva dos palpites está sendo desenvolvida. Até lá, após gravarem seus palpites, atualizem a página e acessem seus palpites novamente para certificar que eles foram gravados. Se perceberem que os seus palpites não estão sendo gravados entrem em contato e, nesses casos, podem enviar seus palpites que não estão sendo gravados por e-mail que adicionaremos nos calculos manualmente.</strong></h4>
                 <hr>
-                <h4 class="text-right">Obrigado pela conpreensão e ajuda de todos!</h4>
+                <h4 class="text-right">Obrigado pela compreensão e ajuda de todos!</h4>
             </div>
         </div>
     </div>
