@@ -97,7 +97,7 @@ class WebServiceController extends Controller
 
     public function getPartidas()
     {
-        $partidas = new PartidaHelper(Partida::all()->sortBy('data_partida'));
+        $partidas = new PartidaHelper(Partida::all()->sortByDesc('data_partida'));
         return $partidas->montaPartidas();
     }
 
