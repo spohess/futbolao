@@ -85,7 +85,7 @@ class BolaoController extends BolaoAbstract
 
         $boloesGeral = Bolao::all()->reject(function($bolao, $chave){
             return $bolao->tecnico->id == 2;
-        })->shuffle();
+        })->sortByDesc('created_at');
         $montaBolao = new BolaoHelper($boloesGeral);
         $listaBoloes = $montaBolao->montaListaBolao();
 
