@@ -61,6 +61,15 @@ Equipes
         </div>
         <div class="col-xs-24">
             <div class="row">
+                <div class="col-xs-24">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        <input type="text" id="equipeFiltro" name="equipeFiltro" class="form-control" ng-model="equipeFiltro" placeholder="Fultro de equipes (digite para pesquisar)">
+                    </div>
+                    <small>Procure por nome, quantidade, téctnico, público, moderado ou qualquer outra informação sobre o bolão que você possuir</small>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-24 col-sm-6">
                     <h2 class="text-primary sem-margin">Equipes</h2>
                 </div>
@@ -81,7 +90,7 @@ Equipes
                         </tr>
                     </thead>
                     <tbody class="container-fluid">
-                        <tr class="row" dir-paginate="equipe in listaEquipes | itemsPerPage:20" pagination-id="idListaEquipes">
+                        <tr class="row" dir-paginate="equipe in listaEquipes | filter:equipeFiltro | itemsPerPage:20" pagination-id="idListaEquipes">
                             <td class="col-xs-1"><img class="brasao-tabela" src="@{{equipe.brasao_ft}}" alt="Escudo"></td>
                             <td class="col-xs-9"><a href="" ng-click="editaEquipe(equipe)">@{{equipe.nome}}</a></td>
                             <td class="col-xs-6">@{{equipe.apelido}}</td>

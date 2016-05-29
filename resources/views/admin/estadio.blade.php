@@ -59,6 +59,15 @@ Estádios
         </div>
         <div class="col-xs-24">
             <div class="row">
+                <div class="col-xs-24">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        <input type="text" id="estadioFiltro" name="estadioFiltro" class="form-control" ng-model="estadioFiltro" placeholder="Fultro de estádios (digite para pesquisar)">
+                    </div>
+                    <small>Procure por nome, quantidade, téctnico, público, moderado ou qualquer outra informação sobre o bolão que você possuir</small>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-24 col-sm-6">
                     <h2 class="text-primary sem-margin">Estádios</h2>
                 </div>
@@ -79,7 +88,7 @@ Estádios
                         </tr>
                     </thead>
                     <tbody class="container-fluid">
-                        <tr class="row" dir-paginate="estadio in listaEstadios | itemsPerPage:20" pagination-id="idListaEstadio">
+                        <tr class="row" dir-paginate="estadio in listaEstadios | filter:estadioFiltro | itemsPerPage:20" pagination-id="idListaEstadio">
                             <td class="col-xs-9"><a href="" ng-click="editaEstadio(estadio)">@{{estadio.nome}}</a></td>
                             <td class="col-xs-5">@{{estadio.apelido}}</td>
                             <td class="col-xs-5">@{{estadio.cidade}}</td>
