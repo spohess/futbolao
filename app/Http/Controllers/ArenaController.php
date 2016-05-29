@@ -15,7 +15,7 @@ class ArenaController extends Controller
     {
         $usuario = Auth::user();
         $usuarioBolao = new UsuarioBolaoHelper($usuario);
-        $proximasPartidas = Partida::whereDate('data_partida', '>', Carbon::now())->orderBy('data_partida','DESC')->limit(20)->get();
+        $proximasPartidas = Partida::where('data_partida', '>=', Carbon::now())->orderBy('data_partida')->limit(20)->get();
         $ultimosResultados = Partida::whereDate('data_partida', '<', Carbon::now())->where('gravado','GRAVADO')->limit(20)->get();
         $dados = [
             'id' => $usuario->id,

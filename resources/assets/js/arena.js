@@ -15,7 +15,7 @@ function fnSistemaController($scope, $http) {
             {id:'30', valor:'30'}
         ];
         $scope.pessoalLimite = '5';
-        $scope.geralLimite = '5';
+        $scope.geralLimite = '15';
 
         $scope.getUsuarioBolao();
         $scope.getTodosBoloes();
@@ -29,11 +29,11 @@ function fnSistemaController($scope, $http) {
             }
 
             if( dados.estado === 'vazio' ){
-                angular.element("#vazioMeusBoloes").show();    
+                angular.element("#vazioMeusBoloes").show();
             }
 
             if( dados.estado === 'erro' ){
-                angular.element("#erroMeusBoloes").show();    
+                angular.element("#erroMeusBoloes").show();
             }
         })
         .error(function(){
@@ -52,11 +52,11 @@ function fnSistemaController($scope, $http) {
             }
 
             if( dados.estado === 'vazio' ){
-                angular.element("#vazioTodosBoloes").show();    
+                angular.element("#vazioTodosBoloes").show();
             }
 
             if( dados.estado === 'erro' ){
-                angular.element("#erroTodosBoloes").show();    
+                angular.element("#erroTodosBoloes").show();
             }
         })
         .error(function(){

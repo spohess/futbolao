@@ -76,26 +76,25 @@ class BolaoController extends BolaoAbstract
     public function getTodosBolao()
     {
         $listaBoloes = [];
-        $boloes = Bolao::all();
-        $montaBolao = new BolaoHelper($boloes);
+
+        $boloesOficiais = Bolao::all()->filter(function($bolao, $chave){
+            return $bolao->tecnico->id == 2;
+        });
+        $montaBolaoOficiais = new BolaoHelper($boloesOficiais);
+        $listaBoloesOficiais = $montaBolaoOficiais->montaListaBolao();
+
+        $boloesGeral = Bolao::all()->reject(function($bolao, $chave){
+            return $bolao->tecnico->id == 2;
+        })->sortByDesc('created_at');
+        $montaBolao = new BolaoHelper($boloesGeral);
         $listaBoloes = $montaBolao->montaListaBolao();
-        // foreach ($boloes as $bolao) {
-        //     $dados = [
-        //         "permissao" => $bolao->permissao,
-        //         "id" => $bolao->id,
-        //         "nome" => $bolao->nome,
-        //         "nomeTecnico" => $bolao->tecnico->nome,
-        //         "loginTecnico" => $bolao->tecnico->login,
-        //         "competicao" => $bolao->competicao->nome,
-        //         "participantes" => $bolao->participantes->count(),
-        //         "pontuacao" => '-',
-        //     ];
-        //     array_push($listaBoloes, $dados);
-        // }
+
+        $listaUnificada = array_merge($listaBoloesOficiais, $listaBoloes);
+
         if (empty($listaBoloes)) {
             return ['estado' => 'vazio'];
         } else {
-            return ['estado' => 'sucesso', 'lista' => $listaBoloes];
+            return ['estado' => 'sucesso', 'lista' => $listaUnificada];
         }
         return ['estado' => 'erro'];
     }
