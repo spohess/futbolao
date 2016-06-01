@@ -165,10 +165,11 @@ Home
             </div>
             <div class="col-xs-24 col-md-6">
                 <form name="formContato" method="post" accept-charset="utf-8" class="row" data-toggle="validator" role="form" ng-submit="enviaContato()">
-                    <input type="hidden" name="_token" ng-model="contato._token" ng-init="contato._token='{{csrf_token()}}'">
+                    {{-- <input type="hidden" name="_token" ng-model="contato._token" ng-init="contato._token='{{csrf_token()}}'"> --}}
                     <fieldset class="col-xs-24">
                         <legend>Contato</legend>
-                        <div id="avisoContatoSucesso" class="alert alert-success alerta-oculto">
+                        <p>O formulário de contato foi desativado, para entrar em contato envie um e-mail para <a href="mailto:contato@futbolao.com?subject=Suporte FutBolão">contato@futbolao.com</a></p>
+                        {{-- <div id="avisoContatoSucesso" class="alert alert-success alerta-oculto">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -199,7 +200,7 @@ Home
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-default pull-right" ng-disabled="formContato.$invalid"><i id="iconeBtnEnvia" class="fa fa-send"></i> Enviar</button>
-                        </div>
+                        </div> --}}
                     </fieldset>
                 </form>
             </div>
