@@ -339,7 +339,7 @@ Arena
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="participante in detalheBolao.participantes | orderBy:'pontos':'reverse'">
+                                        <tr ng-repeat="participante in detalheBolao.participantes">
                                             <td>@{{participante.nome}} <small class="text-primary">@{{participante.login}}</small></td>
                                             <td class="text-right">@{{participante.pontos}}</td>
                                             <td ng-if="detalheBolao.admin"><button ng-if="participante.id != {{$id}}" ng-click="banirParticipante(participante, detalheBolao)" type="button" class="btn btn-xs btn-danger btn-block pull-right">Banir</button></td>

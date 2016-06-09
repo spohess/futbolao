@@ -6,6 +6,7 @@ use App\Models\Bolao;
 use App\Models\UsuarioBolao;
 use Auth;
 use Exception;
+use Illuminate\Support\Collection;
 
 class BolaoHelper
 {
@@ -99,7 +100,10 @@ class BolaoHelper
             ];
             array_push($dadosParticipante, $dados);
         }
-        return $dadosParticipante;
+        // return $dadosParticipante;
+        return array_values(Collection::make($dadosParticipante)->sortByDesc(function($array){
+            return $array['pontos'];
+        })->all());
     }
 
     private function listaConvite()
@@ -158,7 +162,7 @@ class BolaoHelper
     private function pontuacaoUsuario($participante)
     {
         if (!empty($participante)) {
-            return $participante->pivot->pontos;
+            return intval($participante->pivot->pontos);
         }
 
         return 0;
