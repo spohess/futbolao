@@ -32,7 +32,7 @@
             <div class="panel-body">
                 <dl class="lista-regulamento">
                     <dt class="text-primary">Calculo de Pontos</dt>
-                    <dd>A pontuação será dada seguindo as "Regras de Pontuação", que serão calculádos até 24 horas após o fim da rodada. Os pontos serão apresentados de forma individual (por casa partida), totalizada por bolão e pontuação geral do site.</dd>
+                    <dd>A pontuação será dada seguindo as "Regras de Pontuação", que serão calculádos até 24 horas após o fim da rodada. Os pontos serão apresentados de forma individual (por cada partida), totalizada por bolão e pontuação geral do site.</dd>
                     <dt class="text-primary">Regras de Pontuação</dt>
                     <dd>
                         <ul>
