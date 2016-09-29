@@ -11,6 +11,7 @@ class CreateDefenderPermissionsTable extends Migration
     public function up()
     {
         Schema::create(config('defender.permission_table', 'permissions'), function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('readable_name');

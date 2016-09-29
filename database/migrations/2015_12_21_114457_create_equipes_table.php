@@ -13,6 +13,7 @@ class CreateEquipesTable extends Migration
     public function up()
     {
         Schema::create('equipes', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('apelido');

@@ -13,6 +13,7 @@ class CreatePartidaProcessadasTable extends Migration
     public function up()
     {
         Schema::create('partidas_processadas', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->bigInteger('id_partida')->unsigned();
             $table->integer('quantidade_palpites');

@@ -13,6 +13,7 @@ class CreateDesignUsuariosTable extends Migration
     public function up()
     {
         Schema::create('usuarios_designs', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->bigInteger('id_usuario')->unsigned();
             $table->longText('avatar')->nullable();

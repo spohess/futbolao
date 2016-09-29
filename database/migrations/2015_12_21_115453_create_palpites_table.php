@@ -13,6 +13,7 @@ class CreatePalpitesTable extends Migration
     public function up()
     {
         Schema::create('palpites', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->bigInteger('id_bolao')->unsigned();
             $table->bigInteger('id_partida')->unsigned();

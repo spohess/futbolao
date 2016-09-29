@@ -13,6 +13,7 @@ class CreateUsuarioBolaosTable extends Migration
     public function up()
     {
         Schema::create('usuarios_boloes', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->bigInteger('id_usuario')->unsigned();
             $table->bigInteger('id_bolao')->unsigned();

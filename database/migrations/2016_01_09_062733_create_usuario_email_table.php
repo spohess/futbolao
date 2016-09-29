@@ -13,6 +13,7 @@ class CreateUsuarioEmailTable extends Migration
     public function up()
     {
         Schema::create('usuarios_novo_email', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->bigInteger('id_usuario')->unsigned();
             $table->string('novo_email');

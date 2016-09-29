@@ -13,6 +13,7 @@ class CreatePartidasTable extends Migration
     public function up()
     {
         Schema::create('partidas', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->bigInteger('id_competicao')->unsigned();
             $table->boolean('penalti')->default(false);

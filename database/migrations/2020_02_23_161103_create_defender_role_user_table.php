@@ -11,6 +11,7 @@ class CreateDefenderRoleUserTable extends Migration
     public function up()
     {
         Schema::create(config('defender.role_user_table', 'role_user'), function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on(config('auth.table', 'usuarios'))->onDelete('cascade');
 

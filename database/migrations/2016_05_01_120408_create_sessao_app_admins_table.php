@@ -13,6 +13,7 @@ class CreateSessaoAppAdminsTable extends Migration
     public function up()
     {
         Schema::create('sessao_app_admins', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigInteger('id');
             $table->string('usuario');
             $table->string('senha');

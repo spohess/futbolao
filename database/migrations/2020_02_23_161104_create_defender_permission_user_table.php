@@ -11,6 +11,7 @@ class CreateDefenderPermissionUserTable extends Migration
     public function up()
     {
         Schema::create(config('defender.permission_user_table', 'permission_user'), function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on(config('auth.table', 'users'))->onDelete('cascade');
 
