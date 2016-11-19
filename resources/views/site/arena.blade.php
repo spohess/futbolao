@@ -8,15 +8,15 @@ Arena
 <div class="container" ng-init="onLoadArena()">
     <div class="row">
         <div class="col-xs-24">
-            <div class="alert alert-danger">
+            <div class="alert alert-info">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="text-center">Devido a um erro no site alguns palpites estavam sendo duplicados e computados indevidamente. O erro foi encontrado e reportado por alguns participantes e graças a eles o problema foi corrigido.</h4>
+                <h4 class="text-center">O Brasileirão está na reta final e poderei aproveitar o fim da temporada para aplicar algumas correções e fazer algumas melhorias, muitas dessas corrções e melhorias foram apontadas por vocês que utilizaram. Então preciso deixar o meu muito obrigado pela ajuda de cada um de vocês, foi de inmensa valia e fará o site ficar melhor.</h4>
                 <hr>
-                <h4 class="text-center"><strong>Um novo método para informá-los da gravação efetiva dos palpites está sendo desenvolvida. Até lá, após gravarem seus palpites, atualizem a página e acessem seus palpites novamente para certificar que eles foram gravados. Se perceberem que os seus palpites não estão sendo gravados entrem em contato e, nesses casos, podem enviar seus palpites que não estão sendo gravados por e-mail que adicionaremos nos calculos manualmente.</strong></h4>
+                <h4 class="text-center">Com as melhorias, principalmente na parte de manutenção das partidas e campeonato, pretendo disponibilizar mais campeonatos, sendo assim espero que voltem ano que vem.</h4>
                 <hr>
-                <h4 class="text-right">Obrigado pela compreensão e ajuda de todos!</h4>
+                <h4 class="text-right">Boas festas a todos e muito obrigado!</h4>
             </div>
         </div>
     </div>
