@@ -16,6 +16,8 @@ Arena
                 <hr>
                 <h4 class="text-center">Com as melhorias, principalmente na parte de manutenção das partidas e campeonato, pretendo disponibilizar mais campeonatos, sendo assim espero que voltem ano que vem.</h4>
                 <hr>
+                <h4 class="text-center">Lembrando que qualquer coisa que tenham a dizer podem enviar e-mail para a conta: contato@futbolao.com</h4>
+                <hr>
                 <h4 class="text-right">Boas festas a todos e muito obrigado!</h4>
             </div>
         </div>
