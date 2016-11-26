@@ -6,22 +6,6 @@ Arena
 
 @section('conteudo')
 <div class="container" ng-init="onLoadArena()">
-    <div class="row">
-        <div class="col-xs-24">
-            <div class="alert alert-info">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="text-center">O Brasileirão está na reta final e poderei aproveitar o fim da temporada para aplicar algumas correções e fazer algumas melhorias, muitas dessas corrções e melhorias foram apontadas por vocês que utilizaram. Então preciso deixar o meu muito obrigado pela ajuda de cada um de vocês, foi de inmensa valia e fará o site ficar melhor.</h4>
-                <hr>
-                <h4 class="text-center">Com as melhorias, principalmente na parte de manutenção das partidas e campeonato, pretendo disponibilizar mais campeonatos, sendo assim espero que voltem ano que vem.</h4>
-                <hr>
-                <h4 class="text-center">Lembrando que qualquer coisa que tenham a dizer podem enviar e-mail para a conta: contato@futbolao.com</h4>
-                <hr>
-                <h4 class="text-right">Boas festas a todos e muito obrigado!</h4>
-            </div>
-        </div>
-    </div>
     <div class="area-usuario">
         <div class="row">
             <div class="col-xs-12 col-sm-3">
@@ -42,6 +26,12 @@ Arena
                                 <td>Participação em bolões</td>
                                 <td>{{$participacaoBolao}}</td>
                             </tr>
+                            @if ($palpitesPendentesQtd > 0)
+                            <tr class="alert alert-danger">
+                                <td><span class="btn btn-link" data-toggle="modal" data-target="#mdListaPalpitesPendentes">Palpites pendentes</span></td>
+                                <td><span class="badge">{{$palpitesPendentesQtd}}</span></td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -301,6 +291,44 @@ Arena
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="mdListaPalpitesPendentes" tabindex="-1" role="dialog" aria-labelledby="mdListaPalpitesPendentesLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mdListaPalpitesPendentesLabel">Lista de Palpites Pendêntes</h4>
+            </div>
+            <div class="modal-body">
+                @if ($palpitesPendentesQtd == 0)
+                <div class="alert alert-danger">
+                    <div>Não há palpites pendentes</div>
+                </div>
+                @else
+                    @foreach ($palpitesPendentes as $palpite)
+                        <div class="row">
+                            <div class="col-xs-24">
+                                <h4 class="text-center">Bolão: <strong>{{$palpite->bolao}}</strong></h4>
+                            </div>
+                            <div class="col-xs-24">
+                                <div class="alert alert-warning">
+                                    <div class="row">
+                                        <div class="col-xs-24 col-md-11 text-center"><h3 class="sem-margin">{{$palpite->equipe_casa}}</h3></div>
+                                        <div class="col-xs-24 col-md-2 text-center"><h3 class="sem-margin">X</h3></div>
+                                        <div class="col-xs-24 col-md-11 text-center"><h3 class="sem-margin">{{$palpite->equipe_visitante}}</h3></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>

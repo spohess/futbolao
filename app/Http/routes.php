@@ -134,7 +134,6 @@ Route::group(['prefix' => '/ws'], function () {
     Route::get('/partidas_rodada/{idCompeticao}/{rodada}', 'WebServiceController@getPartidasRodada')->where('idCompeticao', '[0-9]+');
 });
 
-
 Route::group(['prefix' => '/api', 'middleware' => 'allowOriginMiddleware'], function () {
     Route::get('/rank_usuarios', 'WebServiceController@getRankUsuarios');
 });

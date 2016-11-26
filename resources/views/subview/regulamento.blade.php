@@ -100,7 +100,7 @@
                                             <li>Placar: Mandante 1 x 7 Visitante</li>
                                         </ul>
                                     </li>
-                                    <li><strong><span class="text-primary">(50 Pontos)</span> Placar do goleador:</strong> Será premiado com essa pontuação o participante que acertar o número exato de gols de uma equipe que <strong>APLICAR</strong> uma goleada com diferença de <strong class="text-primary">4 gols</strong>;
+                                    <li><strong><span class="text-primary">(50 Pontos)</span> Placar do goleador:</strong> Será premiado com essa pontuação o participante que acertar o número exato de gols de uma equipe que <strong>APLICAR</strong> uma goleada com mais de <strong class="text-primary">4 gols</strong>;
                                         <ul>
                                             <li><strong>Exemplo</strong></li>
                                             <li>Palpite: <span class="exp-danger">Mandante 3</span> x <span class="exp-success">5 Visitante</span></li>
