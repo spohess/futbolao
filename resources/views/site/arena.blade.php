@@ -28,7 +28,7 @@ Arena
                             </tr>
                             @if ($palpitesPendentesQtd > 0)
                             <tr class="alert alert-danger">
-                                <td><span class="btn btn-link" data-toggle="modal" data-target="#mdListaPalpitesPendentes">Palpites pendentes</span></td>
+                                <td><span class="btn btn-link" data-toggle="modal" data-target="#mdListaPalpitesPendentes">Palpites pendêntes</span></td>
                                 <td><span class="badge">{{$palpitesPendentesQtd}}</span></td>
                             </tr>
                             @endif
@@ -308,7 +308,7 @@ Arena
             <div class="modal-body">
                 @if ($palpitesPendentesQtd == 0)
                 <div class="alert alert-danger">
-                    <div>Não há palpites pendentes</div>
+                    <div>Não há palpites pendêntes</div>
                 </div>
                 @else
                     @foreach ($palpitesPendentes as $palpite)
