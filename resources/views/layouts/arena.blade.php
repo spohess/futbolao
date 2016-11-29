@@ -39,6 +39,7 @@
                             <li><a href="{{url('/palpite/ponto')}}">Pontuação</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+                            <li class="badge-icon"><a href="" data-toggle="modal" data-target="#mdNotificacoes"><span class="badge">@{{mensagensQtd}}</span><i class="fa fa-inbox fa-2x" aria-hidden="true"></i></a></li>
                             <li><a href="{{url('/regulamento')}}">Regulamento</a></li>
                             @is('admin')
                             <li><a href="{{url('/admin')}}">Admin</a></li>
@@ -72,6 +73,35 @@
     </div>
 
     <div id="modais-sistema">
+        <div class="modal fade" id="mdNotificacoes" tabindex="-1" role="dialog" aria-labelledby="mdNotificacoesLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header modal-primary">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="mdNotificacoesLabel">Notificações</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div ng-repeat="mensagem in listaMensagem">
+                            <div class="alert alert-@{{mensagem.alert}}">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">Deletar</span>
+                                </button>
+                                <div>
+                                    <h3 class="sem-margin"><span class="label label-@{{mensagem.alert}}">@{{mensagem.titulo}}</span></h3>
+                                </div>
+                                <div class="text-justify">
+                                    <hr>
+                                    @{{mensagem.mensagem}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         @yield('modais-sistema')
     </div>
 

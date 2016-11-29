@@ -19,6 +19,7 @@ function fnSistemaController($scope, $http) {
 
         $scope.getUsuarioBolao();
         $scope.getTodosBoloes();
+        $scope.getNotificacoes();
     }
 
     $scope.getUsuarioBolao = function(){
@@ -270,7 +271,6 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.outrosPalpites = function(palpite){
-        console.info(palpite);
         $scope.detalhePalpite = palpite;
         $http.get('/palpite/palpites_usuarios/' + $scope.palpite.id_bolao + '/' + palpite.id_partida)
         .success(function(dados){
@@ -279,6 +279,23 @@ function fnSistemaController($scope, $http) {
             if(dados.length == 0){
                 angular.element("#listaVazia_" + palpite.id_partida).show();
             }
+        });
+    }
+
+    $scope.getNotificacoes = function(){
+        $http.get('/ws/mensagens/')
+        .success(function(dados){
+
+            var quantidade = 0;
+            angular.forEach(dados, function(valor) {
+                if(!valor.lido){
+                    quantidade++;
+                }
+            });
+            $scope.mensagensQtd = quantidade;
+
+            $scope.listaMensagem = dados;
+            console.info(dados);
         });
     }
 }

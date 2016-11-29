@@ -127,3 +127,20 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 }
+
+.badge-icon {
+
+    a {
+        position: relative;
+        padding: 10px !important;
+        padding-bottom: 0 !important;
+
+        .badge {
+            position: absolute;
+            right: -5px;
+            top: 3px;
+            background-color: $cor-secundaria;
+            border: 2px solid $cor-primaria;
+        }
+    }
+}

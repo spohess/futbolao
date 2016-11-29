@@ -8,7 +8,7 @@ use App\Models\Competicao;
 use App\Models\Equipe;
 use App\Models\Estadio;
 use App\Models\Partida;
-use App\Models\Usuario;
+use Auth;
 use DB;
 
 class WebServiceController extends Controller
@@ -139,5 +139,27 @@ class WebServiceController extends Controller
     {
         $usuario = DB::select("SELECT  u.login, FORMAT(AVG(ub.pontos), 0) AS pontos FROM usuarios u JOIN usuarios_boloes ub ON u.id = ub.id_usuario WHERE u.deleted_at IS NULL GROUP BY u.login ORDER BY AVG(ub.pontos) DESC");
         return $usuario;
+    }
+
+    public function getMensagens()
+    {
+        $usuario = Auth::user();
+        $mensagens = DB::select('SELECT m.*, um.id_usuario FROM mensagens m LEFT JOIN (SELECT * FROM usuarios_mensagens ui WHERE ui.id_usuario = ?) um ON m.id = um.id_mensagem', [$usuario->id]);
+
+        $litaMensagens = [];
+
+        foreach ($mensagens as $mensagem) {
+            $dados = [
+                'id' => $mensagem->id,
+                'titulo' => $mensagem->titulo,
+                'mensagem' => $mensagem->mensagem,
+                'alert' => $mensagem->tipo,
+                'lido' => is_null($mensagem->id_usuario) ? false : true,
+            ];
+
+            array_push($litaMensagens, $dados);
+        }
+
+        return $litaMensagens;
     }
 }

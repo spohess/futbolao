@@ -124,6 +124,7 @@ Route::group(['prefix' => '/getapp'], function () {
  */
 Route::group(['prefix' => '/ws'], function () {
     Route::get('/gettoken', 'WebServiceController@getToken');
+    Route::get('/mensagens', 'WebServiceController@getMensagens');
     Route::get('/competicoes', 'WebServiceController@getCompeticoes');
     Route::get('/estadios', 'WebServiceController@getEstadios');
     Route::get('/equipes', 'WebServiceController@getEquipes');

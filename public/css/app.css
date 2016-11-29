@@ -130,6 +130,20 @@ h6 .texto-destaque {
   border: 8px solid #5cb85c;
 }
 
+.badge-icon a {
+  position: relative;
+  padding: 10px !important;
+  padding-bottom: 0 !important;
+}
+
+.badge-icon a .badge {
+  position: absolute;
+  right: -5px;
+  top: 3px;
+  background-color: #a61d00;
+  border: 2px solid #f68200;
+}
+
 header.hd-principal {
   position: relative;
   border-top: 7rem solid #a61d00;
