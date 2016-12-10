@@ -26,12 +26,6 @@ Arena
                                 <td>Participação em bolões</td>
                                 <td>{{$participacaoBolao}}</td>
                             </tr>
-                            @if ($palpitesPendentesQtd > 0)
-                            <tr class="alert alert-danger">
-                                <td><span class="btn btn-link" data-toggle="modal" data-target="#mdListaPalpitesPendentes">Palpites pendêntes</span></td>
-                                <td><span class="badge">{{$palpitesPendentesQtd}}</span></td>
-                            </tr>
-                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -43,6 +37,12 @@ Arena
                         <input type="hidden" ng-model="listaConvites" ng-init="listaConvites='{{$listaConvites}}'">
                         <div class="btn btn-link" ng-click="mostraListaConvitePendente()">Convites pendêntes</div>
                     </li>
+                    @if ($palpitesPendentesQtd > 0)
+                    <li class="list-group-item list-group-item-danger">
+                        <span class="badge">{{$palpitesPendentesQtd}}</span>
+                        <div><span class="btn btn-link" data-toggle="modal" data-target="#mdListaPalpitesPendentes">Palpites pendêntes</span></div>
+                    </li>
+                    @endif
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-4 menu-perfil">
