@@ -75,6 +75,10 @@ Route::group(['prefix' => '/usuario', 'middleware' => 'auth'], function () {
     Route::put('/avatar', 'UsuarioDesignController@putAvatar');
 });
 
+Route::group(['prefix' => '/mensagem', 'middleware' => 'auth'], function () {
+    Route::post('/arquiva/{idMensagem}', 'MensagemController@arquivaMensagem')->where('idMensagem', '[0-9]+');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Admin

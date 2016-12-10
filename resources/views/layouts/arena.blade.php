@@ -82,9 +82,9 @@
                     </div>
                     <div class="modal-body">
                         <div ng-repeat="mensagem in listaMensagem">
-                            <div class="alert alert-@{{mensagem.alert}}">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">Deletar</span>
+                            <div class="alert alert-@{{mensagem.alert}}" id="mensagem-@{{mensagem.id}}">
+                                <button type="button" class="close" aria-label="Close" ng-click="arquivaMensagem(mensagem)">
+                                    <span aria-hidden="true"><i class="fa fa-trash" aria-hidden="true"></i></span>
                                 </button>
                                 <div>
                                     <h3 class="sem-margin"><span class="label label-@{{mensagem.alert}}">@{{mensagem.titulo}}</span></h3>

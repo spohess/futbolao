@@ -293,11 +293,20 @@ function fnSistemaController($scope, $http) {
                 }
             });
             $scope.mensagensQtd = quantidade;
-
             $scope.listaMensagem = dados;
-            console.info(dados);
         });
     }
+
+    $scope.arquivaMensagem = function(mensagem){
+        $http.post('/mensagem/arquiva/' + mensagem.id)
+        .success(function(dados){
+            if( dados.estado === 'sucesso' ){
+                $scope.mensagensQtd = $scope.mensagensQtd - 1;
+                angular.element("#mensagem-" + mensagem.id).alert("close");
+            }
+        });
+    }
+
 }
 fnSistemaController.$inject = ['$scope', '$http'];
 angular.module('app').controller('sistemaController', fnSistemaController);
