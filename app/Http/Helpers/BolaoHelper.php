@@ -101,7 +101,7 @@ class BolaoHelper
             array_push($dadosParticipante, $dados);
         }
         // return $dadosParticipante;
-        return array_values(Collection::make($dadosParticipante)->sortByDesc(function($array){
+        return array_values(Collection::make($dadosParticipante)->sortByDesc(function ($array) {
             return $array['pontos'];
         })->all());
     }

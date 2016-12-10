@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bolao;
 use App\Models\Competicao;
 use App\Models\Equipe;
 use App\Models\EquipeCompeticao;
@@ -100,8 +101,12 @@ class AdminController extends Controller
     {
         $competicao = Competicao::find($id);
         $equipeCompeticao = EquipeCompeticao::where('id_competicao', $id);
+        $bolao = Bolao::where('id_competicao', $id);
+        $partida = Partida::where('id_competicao', $id);
         $competicao->delete();
         $equipeCompeticao->delete();
+        $bolao->delete();
+        $partida->delete();
     }
 
     public function savePartida(Request $request)
