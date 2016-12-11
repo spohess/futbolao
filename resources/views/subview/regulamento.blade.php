@@ -39,21 +39,21 @@
                             <li class="mb-sm">
                                 <h4 class="sem-margin text-secundary"><strong>Tempo Normal</strong></h4>
                                 <ul>
-                                    <li><strong><span class="text-primary">(50 Pontos)</span> Placar exato:</strong> O participante que acertar o placar da partida receberá essa pontuação;
+                                    <li><strong><span class="text-primary">(5 Pontos)</span> Placar exato:</strong> O participante que acertar o placar da partida receberá essa pontuação;
                                         <ul>
                                             <li><strong>Exemplo</strong></li>
                                             <li>Palpite: <span class="exp-success">Mandante 2</span> x <span class="exp-success">1 Visitante</span></li>
                                             <li>Placar: Mandante 2 x 1 Visitante</li>
                                         </ul>
                                     </li>
-                                    <li><strong><span class="text-primary">(30 Pontos)</span> Placar de um lado:</strong> Levará esses pontos o participante que acertar número de gols de uma das equipes;
+                                    <li><strong><span class="text-primary">(3 Pontos)</span> Placar de um lado:</strong> Levará esses pontos o participante que acertar número de gols de uma das equipes;
                                         <ul>
                                             <li><strong>Exemplo</strong></li>
                                             <li>Palpite: <span class="exp-danger">Mandante 1</span> x <span class="exp-success">2 Visitante</span></li>
                                             <li>Placar: Mandante 4 x 2 Visitante</li>
                                         </ul>
                                     </li>
-                                    <li><strong><span class="text-primary">(15 Pontos)</span> Vencedor/Empate:</strong> Será pontuado com esse valor o participante que acertar o resultado (vencedor ou empate) da partida;
+                                    <li><strong><span class="text-primary">(2 Pontos)</span> Vencedor/Empate:</strong> Será pontuado com esse valor o participante que acertar o resultado (vencedor ou empate) da partida;
                                         <ul>
                                             <li><strong>Exemplo</strong></li>
                                             <li>Palpite: <span class="exp-success">Mandante</span> <span class="exp-danger">3</span> x <span class="exp-danger">1</span> <span class="exp-success">Visitante</span></li>
@@ -66,21 +66,21 @@
                                 <h4 class="sem-margin text-secundary"><strong>Disputa de Pênaltis</strong></h4>
                                 <ul>
                                     <li class="alert alert-danger sem-margin"><strong>ATENÇÃO:</strong> A pontuação dos pênaltis <strong>NÃO</strong> é somada à pontuação do <strong>Tempo Normal</strong>, pontuação de Tempo Normal será <strong>IGNORADA</strong> para dar contagem para a pontuação de pênaltis. O palpite dos pênaltis <strong>NÃO</strong> é obrigatório</li>
-                                    <li><strong><span class="text-primary">(80 Pontos)</span> Conversões exatas:</strong> O participante que acertar exatamente as conversões de pênalti para ambos os lados;
+                                    <li><strong><span class="text-primary">(8 Pontos)</span> Conversões exatas:</strong> O participante que acertar exatamente as conversões de pênalti para ambos os lados;
                                         <ul>
                                             <li><strong>Exemplo</strong></li>
                                             <li>Palpite: <span class="exp-success">Mandante 3</span> x <span class="exp-success">2 Visitante</span></li>
                                             <li>Placar: Mandante 3 x 2 Visitante</li>
                                         </ul>
                                     </li>
-                                    <li><strong><span class="text-primary">(50 Pontos)</span> Conversões de um lado:</strong> Pontos dados para o participante que acertar as conversões de uma das equipes;
+                                    <li><strong><span class="text-primary">(5 Pontos)</span> Conversões de um lado:</strong> Pontos dados para o participante que acertar as conversões de uma das equipes;
                                         <ul>
                                             <li><strong>Exemplo</strong></li>
                                             <li>Palpite: <span class="exp-danger">Mandante 2</span> x <span class="exp-success">3 Visitante</span></li>
                                             <li>Placar: Mandante 1 x 3 Visitante</li>
                                         </ul>
                                     </li>
-                                    <li><strong><span class="text-primary">(30 Pontos)</span> Vencedor:</strong> Será pontuado com esse valor o participante que acertar quem será o vencedor da disputa de pênaltis;
+                                    <li><strong><span class="text-primary">(4 Pontos)</span> Vencedor:</strong> Será pontuado com esse valor o participante que acertar quem será o vencedor da disputa de pênaltis;
                                         <ul>
                                             <li><strong>Exemplo</strong></li>
                                             <li>Palpite: <span class="exp-success">Mandante</span> <span class="exp-danger">3</span> x <span class="exp-danger">2</span> <span class="exp-success">Visitante</span></li>
@@ -93,17 +93,17 @@
                                 <h4 class="sem-margin text-secundary"><strong>Pontuação Especial</strong></h4>
                                 <ul>
                                     <li class="alert alert-danger sem-margin"><strong>ATENÇÃO:</strong> A pontuação especial só é válida para placar de <strong>Tempo Normal</strong></li>
-                                    <li><strong><span class="text-primary">(70 Pontos)</span> Goleada exata:</strong> O participante que acertar exatamente o placar de uma goleada com diferença de <strong class="text-primary">4 gols</strong>;
+                                    <li><strong><span class="text-primary">(7 Pontos)</span> Goleada exata:</strong> O participante que acertar exatamente o placar de uma goleada com diferença de <strong class="text-primary">4 gols</strong>;
                                         <ul>
                                             <li><strong>Exemplo</strong></li>
                                             <li>Palpite: <span class="exp-success">Mandante 1</span> x <span class="exp-success">7 Visitante</span></li>
                                             <li>Placar: Mandante 1 x 7 Visitante</li>
                                         </ul>
                                     </li>
-                                    <li><strong><span class="text-primary">(50 Pontos)</span> Placar do goleador:</strong> Será premiado com essa pontuação o participante que acertar o número exato de gols de uma equipe que <strong>APLICAR</strong> uma goleada com mais de <strong class="text-primary">4 gols</strong>;
+                                    <li><strong><span class="text-primary">(5 Pontos)</span> Placar do goleador:</strong> Será premiado com essa pontuação o participante que acertar o número exato de gols de uma equipe que <strong>APLICAR</strong> uma goleada com mais de <strong class="text-primary">4 gols</strong>;
                                         <ul>
                                             <li><strong>Exemplo</strong></li>
-                                            <li>Palpite: <span class="exp-danger">Mandante 3</span> x <span class="exp-success">5 Visitante</span></li>
+                                            <li>Palpite: <span class="exp-danger">Mandante 0</span> x <span class="exp-success">5 Visitante</span></li>
                                             <li>Placar: Mandante 1 x 5 Visitante</li>
                                         </ul>
                                     </li>

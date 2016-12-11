@@ -45,18 +45,41 @@ class PontuacaoCalcula extends Command
         Log::info('#######################################################');
         Log::info('Início da atualização dos resultados');
         Log::info('-------------------------------------------------------');
+
         $partidas = DB::select("SELECT  p.* FROM partidas p LEFT OUTER JOIN partidas_processadas pp ON p.id = pp.id_partida WHERE pp.id IS NULL AND p.gravado = 'GRAVADO' ORDER BY p.id");
+
         foreach ($partidas as $partida) {
+
             Log::info('Partida: ' . $partida->id);
+
             $palpites = Palpite::where('id_partida', $partida->id)->get();
-            $cinquentaPontos = $palpites->filter(function ($item) use ($partida) {
+
+            $setePontos = $palpites->filter(function ($item) use ($partida) {
+                if (($item->placar_casa - $item->placar_visitante) >= 4 || ($item->placar_visitante - $item->placar_casa) >= 4) {
+                    if ($item->placar_casa === $partida->placar_casa && $item->placar_visitante === $partida->placar_visitante) {
+                        return $item;
+                    }
+                }
+                return false;
+            });
+
+            $cincoPontos = $palpites->filter(function ($item) use ($partida, $setePontos) {
+                if ($setePontos->contains('id', $item->id)) {
+                    return false;
+                }
+                if (($item->placar_casa - $item->placar_visitante) >= 4 || ($item->placar_visitante - $item->placar_casa) >= 4) {
+                    if ($item->placar_casa === $partida->placar_casa || $item->placar_visitante === $partida->placar_visitante) {
+                        return $item;
+                    }
+                }
                 if ($item->placar_casa === $partida->placar_casa && $item->placar_visitante === $partida->placar_visitante) {
                     return $item;
                 }
                 return false;
             });
-            $trintaPontos = $palpites->filter(function ($item) use ($partida, $cinquentaPontos) {
-                if ($cinquentaPontos->contains('id', $item->id)) {
+
+            $tresPontos = $palpites->filter(function ($item) use ($partida, $cincoPontos) {
+                if ($cincoPontos->contains('id', $item->id)) {
                     return false;
                 }
                 if ($item->placar_casa === $partida->placar_casa || $item->placar_visitante === $partida->placar_visitante) {
@@ -64,11 +87,12 @@ class PontuacaoCalcula extends Command
                 }
                 return false;
             });
-            $quinzePontos = $palpites->filter(function ($item) use ($partida, $cinquentaPontos, $trintaPontos) {
-                if ($cinquentaPontos->contains('id', $item->id)) {
+
+            $doisPontos = $palpites->filter(function ($item) use ($partida, $cincoPontos, $tresPontos) {
+                if ($cincoPontos->contains('id', $item->id)) {
                     return false;
                 }
-                if ($trintaPontos->contains('id', $item->id)) {
+                if ($tresPontos->contains('id', $item->id)) {
                     return false;
                 }
                 if ($item->placar_casa > $item->placar_visitante && $partida->placar_casa > $partida->placar_visitante) {
@@ -85,15 +109,20 @@ class PontuacaoCalcula extends Command
                 return false;
             });
 
-            $cinquentaPontos->each(function ($item) {
-                $item->update(['pontos' => 50]);
+            $setePontos->each(function ($item) {
+                $item->update(['pontos' => 7]);
             });
-            $trintaPontos->each(function ($item) {
-                $item->update(['pontos' => 30]);
+            $cincoPontos->each(function ($item) {
+                $item->update(['pontos' => 5]);
             });
-            $quinzePontos->each(function ($item) {
-                $item->update(['pontos' => 15]);
+            $tresPontos->each(function ($item) {
+                $item->update(['pontos' => 3]);
             });
+            $doisPontos->each(function ($item) {
+                $item->update(['pontos' => 2]);
+            });
+
+        }
 
             $partidaProcessada = new PartidaProcessada;
             $partidaProcessada->id_partida = $partida->id;
@@ -106,6 +135,7 @@ class PontuacaoCalcula extends Command
             Log::info('Atualizando pontuação dos usuários');
             $this->atualizaPontuacaoUsuarios($palpites);
         }
+
         Log::info('Finalizado');
         Log::info('#######################################################');
     }
@@ -114,7 +144,7 @@ class PontuacaoCalcula extends Command
     {
         $palpites->each(function ($palpite) {
             $usuarioBolao = UsuarioBolao::where("id_usuario", $palpite->id_usuario)->where("id_bolao", $palpite->id_bolao)->first();
-            if(!empty($usuarioBolao)){
+            if (!empty($usuarioBolao)) {
                 Log::info('Usuário: ' . $usuarioBolao->id_usuario);
                 $usuarioBolao->pontos += $palpite->pontos;
                 $usuarioBolao->save();
