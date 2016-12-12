@@ -46,7 +46,7 @@ class PontuacaoCalcula extends Command
         Log::info('Início da atualização dos resultados');
         Log::info('-------------------------------------------------------');
 
-        $partidas = DB::select("SELECT  p.* FROM partidas p LEFT OUTER JOIN partidas_processadas pp ON p.id = pp.id_partida WHERE pp.id IS NULL AND p.gravado = 'GRAVADO' AND p.deleted_at IS NULL ORDER BY p.id");
+        $partidas = DB::select("SELECT p.* FROM partidas p LEFT OUTER JOIN partidas_processadas pp ON p.id = pp.id_partida WHERE pp.id IS NULL AND p.gravado = 'GRAVADO' AND p.deleted_at IS NULL ORDER BY p.id");
 
         foreach ($partidas as $partida) {
 
