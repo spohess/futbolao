@@ -122,8 +122,6 @@ class PontuacaoCalcula extends Command
                 $item->update(['pontos' => 2]);
             });
 
-        }
-
             $partidaProcessada = new PartidaProcessada;
             $partidaProcessada->id_partida = $partida->id;
             $partidaProcessada->quantidade_palpites = $palpites->count();
