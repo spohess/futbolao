@@ -80,9 +80,13 @@ class PalpiteController extends Controller
         $palpite->id_partida = $request->id_partida;
         $palpite->id_usuario = Auth::user()->id;
         $palpite->placar_casa = $request->palpite_casa;
-        $palpite->penalti_casa = $request->palpite_penalti_casa;
         $palpite->placar_visitante = $request->palpite_visitante;
-        $palpite->penalti_visitante = $request->palpite_penalti_visitante;
+
+        $partida = Partida::find($request->id_partida);
+        if ($partida->penalti) {
+            $palpite->penalti_casa = $request->palpite_penalti_casa;
+            $palpite->penalti_visitante = $request->palpite_penalti_visitante;
+        }
 
         if ($palpite->save()) {
             $dados = [

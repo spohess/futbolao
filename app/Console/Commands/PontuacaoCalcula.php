@@ -50,92 +50,171 @@ class PontuacaoCalcula extends Command
 
         foreach ($partidas as $partida) {
 
-            Log::info('Partida: ' . $partida->id);
+            $this->contabilizaPlacarPenalti($partida);
+            $this->contabilizaPlacarRegular($partida);
 
-            $palpites = Palpite::where('id_partida', $partida->id)->get();
-
-            $setePontos = $palpites->filter(function ($item) use ($partida) {
-                if (($item->placar_casa - $item->placar_visitante) >= 4 || ($item->placar_visitante - $item->placar_casa) >= 4) {
-                    if ($item->placar_casa === $partida->placar_casa && $item->placar_visitante === $partida->placar_visitante) {
-                        return $item;
-                    }
-                }
-                return false;
-            });
-
-            $cincoPontos = $palpites->filter(function ($item) use ($partida, $setePontos) {
-                if ($setePontos->contains('id', $item->id)) {
-                    return false;
-                }
-                if (($item->placar_casa - $item->placar_visitante) >= 4 || ($item->placar_visitante - $item->placar_casa) >= 4) {
-                    if ($item->placar_casa === $partida->placar_casa || $item->placar_visitante === $partida->placar_visitante) {
-                        return $item;
-                    }
-                }
-                if ($item->placar_casa === $partida->placar_casa && $item->placar_visitante === $partida->placar_visitante) {
-                    return $item;
-                }
-                return false;
-            });
-
-            $tresPontos = $palpites->filter(function ($item) use ($partida, $cincoPontos) {
-                if ($cincoPontos->contains('id', $item->id)) {
-                    return false;
-                }
-                if ($item->placar_casa === $partida->placar_casa || $item->placar_visitante === $partida->placar_visitante) {
-                    return $item;
-                }
-                return false;
-            });
-
-            $doisPontos = $palpites->filter(function ($item) use ($partida, $cincoPontos, $tresPontos) {
-                if ($cincoPontos->contains('id', $item->id)) {
-                    return false;
-                }
-                if ($tresPontos->contains('id', $item->id)) {
-                    return false;
-                }
-                if ($item->placar_casa > $item->placar_visitante && $partida->placar_casa > $partida->placar_visitante) {
-                    return $item;
-                }
-
-                if ($item->placar_casa < $item->placar_visitante && $partida->placar_casa < $partida->placar_visitante) {
-                    return $item;
-                }
-
-                if ($item->placar_casa === $item->placar_visitante && $partida->placar_casa === $partida->placar_visitante) {
-                    return $item;
-                }
-                return false;
-            });
-
-            $setePontos->each(function ($item) {
-                $item->update(['pontos' => 7]);
-            });
-            $cincoPontos->each(function ($item) {
-                $item->update(['pontos' => 5]);
-            });
-            $tresPontos->each(function ($item) {
-                $item->update(['pontos' => 3]);
-            });
-            $doisPontos->each(function ($item) {
-                $item->update(['pontos' => 2]);
-            });
-
-            $partidaProcessada = new PartidaProcessada;
-            $partidaProcessada->id_partida = $partida->id;
-            $partidaProcessada->quantidade_palpites = $palpites->count();
-            $partidaProcessada->save();
-
-            Log::info('Fim da atualização dos resultados');
-            Log::info('=======================================================');
-
-            Log::info('Atualizando pontuação dos usuários');
-            $this->atualizaPontuacaoUsuarios($palpites);
         }
 
         Log::info('Finalizado');
         Log::info('#######################################################');
+    }
+
+    private function contabilizaPlacarRegular($partida)
+    {
+        Log::info('Partida: ' . $partida->id);
+
+        $palpites = Palpite::where('id_partida', $partida->id)->where('penalti_casa', null)->where('penalti_visitante', null)->get();
+
+        $setePontos = $palpites->filter(function ($item) use ($partida) {
+            if (($item->placar_casa - $item->placar_visitante) >= 4 || ($item->placar_visitante - $item->placar_casa) >= 4) {
+                if ($item->placar_casa === $partida->placar_casa && $item->placar_visitante === $partida->placar_visitante) {
+                    return $item;
+                }
+            }
+            return false;
+        });
+
+        $cincoPontos = $palpites->filter(function ($item) use ($partida, $setePontos) {
+            if ($setePontos->contains('id', $item->id)) {
+                return false;
+            }
+            if (($item->placar_casa - $item->placar_visitante) >= 4 || ($item->placar_visitante - $item->placar_casa) >= 4) {
+                if ($item->placar_casa === $partida->placar_casa || $item->placar_visitante === $partida->placar_visitante) {
+                    return $item;
+                }
+            }
+            if ($item->placar_casa === $partida->placar_casa && $item->placar_visitante === $partida->placar_visitante) {
+                return $item;
+            }
+            return false;
+        });
+
+        $tresPontos = $palpites->filter(function ($item) use ($partida, $setePontos, $cincoPontos) {
+            if ($setePontos->contains('id', $item->id)) {
+                return false;
+            }
+            if ($cincoPontos->contains('id', $item->id)) {
+                return false;
+            }
+            if ($item->placar_casa === $partida->placar_casa || $item->placar_visitante === $partida->placar_visitante) {
+                return $item;
+            }
+            return false;
+        });
+
+        $doisPontos = $palpites->filter(function ($item) use ($partida, $setePontos, $cincoPontos, $tresPontos) {
+            if ($setePontos->contains('id', $item->id)) {
+                return false;
+            }
+            if ($cincoPontos->contains('id', $item->id)) {
+                return false;
+            }
+            if ($tresPontos->contains('id', $item->id)) {
+                return false;
+            }
+            if ($item->placar_casa > $item->placar_visitante && $partida->placar_casa > $partida->placar_visitante) {
+                return $item;
+            }
+
+            if ($item->placar_casa < $item->placar_visitante && $partida->placar_casa < $partida->placar_visitante) {
+                return $item;
+            }
+
+            if ($item->placar_casa === $item->placar_visitante && $partida->placar_casa === $partida->placar_visitante) {
+                return $item;
+            }
+            return false;
+        });
+
+        $setePontos->each(function ($item) {
+            $item->update(['pontos' => 7]);
+        });
+        $cincoPontos->each(function ($item) {
+            $item->update(['pontos' => 5]);
+        });
+        $tresPontos->each(function ($item) {
+            $item->update(['pontos' => 3]);
+        });
+        $doisPontos->each(function ($item) {
+            $item->update(['pontos' => 2]);
+        });
+
+        $partidaProcessada = new PartidaProcessada;
+        $partidaProcessada->id_partida = $partida->id;
+        $partidaProcessada->quantidade_palpites = $palpites->count();
+        $partidaProcessada->save();
+
+        Log::info('Fim da atualização dos resultados');
+        Log::info('=======================================================');
+
+        Log::info('Atualizando pontuação dos usuários');
+        $this->atualizaPontuacaoUsuarios($palpites);
+    }
+
+    private function contabilizaPlacarPenalti($partida)
+    {
+        Log::info('Partida Penalti: ' . $partida->id);
+
+        $palpites = Palpite::where('id_partida', $partida->id)->where('penalti_casa', '!=', null)->where('penalti_visitante', '!=', null)->get();
+
+        $oitoPontos = $palpites->filter(function ($item) use ($partida) {
+            if ($item->penalti_casa === $partida->penalti_casa && $item->penalti_visitante === $partida->penalti_visitante) {
+                return $item;
+            }
+            return false;
+        });
+
+        $cincoPontos = $palpites->filter(function ($item) use ($partida, $oitoPontos) {
+            if ($oitoPontos->contains('id', $item->id)) {
+                return false;
+            }
+            if ($item->penalti_casa === $partida->penalti_casa || $item->penalti_visitante === $partida->penalti_visitante) {
+                return $item;
+            }
+            return false;
+        });
+
+        $quatroPontos = $palpites->filter(function ($item) use ($partida, $oitoPontos, $cincoPontos) {
+            if ($oitoPontos->contains('id', $item->id)) {
+                return false;
+            }
+            if ($cincoPontos->contains('id', $item->id)) {
+                return false;
+            }
+            if ($item->penalti_casa > $item->penalti_visitante && $partida->penalti_casa > $partida->penalti_visitante) {
+                return $item;
+            }
+
+            if ($item->penalti_casa < $item->penalti_visitante && $partida->penalti_casa < $partida->penalti_visitante) {
+                return $item;
+            }
+
+            if ($item->penalti_casa === $item->penalti_visitante && $partida->penalti_casa === $partida->penalti_visitante) {
+                return $item;
+            }
+            return false;
+        });
+
+        $oitoPontos->each(function ($item) {
+            $item->update(['pontos' => 8]);
+        });
+        $cincoPontos->each(function ($item) {
+            $item->update(['pontos' => 5]);
+        });
+        $quatroPontos->each(function ($item) {
+            $item->update(['pontos' => 4]);
+        });
+
+        $partidaProcessada = new PartidaProcessada;
+        $partidaProcessada->id_partida = $partida->id;
+        $partidaProcessada->quantidade_palpites = $palpites->count();
+        $partidaProcessada->save();
+
+        Log::info('Fim da atualização dos resultados');
+        Log::info('=======================================================');
+
+        Log::info('Atualizando pontuação dos usuários');
+        $this->atualizaPontuacaoUsuarios($palpites);
     }
 
     private function atualizaPontuacaoUsuarios($palpites)
