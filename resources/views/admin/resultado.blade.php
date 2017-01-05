@@ -15,6 +15,28 @@ Resultados
                 <div>@{{avisoResultado.mensagem}}</div>
             </div>
         </div>
+        <div class="col-xs-24">
+            <h2 class="text-primary">Jogos finalizados</h2>
+            <div class="row" ng-repeat="partidaFinalizada in listaPartidasFinalizadas">
+                <hr>
+                <div class="box-resultado clearfix" id="box-resultado-@{{partidaFinalizada.id}}" ng-class="(partidaFinalizada.gravado == 'GRAVADO') ? 'inserido' : ''">
+                    <input type="hidden" name="id" ng-model="partidaFinalizada.id" value="@{{partidaFinalizada.id}}">
+                    <input type="hidden" name="_token" ng-model="partidaFinalizada._token" ng-init="partidaFinalizada._token='{{csrf_token()}}'">
+                    <div class="col-xs-24 text-center"><h3>@{{partidaFinalizada.data_partida_ft}}</h3></div>
+                    <div class="col-xs-24 col-md-5 text-center"><p>@{{partidaFinalizada.equipe_casa_apelido}}</p></div>
+                    <div class="col-xs-24 col-md-3"><input type="text" name="placar_casa" value="@{{partidaFinalizada.placar_casa}}" ng-model="partidaFinalizada.placar_casa" class="form-control input-sm text-center" placeholder="Placar"></div>
+                    <div class="col-xs-24 col-md-3"><input type="text" name="penalti_casa" value="@{{partidaFinalizada.penalti_casa}}" ng-model="partidaFinalizada.penalti_casa" class="form-control input-sm text-center" placeholder="Pênalti" ng-disabled="!partidaFinalizada.penalti"></div>
+                    <div class="col-xs-24 col-md-1 text-center"><i class="fa fa-times fa-2x"></i></div>
+                    <div class="col-xs-24 col-md-3"><input type="text" name="penalti_visitante" value="@{{partidaFinalizada.penalti_visitante}}" ng-model="partidaFinalizada.penalti_visitante" class="form-control input-sm text-center" placeholder="Pênalti" ng-disabled="!partidaFinalizada.penalti"></div>
+                    <div class="col-xs-24 col-md-3"><input type="text" name="placar_visitante" value="@{{partidaFinalizada.placar_visitante}}" ng-model="partidaFinalizada.placar_visitante" class="form-control input-sm text-center" placeholder="Placar"></div>
+                    <div class="col-xs-24 col-md-5 text-center"><p>@{{partidaFinalizada.equipe_visitante_apelido}}</p></div>
+                    <div class="col-xs-24 col-md-1 text-center"><button type="button" class="btn btn-success btn-sm" ng-click="gravaResultado(partidaFinalizada)"><i class="fa fa-check"></i></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-24">
+            <hr>
+        </div>
         <div class="col-xs-24 col-md-12 col-md-offset-6">
             <form name="formSalvaResultado" method="post" accept-charset="utf-8" data-toggle="validator" role="form" ng-submit="saveResultado()">
                 <input type="hidden" name="_token" id="_token" ng-model="resultado._token" ng-init="resultado._token='{{csrf_token()}}'">

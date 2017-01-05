@@ -10,6 +10,7 @@ use App\Models\Estadio;
 use App\Models\Mensagem;
 use App\Models\Partida;
 use Auth;
+use Carbon\Carbon;
 use DB;
 
 class WebServiceController extends Controller
@@ -109,31 +110,14 @@ class WebServiceController extends Controller
 
     public function getPartidasRodada($idCompeticao, $rodada)
     {
-        $listaPartidas = [];
-        foreach (Partida::where('id_competicao', $idCompeticao)->where('rodada', $rodada)->orderBy('data_partida')->orderBy('id')->get()->all() as $partida) {
-            $dados = [
-                'id' => $partida->id,
-                'id_competicao' => $partida->id_competicao,
-                'penalti' => ($partida->penalti) ? true : false,
-                'penalti_ft' => ($partida->penalti) ? 'Sim' : 'Não',
-                'id_estadio' => $partida->id_estadio,
-                'local' => $partida->local->apelido,
-                'data_partida' => $partida->data_partida,
-                'data_partida_ft' => get_data_formatada($partida->data_partida),
-                'rodada' => $partida->rodada,
-                'id_equipe_casa' => $partida->id_equipe_casa,
-                'equipe_casa_apelido' => $partida->equipeCasa->apelido,
-                'placar_casa' => $partida->placar_casa,
-                'penalti_casa' => $partida->penalti_casa,
-                'id_equipe_visitante' => $partida->id_equipe_visitante,
-                'equipe_visitante_apelido' => $partida->equipeVisitante->apelido,
-                'placar_visitante' => $partida->placar_visitante,
-                'penalti_visitante' => $partida->penalti_visitante,
-                'gravado' => $partida->gravado,
-            ];
-            array_push($listaPartidas, $dados);
-        }
-        return $listaPartidas;
+        $partidaHelper = new PartidaHelper(Partida::where('id_competicao', $idCompeticao)->where('rodada', $rodada)->orderBy('data_partida')->orderBy('id')->get()->all());
+        return $partidaHelper->montaPartidasParaResultado();
+    }
+
+    public function getPartidasFinalizadas()
+    {
+        $partidaHelper = new PartidaHelper(Partida::where('data_partida', '<=', Carbon::now()->addMinutes(135))->where('gravado', null)->orderBy('data_partida')->orderBy('id')->get()->all());
+        return $partidaHelper->montaPartidasParaResultado();
     }
 
     public function getRankUsuarios()

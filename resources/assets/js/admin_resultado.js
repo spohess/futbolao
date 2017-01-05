@@ -1,5 +1,13 @@
 function fnSistemaController($scope, $http) {
 
+    $scope.carregaPartidasFinalizadas = function(){
+        $http.get('/ws/partidas_finalizadas')
+        .success(function(dados){
+            $scope.listaPartidasFinalizadas = dados;
+        });
+    }
+    $scope.carregaPartidasFinalizadas();
+
     $scope.getCompeticao = function(){
         $http.get('/ws/competicoes')
         .success(function(dados){
