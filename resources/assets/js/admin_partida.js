@@ -1,4 +1,4 @@
-function fnSistemaController($scope, $http) {
+function fnSistemaController($scope, $http, $filter) {
 
     $scope.getPartidas = function(){
         $http.get('/ws/partidas')
@@ -36,11 +36,14 @@ function fnSistemaController($scope, $http) {
     }
 
     $scope.savePartida = function(){
-        console.info($scope.partida.penalti);
         $http.post('/admin/save_partida', $scope.partida)
         .success(function(dados){
-            // $scope.cancelaPartida();
-            $scope.partida = [];
+
+            $scope.partida.id = [];
+            $scope.partida.id_estadio = [];
+            $scope.partida.id_equipe_casa = [];
+            $scope.partida.id_equipe_visitante = [];
+
             $scope.getPartidas();
             $scope.avisoPartida = {
                 "class":"alert-success",
@@ -77,5 +80,5 @@ function fnSistemaController($scope, $http) {
     }
 
 }
-fnSistemaController.$inject = ['$scope', '$http'];
+fnSistemaController.$inject = ['$scope', '$http', '$filter'];
 angular.module('app').controller('sistemaController', fnSistemaController);
