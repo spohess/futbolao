@@ -69,7 +69,7 @@ function fnSistemaController($scope, $http) {
         $http.delete('/admin/delete_competicao/' + competicao.id)
         .success(function(){
             angular.element("#mdConfirmaDelete").modal('hide');
-            $scope.getCopeticoes();
+            $scope.getCompeticao();
             $scope.avisoCompeticao = {
                 "class":"alert-success",
                 "mensagem":"A competição foi REMOVIDA com sucesso"
