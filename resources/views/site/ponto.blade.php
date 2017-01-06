@@ -37,7 +37,7 @@ Pontos
             <div id="listaCarregando" class="alert alert-success text-center alerta-oculto">
                 <h2 class="sem-margin"><i class="fa fa-refresh fa-spin"></i> Carregando partidas</h2>
             </div>
-            <div dir-paginate="palpite in listaPalpites | filter:filtroPartida | itemsPerPage:palpite.itemPorPagina" pagination-id="idListalistaPalpites">
+            <div dir-paginate="palpite in listaPalpites | orderBy : 'data_partida' : true | filter:filtroPartida | itemsPerPage:palpite.itemPorPagina" pagination-id="idListalistaPalpites">
                 <div class="row">
                     <div class="col-xs-24">
                         <hr>
