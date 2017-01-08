@@ -27,6 +27,10 @@ elixir(function(mix) {
 });
 
 elixir(function(mix) {
+    mix.sass('bolao.scss');
+});
+
+elixir(function(mix) {
     mix.sass('palpite.scss');
 });
 
@@ -65,7 +69,6 @@ elixir(function(mix) {
         .scripts(['auth.js'], 'public/js/all-auth.js')
         .scripts(['usuario.js'], 'public/js/all-usuario.js')
         .scripts(['arena.js'], 'public/js/all-arena.js')
-        .scripts(['palpite.js'], 'public/js/all-palpite.js')
         .scripts(['admin.js'], 'public/js/all-admin.js')
         .scripts(['admin_estadio.js'], 'public/js/all-admin_estadio.js')
         .scripts(['admin_equipe.js'], 'public/js/all-admin_equipe.js')

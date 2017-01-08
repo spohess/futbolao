@@ -35,18 +35,22 @@ Route::group(['prefix' => '/entrar'], function () {
 Route::get('/sair', 'Auth\SairController@sair');
 
 Route::group(['prefix' => '/arena', 'middleware' => 'auth'], function () {
-    Route::get('/', 'ArenaController@index');
+    Route::get('/', 'ArenaController@index')->name('arena');
 });
 
 Route::group(['prefix' => '/bolao', 'middleware' => 'auth'], function () {
+    Route::get('/{id}', 'BolaoController@index')->where('id', '[0-9]+');;
     Route::post('/cria', 'BolaoController@cria');
     Route::get('/usuario_bolao', 'BolaoController@getUsuarioBolao');
     Route::get('/todos_bolao', 'BolaoController@getTodosBolao');
     Route::get('/detalhe/{id}', 'BolaoController@getDetalheBolao')->where('id', '[0-9]+');
+    Route::get('/classificacao_rodada/{id}', 'BolaoController@getClassificacaoRodada')->where('id', '[0-9]+');
+    Route::get('/classificacao_mensal/{id}', 'BolaoController@getClassificacaoMensal')->where('id', '[0-9]+');
+    Route::delete('/delete_bolao/{id}', 'BolaoController@delete')->where('id', '[0-9]+');
+
     Route::post('/solicita_entrada/{id}', 'UsuarioBolaoController@solicitaEntrada')->where('id', '[0-9]+');
     Route::delete('/cancela_convite/{id}', 'UsuarioBolaoController@cancelaConvite')->where('id', '[0-9]+');
     Route::delete('/sair_bolao/{id}', 'UsuarioBolaoController@saiBolao')->where('id', '[0-9]+');
-    Route::delete('/delete_bolao/{id}', 'BolaoController@delete')->where('id', '[0-9]+');
     Route::post('/resposta_convite', 'UsuarioBolaoController@respostaConvite');
     Route::post('/banir_participante', 'UsuarioBolaoController@banirParticipante');
     Route::get('/convites_pendentes', 'UsuarioBolaoController@listaConvitesPendentes');

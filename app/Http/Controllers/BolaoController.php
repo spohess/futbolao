@@ -6,17 +6,51 @@ use App\Http\Controllers\Template\BolaoAbstract;
 use App\Http\Helpers\BolaoHelper;
 use App\Http\Requests\BolaoRequest;
 use App\Models\Bolao;
+use App\Models\Palpite;
 use App\Models\UsuarioBolao;
 use Auth;
-use Illuminate\Http\Request;
 
 class BolaoController extends BolaoAbstract
 {
 
-    /**
-     * @param BolaoRequest $request
-     * @return json
-     */
+    public function index($id)
+    {
+        $usuario = Auth::user();
+        $bolao = Bolao::find($id);
+
+        if (is_null($bolao)) {
+            return redirect()->route('arena');
+        }
+
+        $palpite = new Palpite;
+        $palpitesPendentes = $palpite->getPalpitesPendentes($usuario->id);
+        $palpitesPendentesQtd = count($palpitesPendentes);
+
+        $participantes = collect([]);
+
+        foreach ($bolao->participantes as $participante) {
+            $dados = [
+                'nome' => $participante->nome,
+                'login' => $participante->login,
+                'pontos' => $participante->pivot->pontos,
+            ];
+            $participantes->push($dados);
+        }
+
+        $dados = [
+            'id' => $bolao->id,
+            'bolao' => $bolao,
+            'bolaoNome' => $bolao->nome,
+            'bolaoDesc' => $bolao->descricao,
+            'competicao' => $bolao->competicao->nome,
+            'permissao' => $bolao->permissao,
+            'qtdParticipantes' => count($bolao->participantes->all()),
+            'participantes' => $participantes->sortByDesc('pontos'),
+            'avatar' => get_avatar_bolao(),
+        ];
+        return view('site.bolao', $dados);
+    }
+
     public function cria(BolaoRequest $request)
     {
         $bolao = new Bolao;
@@ -77,13 +111,13 @@ class BolaoController extends BolaoAbstract
     {
         $listaBoloes = [];
 
-        $boloesOficiais = Bolao::all()->filter(function($bolao, $chave){
+        $boloesOficiais = Bolao::all()->filter(function ($bolao, $chave) {
             return $bolao->tecnico->id == 2;
         });
         $montaBolaoOficiais = new BolaoHelper($boloesOficiais);
         $listaBoloesOficiais = $montaBolaoOficiais->montaListaBolao();
 
-        $boloesGeral = Bolao::all()->reject(function($bolao, $chave){
+        $boloesGeral = Bolao::all()->reject(function ($bolao, $chave) {
             return $bolao->tecnico->id == 2;
         })->shuffle();
         $montaBolao = new BolaoHelper($boloesGeral);
@@ -114,6 +148,26 @@ class BolaoController extends BolaoAbstract
             return $detalheBolao->getDetalhe();
         }
         abort(400, "Bad Request");
+    }
+
+    public function getClassificacaoRodada($id)
+    {
+        $bolao = Bolao::find($id);
+
+        $bolaoHelper = new BolaoHelper($bolao);
+        $rodada = $bolaoHelper->getRodadaAtualProcessada();
+
+        return $bolao->getClassificacaoPorRodada($rodada);
+    }
+
+    public function getClassificacaoMensal($id)
+    {
+        $bolao = Bolao::find($id);
+
+        $bolaoHelper = new BolaoHelper($bolao);
+        $rodada = $bolaoHelper->getRodadaMensalProcessada();
+
+        return $bolao->getClassificacaoPorRodada($rodada);
     }
 
 }

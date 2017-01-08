@@ -19,7 +19,6 @@ function fnSistemaController($scope, $http) {
 
         $scope.getUsuarioBolao();
         $scope.getTodosBoloes();
-        $scope.getNotificacoes();
     }
 
     $scope.getUsuarioBolao = function(){
@@ -149,8 +148,8 @@ function fnSistemaController($scope, $http) {
         });
     }
 
-    $scope.deleteBolao = function(bolao){
-        $http.delete('/bolao/delete_bolao/' + bolao.id)
+    $scope.deleteBolao = function(idBolao){
+        $http.delete('/bolao/delete_bolao/' + idBolao)
         .success(function(dados){
             if( dados.estado === 'sucesso' ){
                 $scope.meusBoloes = dados.listaMeus;
@@ -282,6 +281,25 @@ function fnSistemaController($scope, $http) {
         });
     }
 
+    $scope.onLoadBolao = function(){
+        $scope.getclassificacaoRodada();
+        $scope.getclassificacaoMensal();
+    }
+
+    $scope.getclassificacaoRodada = function(){
+        $http.get('/bolao/classificacao_rodada/' + angular.element('#id_bolao').val())
+        .success(function(dados){
+            $scope.classificacaoRodada = dados;
+        });
+    }
+
+    $scope.getclassificacaoMensal = function(){
+        $http.get('/bolao/classificacao_mensal/' + angular.element('#id_bolao').val())
+        .success(function(dados){
+            $scope.classificacaoMensal = dados;
+        });
+    }
+
     $scope.getNotificacoes = function(){
         $http.get('/ws/mensagens/')
         .success(function(dados){
@@ -296,6 +314,7 @@ function fnSistemaController($scope, $http) {
             $scope.listaMensagem = dados;
         });
     }
+    $scope.getNotificacoes();
 
     $scope.arquivaMensagem = function(mensagem){
         $http.post('/mensagem/arquiva/' + mensagem.id)

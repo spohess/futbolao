@@ -5,6 +5,7 @@ namespace App\Http\Helpers;
 use App\Models\Bolao;
 use App\Models\UsuarioBolao;
 use Auth;
+use DB;
 use Exception;
 use Illuminate\Support\Collection;
 
@@ -166,5 +167,41 @@ class BolaoHelper
         }
 
         return 0;
+    }
+
+    public function getRodadaAtualProcessada()
+    {
+        $sql = "SELECT MAX(CAST(p.rodada AS UNSIGNED)) AS 'rodada'
+                  FROM partidas p
+            INNER JOIN partidas_processadas pp
+                    ON p.id = pp.id_partida
+            INNER JOIN boloes b
+                    ON p.id_competicao = b.id_competicao
+                 WHERE b.id = ?";
+        $rodada = DB::select($sql, [$this->bolao->id]);
+        return $rodada[0]->rodada;
+    }
+
+    public function getRodadaMensalProcessada()
+    {
+        $sql = "SELECT MAX(CAST(p.rodada AS UNSIGNED)) AS 'rodada'
+                  FROM partidas p
+            INNER JOIN partidas_processadas pp
+                    ON p.id = pp.id_partida
+            INNER JOIN boloes b
+                    ON p.id_competicao = b.id_competicao
+                 WHERE b.id = ?
+                   AND p.data_partida BETWEEN DATE_SUB(CURRENT_DATE, INTERVAL DAYOFMONTH(CURRENT_DATE) - 1 DAY) AND CURRENT_DATE";
+        $rodadas = DB::select($sql, [$this->bolao->id]);
+
+        if (count($rodadas) > 0) {
+            $lista = '-1';
+            foreach ($rodadas as $rodada) {
+                $lista .= (',' . $rodada->rodada);
+            }
+            return $lista;
+        }
+
+        return null;
     }
 }

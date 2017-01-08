@@ -92,7 +92,8 @@ Arena
                                 <td>@{{meuBolao.competicao}}</td>
                                 <td class="text-center">@{{meuBolao.participantes}}</td>
                                 <td class="text-center">@{{meuBolao.pontuacao}}</td>
-                                <td class="text-center"><a href="" data-target="@{{meuBolao.id}}" ng-click="carregaDetalheBolao(meuBolao)"><i class="fa fa-search"></i></a></td>
+                                {{-- <td class="text-center"><a href="" data-target="@{{meuBolao.id}}" ng-click="carregaDetalheBolao(meuBolao)"><i class="fa fa-arrow-right"></i></a></td> --}}
+                                <td class="text-center"><a href="{{url('/bolao')}}/@{{meuBolao.id}}"><i class="fa fa-arrow-right"></i></a></td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -160,7 +161,8 @@ Arena
                                 <td>@{{itemBolao.competicao}}</td>
                                 <td class="text-center">@{{itemBolao.participantes}}</td>
                                 <td class="text-center">@{{itemBolao.pontuacao}}</td>
-                                <td class="text-center"><a href="" data-target="@{{itemBolao.id}}" ng-click="carregaDetalheBolao(itemBolao)"><i class="fa fa-search"></i></a></td>
+                                {{-- <td class="text-center"><a href="" data-target="@{{itemBolao.id}}" ng-click="carregaDetalheBolao(itemBolao)"><i class="fa fa-search"></i></a></td> --}}
+                                <td class="text-center"><a href="{{url('/bolao')}}/@{{itemBolao.id}}"><i class="fa fa-arrow-right"></i></a></td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -407,7 +409,7 @@ Arena
                                 <hr>
                                 <h5 class="text-danger">Deseja mesmo excluir o Bolão: <strong>@{{detalheBolao.nome}}</strong></h5>
                                 <button type="button" class="btn btn-success" ng-click="adminBolao.confirmaDelete = false">NÃO Excluir</button>
-                                <button type="button" class="btn btn-danger pull-right" ng-click="deleteBolao(detalheBolao)">Excluir SIM</button>
+                                <button type="button" class="btn btn-danger pull-right" ng-click="deleteBolao(detalheBolao.id)">Excluir SIM</button>
                             </div>
                         </div>
                     </div>

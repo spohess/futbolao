@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Auth;
+use DB;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -96,5 +98,32 @@ class Bolao extends Model
             'competicao' => $this->competicao,
             'slug' => $this->slug,
         ];
+    }
+
+    public function getClassificacaoPorRodada($strRodada)
+    {
+        $sql = "SELECT u.nome,
+                       u.login,
+                       IFNULL(SUM(pl.pontos), 0) AS pontos
+                  FROM usuarios u
+            INNER JOIN usuarios_boloes ub
+                    ON u.id = ub.id_usuario
+            INNER JOIN boloes b
+                    ON ub.id_bolao = b.id
+            INNER JOIN partidas p
+                    ON b.id_competicao = p.id_competicao
+             LEFT JOIN palpites pl
+                    ON b.id = pl.id_bolao
+                   AND p.id = pl.id_partida
+                   AND u.id = pl.id_usuario
+                 WHERE b.id = {$this->id}
+                   AND ub.participacao = 'aceito'
+                   AND ub.deleted_at IS NULL
+                   AND p.rodada IN ({$strRodada})
+              GROUP BY u.nome , u.login
+              ORDER BY SUM(pl.pontos) DESC, u.login";
+
+        $pontos = DB::select($sql);
+        return $pontos;
     }
 }
