@@ -184,7 +184,7 @@ class BolaoHelper
 
     public function getRodadaMensalProcessada()
     {
-        $sql = "SELECT MAX(CAST(p.rodada AS UNSIGNED)) AS 'rodada'
+        $sql = "SELECT IFNULL(MAX(CAST(p.rodada AS UNSIGNED)), 0) AS 'rodada'
                   FROM partidas p
             INNER JOIN partidas_processadas pp
                     ON p.id = pp.id_partida

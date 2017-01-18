@@ -167,6 +167,10 @@ class BolaoController extends BolaoAbstract
         $bolaoHelper = new BolaoHelper($bolao);
         $rodada = $bolaoHelper->getRodadaMensalProcessada();
 
+        if ($rodada == '-1,0') {
+            $rodada = $bolaoHelper->getRodadaAtualProcessada();
+        }
+
         return $bolao->getClassificacaoPorRodada($rodada);
     }
 
