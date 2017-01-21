@@ -114,6 +114,7 @@ class BolaoController extends BolaoAbstract
         $boloesOficiais = Bolao::all()->filter(function ($bolao, $chave) {
             return $bolao->tecnico->id == 2;
         });
+
         $montaBolaoOficiais = new BolaoHelper($boloesOficiais);
         $listaBoloesOficiais = $montaBolaoOficiais->montaListaBolao();
 
@@ -125,7 +126,7 @@ class BolaoController extends BolaoAbstract
 
         $listaUnificada = array_merge($listaBoloesOficiais, $listaBoloes);
 
-        if (empty($listaBoloes)) {
+        if (empty($listaUnificada)) {
             return ['estado' => 'vazio'];
         } else {
             return ['estado' => 'sucesso', 'lista' => $listaUnificada];
