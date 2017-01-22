@@ -74,7 +74,8 @@ elixir(function(mix) {
         .scripts(['admin_equipe.js'], 'public/js/all-admin_equipe.js')
         .scripts(['admin_competicao.js'], 'public/js/all-admin_competicao.js')
         .scripts(['admin_partida.js'], 'public/js/all-admin_partida.js')
-        .scripts(['admin_resultado.js'], 'public/js/all-admin_resultado.js');
+        .scripts(['admin_resultado.js'], 'public/js/all-admin_resultado.js')
+        .scripts(['admin_mensagem.js'], 'public/js/all-admin_mensagem.js');
 });
 
 elixir(function(mix) {

@@ -44,4 +44,11 @@ class Mensagem extends Model
         return $litaMensagens;
     }
 
+    public function toObject(array $dados)
+    {
+        $this->tipo = $dados['tipo'];
+        $this->titulo = $dados['titulo'];
+        $this->mensagem = $dados['mensagem'];
+    }
+
 }

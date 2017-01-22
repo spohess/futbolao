@@ -41,6 +41,7 @@
                             <li><a href="{{url('/admin/competicao')}}">Competição</a></li>
                             <li><a href="{{url('/admin/partida')}}">Partida</a></li>
                             <li><a href="{{url('/admin/resultado')}}">Resultado</a></li>
+                            <li><a href="{{url('/admin/mensagem')}}">Mensagem</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{url('/arena')}}">Arena</a></li>

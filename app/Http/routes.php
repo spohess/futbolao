@@ -81,6 +81,7 @@ Route::group(['prefix' => '/usuario', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => '/mensagem', 'middleware' => 'auth'], function () {
     Route::post('/arquiva/{idMensagem}', 'MensagemController@arquivaMensagem')->where('idMensagem', '[0-9]+');
+    Route::get('/get_all', 'MensagemController@getMensagens');
 });
 
 /*
@@ -105,12 +106,15 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'needsRole'], 'is' 
 
     Route::get('/partida', 'AdminController@indexPartida');
     Route::post('/save_partida', 'AdminController@savePartida');
-    Route::post('/save_resultado', 'AdminController@saveResultado');
     Route::delete('/delete_partida/{id}', 'AdminController@deletePartida')->where('id', '[0-9]+');
 
     Route::get('/resultado', 'AdminController@indexResultado');
     Route::post('/save_resultado', 'AdminController@saveResultado');
     Route::delete('/delete_resultado/{id}', 'AdminController@deleteResultado')->where('id', '[0-9]+');
+
+    Route::get('/mensagem', 'AdminController@indexMensagem');
+    Route::post('/save_mensagem', 'AdminController@saveMensagem');
+    Route::put('/arquiva_mensagem/{id}', 'AdminController@arquivaMensagem')->where('id', '[0-9]+');
 
     Route::group(['prefix' => '/usuario'], function () {
         Route::get('/lista_usuarios', 'AdminController@getListaUsuarios');

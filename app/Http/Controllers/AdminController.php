@@ -8,6 +8,7 @@ use App\Models\Competicao;
 use App\Models\Equipe;
 use App\Models\EquipeCompeticao;
 use App\Models\Estadio;
+use App\Models\Mensagem;
 use App\Models\Partida;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
@@ -47,6 +48,11 @@ class AdminController extends Controller
     public function indexResultado()
     {
         return view('admin.resultado');
+    }
+
+    public function indexMensagem()
+    {
+        return view('admin.mensagem');
     }
 
     public function saveEstadio(Request $request)
@@ -116,18 +122,33 @@ class AdminController extends Controller
         $partida->save();
     }
 
-    public function deletePartida($id)
-    {
-        $partida = Partida::find($id);
-        $partida->delete();
-    }
-
     public function saveResultado(Request $request)
     {
         $partida = Partida::firstOrNew(['id' => $request->id]);
         $partida->toObject($request->all());
         $partida->gravado = 'GRAVADO';
         $partida->save();
+    }
+
+    public function saveMensagem(Request $request)
+    {
+        $mensagem = Mensagem::firstOrNew(['id' => $request->id]);
+        $mensagem->toObject($request->all());
+        $mensagem->save();
+        return ['execucao' => true];
+    }
+
+    public function deletePartida($id)
+    {
+        $partida = Partida::find($id);
+        $partida->delete();
+    }
+
+    public function arquivaMensagem($idMensagem)
+    {
+        $mensagem = Mensagem::find($idMensagem);
+        $mensagem->delete();
+        return ['execucao' => true];
     }
 
     public function getListaUsuarios()
