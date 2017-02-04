@@ -24,6 +24,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command("pontuacao:calcula")->hourly();
+        $schedule->command("pontuacao:calcula")->dailyAt('00:00');
     }
 }

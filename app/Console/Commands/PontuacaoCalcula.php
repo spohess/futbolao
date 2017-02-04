@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Palpite;
 use App\Models\PartidaProcessada;
 use App\Models\UsuarioBolao;
+use DateTime;
 use DB;
 use Illuminate\Console\Command;
 use Log;
@@ -42,6 +43,20 @@ class PontuacaoCalcula extends Command
      */
     public function handle()
     {
+
+        $data = new DateTime();
+        $backupdb = storage_path('db/futbolao_db_' . $data->format('YmdHi') . '.sql');
+
+        Log::info('#######################################################');
+        Log::info('Executando backup do banco de dados');
+        Log::info('-------------------------------------------------------');
+
+        shell_exec("mysqldump -u " . env('DB_USERNAME', '') . " --password='" . env('DB_PASSWORD', '') . "' --no-create-info --skip-triggers --complete-insert --default-character-set=utf8 " . env('DB_DATABASE', '') . " | sed -r 's/LOCK TABLES (`[^`]+`)/TRUNCATE TABLE \\1; LOCK TABLES \\1/g' > " . $backupdb);
+
+        Log::info('-------------------------------------------------------');
+        Log::info('Fim do backup');
+        Log::info('#######################################################');
+
         Log::info('#######################################################');
         Log::info('Início da atualização dos resultados');
         Log::info('-------------------------------------------------------');
