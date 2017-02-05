@@ -4,7 +4,7 @@ return [
 
     'debug' => env('APP_DEBUG', false),
     'url' => 'http://futbolao.com',
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
     'locale' => 'pt_br',
     'fallback_locale' => 'pt_br',
     'key' => env('APP_KEY', 'SomeRandomString'),
