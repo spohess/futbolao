@@ -54,7 +54,7 @@ class PalpiteHelper
                 'palpite_penalti_visitante' => $palpite->penalti_visitante,
                 'resultado_visitante' => $partida->placar_visitante,
                 'resultado_penalti_visitante' => $partida->penalti_visitante,
-                'pontos' => (!empty($palpite->pontos)) ? $palpite->pontos : 0,
+                'pontos' => (!empty($palpite->pontos)) ? $palpite->pontos : 'NÃO CALCULADO',
             ];
             array_push($listaPartidas, $dados);
         }

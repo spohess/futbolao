@@ -75,7 +75,7 @@ Pontos
                     </div>
                     <br>
                     <div class="col-xs-24 text-center"><a href="" title="Outros palpites para essa partida" ng-click="outrosPalpites(palpite)">Outros palpites para essa partida</a></div>
-                    <div class="col-xs-24 text-center"><h2>Pontos: @{{palpite.pontos}}</h2></div>
+                    <div class="col-xs-24 text-center"><h2>Pontos: <strong class="text-primary">@{{palpite.pontos}}</strong></h2></div>
                 </div>
             </div>
         </div>
