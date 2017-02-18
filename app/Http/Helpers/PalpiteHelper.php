@@ -25,6 +25,17 @@ class PalpiteHelper
                 return $item->id_partida == $partida->id;
             });
             $palpite = (!$palpite->isEmpty()) ? $palpite->first() : new Palpite;
+
+            $pontos = $palpite->pontos;
+
+            if (is_null($pontos)) {
+                $pontos = 'NÃO CALCULADO';
+            }
+
+            if ($pontos === 'NÃO CALCULADO' && is_null($palpite->id)) {
+                $pontos = 'SEM PALPITE';
+            }
+
             $dados = [
                 'id_palpite' => $palpite->id,
                 'id_partida' => $partida->id,
@@ -54,7 +65,7 @@ class PalpiteHelper
                 'palpite_penalti_visitante' => $palpite->penalti_visitante,
                 'resultado_visitante' => $partida->placar_visitante,
                 'resultado_penalti_visitante' => $partida->penalti_visitante,
-                'pontos' => (!is_null($palpite->pontos)) ? $palpite->pontos : 'NÃO CALCULADO',
+                'pontos' => $pontos,
             ];
             array_push($listaPartidas, $dados);
         }
