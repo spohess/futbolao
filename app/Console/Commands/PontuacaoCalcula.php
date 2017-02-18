@@ -170,6 +170,10 @@ class PontuacaoCalcula extends Command
     {
         Log::info('Partida Penalti: ' . $partida->id);
 
+        if (!$partida->penalti) {
+            return false;
+        }
+
         $palpites = Palpite::where('id_partida', $partida->id)->where('penalti_casa', '!=', null)->where('penalti_visitante', '!=', null)->get();
 
         $oitoPontos = $palpites->filter(function ($item) use ($partida) {
