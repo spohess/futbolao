@@ -28,12 +28,12 @@ class PalpiteHelper
 
             $pontos = $palpite->pontos;
 
-            if (is_null($pontos)) {
-                $pontos = 'NÃO CALCULADO';
+            if (is_null($palpite->pontos) && is_null($palpite->id)) {
+                $pontos = 'SEM PALPITE';
             }
 
-            if ($pontos === 'NÃO CALCULADO' && is_null($palpite->id)) {
-                $pontos = 'SEM PALPITE';
+            if (is_null($partida->gravado)) {
+                $pontos = 'NÃO PROCESSADO';
             }
 
             $dados = [

@@ -36,6 +36,18 @@ Resultados
         </div>
         <div class="col-xs-24">
             <hr>
+            <div class="row">
+                <div class="col-xs-24">
+                    <h2 class="text-primary">Calculo manual</h2>
+                    <p>Executar manualmente o processo de calculo de pontuação</p>
+                </div>
+                <div class="col-xs-24">
+                    <button type="button" class="btn btn-danger pull-right" ng-click="executaCalculo()"><i id="iconeBtnExecutar" class="fa fa-cogs"></i> Executar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-24">
+            <hr>
         </div>
         <div class="col-xs-24 col-md-12 col-md-offset-6">
             <form name="formSalvaResultado" method="post" accept-charset="utf-8" data-toggle="validator" role="form" ng-submit="saveResultado()">

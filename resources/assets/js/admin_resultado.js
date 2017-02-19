@@ -17,10 +17,14 @@ function fnSistemaController($scope, $http) {
     $scope.getCompeticao();
 
     $scope.carregaRodadas = function(){
-        $http.get('/ws/rodadas_competicao/' + $scope.resultado.id_competicao)
-        .success(function(dados){
-            $scope.listaRodadas = dados;
-        });
+        if( $scope.resultado.id_competicao != undefined ){
+            $http.get('/ws/rodadas_competicao/' + $scope.resultado.id_competicao)
+            .success(function(dados){
+                $scope.listaRodadas = dados;
+            });
+        } else {
+            $scope.listaRodadas = {};
+        }
     }
 
     $scope.carregaPartidas = function(){
@@ -35,6 +39,15 @@ function fnSistemaController($scope, $http) {
         .success(function(){
             angular.element("#box-resultado-" + partida.id).removeClass("inserido");
             angular.element("#box-resultado-" + partida.id).addClass("gravado");
+        });
+    }
+
+    $scope.executaCalculo = function(){
+        iconeEspera('iconeBtnExecutar', 'fa-cogs', 'ativa');
+
+        $http.get('/admin/calcula_pontuacao')
+        .finally(function(){
+            iconeEspera('iconeBtnExecutar', 'fa-cogs', 'desativa');
         });
     }
 }

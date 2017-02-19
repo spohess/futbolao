@@ -11,6 +11,7 @@ use App\Models\Estadio;
 use App\Models\Mensagem;
 use App\Models\Partida;
 use App\Models\Usuario;
+use Artisan;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -154,5 +155,10 @@ class AdminController extends Controller
     public function getListaUsuarios()
     {
         return Usuario::withTrashed()->get();
+    }
+
+    public function executaCalculoPontuacao()
+    {
+        return Artisan::call('pontuacao:calcula');
     }
 }
